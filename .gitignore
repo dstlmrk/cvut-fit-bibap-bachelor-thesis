@@ -1,3 +1,8 @@
+## My otpions
+*~
+/src/main.pdf
+*.backup
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

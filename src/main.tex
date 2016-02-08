@@ -1,0 +1,343 @@
+% options:
+% thesis=B bachelor's thesis
+% thesis=M master's thesis
+% czech thesis in Czech language
+% slovak thesis in Slovak language
+% english thesis in English language
+% hidelinks remove colour boxes around hyperlinks
+
+
+\documentclass[thesis=B,czech]{FITthesis}[2012/06/26]
+
+\usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
+
+\usepackage{graphicx} %graphics files inclusion
+% \usepackage{amsmath} %advanced maths
+% \usepackage{amssymb} %additional math symbols
+
+\usepackage{dirtree} %directory tree visualisation
+
+
+
+% % list of acronyms
+% \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
+% \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
+% \makeglossaries
+
+\newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
+\newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% ODTUD DAL VSE ZMENTE
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\department{Katedra softwarového inženýrství}
+\title{Systém pro skórování Ultimate~Frisbee~zápasů~-~backend}
+\authorGN{Marek} %(křestní) jméno (jména) autora
+\authorFN{Dostál} %příjmení autora
+\authorWithDegrees{Marek Dostál} %jméno autora včetně současných akademických titulů
+\supervisor{Ing. Jiří Hunka}
+\acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
+\abstractCS{V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by se čtenář měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.}
+\abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+\placeForDeclarationOfAuthenticity{V~Praze}
+\declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
+\keywordsCS{Nahraďte seznamem klíčových slov v češtině oddělených čárkou.}
+\keywordsEN{Nahraďte seznamem klíčových slov v angličtině oddělených čárkou.}
+
+
+\begin{document}
+
+% TODO: Vyresit, jak budu formatovat odstavce.
+% TODO: Zjistit, jak se vkladaji citace.
+
+% \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
+% \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
+
+\begin{introduction}
+	%sem napište úvod Vaší práce
+\end{introduction}
+
+\chapter{Cíl práce}
+
+- Uvod do problematiky (Analyza problematiky)
+-- Co je to Ultimate Frisbee
+-- Uvod do aplikacnich rozhrani
+--- API
+
+- Pozadavky a zadani
+- Existujici reseni (Analyza dostupnych sluzeb)
+-- Catcher
+-- UltimateCentral
+
+- Požadavky a zadání
+- Analýza dostupných služeb
+  - Catcher
+  - UltimateCentral
+- Analýza dostupných technologií
+  - Výběr a detailnější popis vybraných technologií.
+- Návrh aplikace (db, model, atd.)
+  - Podivat se na to, co rikal Hunka.
+- Problemy pri implementaci
+- ...
+
+\chapter{Úvod do problematiky}
+
+\indent
+
+V této kapitole se seznámíme se sportem Ultimate Frisbee a nastíníme problematiku
+pořádání sportovních akcí, kde je potřeba evidovat dění na hřišti a kolem něj.
+
+\section{Co je to Ultimate Frisbee}
+
+% TODO: Tady si mozna napsat neco uz hotovy na netu. Zaroven by bylo dobry zminit, jak se ultimate hraje.
+% TODO: Obrazek???
+
+\indent
+
+Ultimate Frisbee je mladý a dynamicky se rozvíjející sport s létajícím talířem, který se hraje od roku 1968 \cite{cald-o-ultimate}.
+Hraje jej přibližně sedm miliónů hráčů ve více než 80 zemích světa a jeho popularita rok od roku stoupá. \cite{usa-about-ultimate}.
+Během posledních několika let je běžné sledovat žívé přenosy na sportovním kanálu ESPN z Amerických soutěží, především profesionální ligy AUDL.
+Ultimate v roce 2015 dokonce získalo uznání od Mezinárodního olympijského výboru \cite{cald-uznani}. 
+
+\subsection{Pravidla}
+
+\indent
+
+copypasta:
+Ultimate je kolektivní bezkontaktní sport, v němž vítězí tým, který má na konci hrací doby vyšší počet bodů.
+Hraje se na hřišti o rozměrech cca 100x37 metrů (délka fotbalového hřiště, polovina jeho šířky).
+Na obou koncích hřiště jsou vyznačeny koncové zóny o hloubce cca 18 metrů.
+
+\medskip
+
+copypasta:
+V ultimate proti sobě hrají dva sedmičlenné týmy. Smyslem hry je pomocí přihrávek dopravit disk do soupeřovy koncové zóny
+a jeho chycením v zóně získat bod. Po chycení disku se hráč musí zastavit a do 10 vteřin disk přihrát spoluhráči.
+Povoleným pohybem hráče s diskem je pivotování, tedy otáčení se kolem vlastní osy s jednou nohou pevně na zemi.
+V ultimate hráči často střídají útok a obranu při ztrátě disku, ke které dochází záhozem disku do autu, na zem,
+jeho zachycením soupeřem nebo při dlouhém držení disku. Není povolen fyzický kontakt mezi hráči ani přetahování o disk.
+
+\subsection{Spirit of the Game}
+
+\indent
+
+trochu copypasta:
+Frisbee je od samého počátku postaveno na sportovním duchu, který klade odpovědnost za fair play na samotné hráče.
+Předpokládá se vysoce soutěživá hra, ne však za cenu ztráty vzájemné ohleduplnosti a vytracení radosti ze hry.
+Všechny přetupky na hřišti i mimo něj jsou hlášeny samotnými hráči. Jako jediná sportovní hra se obejde bez rozhodčích,
+a to i na nejvyšších soutěžích, kterými jsou mistrovství Evropy a světa.
+
+\medskip
+
+Hraní fairplay je otázka cti. Na každém turnaji je vyhlašována cena Spirit of the Game, která je cenou pro ty, kteří se chovali nejčestněji.
+Po každém zápase se týmy navzájem ohodnotí v podobě číselného hodnocení a cenu pak získá tým s nejvyšším průměrem.
+Cena Spirit of the Game je ceněna obdobně jako 1. místo.
+
+\subsection{Ultimate v České republice}
+
+Hraje se v kategoriích open (muži), ženy, mix (smíšené týmy mužů a žen), junioři (do 19 let) a masters (nad 33 let).
+
+\indent
+
+V České republice zastřešuje sporty s létajícím talířem Česká asociace
+lé\-ta\-jícícho disku (dále jen ``ČALD''). Během roku pořádá národní mistrovství 
+pro muže, ženy a juniory a další kategorie. Mistrovství se účastní desítky
+sportovních klubů ze všech koutů republiky. Kluby zároveň pořádají vlastní
+turnaje během celého roku.
+
+\medskip
+
+Většina turnajů nebo mistrovství trvá zpravidla více dnů, během kterých se odehrají desítky zápasů. A s přibývajícím počtem účastníků vzniká čím dál větší
+poptávka po online přenosech a statistikách z těchto zápasů.
+
+
+
+% TODO: Bude potreba doplnit, protoze se jedna o dulezity pojem, ktery bude pak zpracovan.
+
+\section{Jak probíhá typický turnaj}
+
+% TODO: Kdo vsechno, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
+% TODO: Jeste doplnit dal.
+
+\chapter{Specifikace požadavků}
+
+% TODO: vymyslet, jak, tomu budu rikat (asi nepuzivat slovo aplikace)
+
+\section{Požadavky na aplikaci}
+
+\subsection{Funkční požadavky}
+
+\subsection{Nefunkční požadavky}
+% TODO: vic rozepsat funkcni a nefunkcni pozadavky na aplikaci
+
+\indent
+
+Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online skórování zápasů a následné zobrazování statistik.
+Sou\-částí práce tak bude analýza dosavadních i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové aplikace. 
+Frontend bude vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého.
+Jeho úkolem je vytvořit především uživatelsky přívětivé prostředí, které bude pohodlné pro správu na mobilních zařízeních. Jeho výstupem bude tedy responzivní web.
+Vznikající systém má pracovní název UFSS.
+
+\medskip
+
+Na základě potřeby ČALD a organizátorů jednotlivých turnajů byly stanoveny základní požadavky na vznikající systém:
+
+\begin{enumerate}
+\item Systém umožňuje import a export dat (týmy, hráči, soupisky). Navíc bude automaticky importovat data z databáze ČALD.
+\item Systém poskytuje manuální i automatickou tvorbu rozpisu turnaje. Dále automaticky doplňuje rozpis v závislosti na odehraných zápasech.
+\item Systém autentizuje konkrétní role (organizátor, hráč, návštěvník).
+\item Systém umožňuje zadávání statistik (průběžné skóre, skórující hráč) v~prů\-běhu zápasu i po něm.
+\item Systém tvoří detailní statistiky hráčů i týmů.
+\item Systém rozesílá notifikace (pomocí SMS nebo emailu) všem nebo vybraným účastníkům turnaje z důvodu závažných událostí (odložení zápasu apod.).
+\end{enumerate}
+
+\medskip
+
+Specifikum této aplikace bude to, že výsledky v průběhu zápasů budou moci zapisovat i hráči, kteří jsou se svým mobilním zařízením na místě.
+Tato vlastnost má přinést rychlejší přístup k výsledkům na turnajích, na kterých není dostatečný počet organizátorů.
+Některé turnaje si například organizují samotní hráči.
+
+\section{Uživatelské role}
+
+% TODO: Kdo vsechno bude do aplikace pristupovat
+
+\subsection{Nepřihlášený návštěvník}
+
+\indent
+
+Má přístup ke všem veřejným statistikám a údajům z turnaje. Nemůže žádná data modifikovat
+nebo vytvářet a nevyžaduje přihlášení.
+
+\subsection{Hráč}
+
+% TODO: Nejsem si touto rolí jistý.
+
+\indent
+
+Hráč je uživatel, který se musí přihlásit. Může zadávat aktuální skóre u zápasů,
+které mají tuto možnost povolenou, a zadávat hodnocení Spirit of the Game týmům, proti kterým hračův tým nastoupil.
+
+\subsection{Tým}
+
+\indent
+
+Tým je role pro více uživatelů zároveň. Jde o situaci, kdy tým nemá žádného zaregistrovaného hráče,
+ale je po něm vyžadováno vyplňování Spirit of~the~Game. Každý tým tedy obdrží heslo pro přihlášení a kdokoliv,
+kdo tento přihlašovací údaj získá, má možnost SotG vyplňovat.
+
+\subsection{Organizátor}
+
+\indent
+
+Role, která má přístup k neveřejným statistikám, zpravidla neúplné tabulce SotG, a zapisování všech výsledků a statistik ze zápasů.
+Dále pak může přidávat nebo editovat rozpis zápasů a rozesílat zprávy účastníkům turnaje.
+
+\subsection{Správce}
+
+\indent
+
+Má plnou kontrolu nad správou účtů. Pouze správce může vytvářet organizátorské účty.
+
+\section{Případy užití}
+
+% TODO: Co budou nejbeznejsi operace v aplikaci (zapisovani skore, zapisovani spiritu, tvorba turnaje a rozpisu). Tady to mozna napsat VSECHNO v bodech, protoze z toho budou vychazet API.
+
+Přehled jednotlivých případů užití, které API umožňuje.
+
+\begin{enumerate}
+\item bla, bla
+\end{enumerate}
+
+\chapter{Analýza}
+
+\section{Existující řešení}
+
+% TODO: Jake reseni uz existuji. Catcher, UltimateCentral atd., co je na nich dobryho a co ne
+
+\section{Možnosti řešení}
+
+% TODO: Co vsechno si z techto aplikaci muzu vzit. Pouzit API nebo jine technologie.
+
+\section{Něco o API}
+
+% TODO: Napsat neco o teorii REST API. Mozna lze sjednotit s predchozi kapitolou.
+
+\chapter{Návrh}
+
+\section{Návrh tříd a databáze}
+
+% TODO: Takovy ty kecy teoreticky. Jak ma vypadat diagram trid, databazovy model apod.
+
+\section{Architektura a návrh nasazení}
+
+% TODO: Nevim, ale asi jak se to cely nasadi.
+
+\chapter{Implementace}
+
+\section{Výběr technologií}
+
+% TODO: Jake technologie si vyberu. Ze kterych mam na vyber.
+
+% TODO: Napsat neco o Percone (MySQL), Falconu, Pythonu a mozna necem dalsim.
+
+\chapter{Testování}
+
+% TODO: Co budu pouzivat na testovani a prubeznou integraci. Codevoc nebo Travis CI.
+% TODO: Jake testy budu delat (unit, akceptaci)
+
+\chapter{Nasazení}
+
+% TODO: Tady jeste uvidime, co napiseme.
+
+\section{Softwarové požadavky}
+
+\section{Konfigurace}
+
+\section{Údržba}
+
+XXXXXXXXXXx \cite{JJ92}
+
+% \chapter{Analýza a návrh}
+% \chapter{Realizace}
+
+\begin{conclusion}
+	%sem napište závěr Vaší práce
+	% TODO: Budoucnost projektu.
+\end{conclusion}
+
+% TODO: Promyslet, jak presne odevzdavat citace.
+%\bibliographystyle{csn690}
+%\bibliographystyle{iso690}
+%\bibliography{ref}
+
+\appendix
+
+\chapter{Seznam použitých zkratek}
+% \printglossaries
+\begin{description}
+	\item[GUI] Graphical user interface
+	\item[XML] Extensible markup language
+\end{description}
+
+\chapter{Obsah přiloženého CD}
+
+%upravte podle skutecnosti
+
+\begin{figure}
+	\dirtree{%
+		.1 readme.txt\DTcomment{stručný popis obsahu CD}.
+		.1 exe\DTcomment{adresář se spustitelnou formou implementace}.
+		.1 src.
+		.2 impl\DTcomment{zdrojové kódy implementace}.
+		.2 thesis\DTcomment{zdrojová forma práce ve formátu \LaTeX{}}.
+		.1 text\DTcomment{text práce}.
+		.2 thesis.pdf\DTcomment{text práce ve formátu PDF}.
+		.2 thesis.ps\DTcomment{text práce ve formátu PS}.
+	}
+\end{figure}
+
+\end{document}
+
+\iffalse
+\fi
