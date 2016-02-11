@@ -60,33 +60,40 @@
 
 \chapter{Cíl práce}
 
-- Uvod do problematiky (Analyza problematiky)
--- Co je to Ultimate Frisbee
--- Uvod do aplikacnich rozhrani
---- API
+Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online
+skórování zápasů a následné zobrazování statistik. Sou\-částí práce tak bude analýza dosavadních
+i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové aplikace. Frontend bude
+vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého. Jeho úkolem je vytvořit především
+uživatelsky přívětivé prostředí, které bude pohodlné pro správu na mobilních zařízeních. Jeho
+výstupem bude tedy responzivní web. Vznikající systém má pracovní název UFSS.
 
-- Pozadavky a zadani
-- Existujici reseni (Analyza dostupnych sluzeb)
--- Catcher
--- UltimateCentral
-
-- Požadavky a zadání
-- Analýza dostupných služeb
-  - Catcher
-  - UltimateCentral
-- Analýza dostupných technologií
-  - Výběr a detailnější popis vybraných technologií.
-- Návrh aplikace (db, model, atd.)
-  - Podivat se na to, co rikal Hunka.
-- Problemy pri implementaci
-- ...
+%- Uvod do problematiky (Analyza problematiky)
+%-- Co je to Ultimate Frisbee
+%-- Uvod do aplikacnich rozhrani
+%--- API
+%
+%- Pozadavky a zadani
+%- Existujici reseni (Analyza dostupnych sluzeb)
+%-- Catcher
+%-- UltimateCentral
+%
+%- Požadavky a zadání
+%- Analýza dostupných služeb
+%  - Catcher
+%  - UltimateCentral
+%- Analýza dostupných technologií
+%  - Výběr a detailnější popis vybraných technologií.
+%- Návrh aplikace (db, model, atd.)
+%  - Podivat se na to, co rikal Hunka.
+%- Problemy pri implementaci
+%- ...
 
 \chapter{Úvod do problematiky}
 
 \indent
 
-V této kapitole se seznámíme se sportem Ultimate Frisbee a nastíníme problematiku
-pořádání sportovních akcí, kde je potřeba evidovat dění na hřišti a kolem něj.
+Ještě než s čímkoliv začneme, je potřeba představit pojem Ultimate Frisbee, protože v českých podmínkách jde o minoritní sport.
+Dále pak nastíníme problematiku pořádání turnajů v tomto vyjímečném sportu.
 
 \section{Co je to Ultimate Frisbee}
 
@@ -95,23 +102,27 @@ pořádání sportovních akcí, kde je potřeba evidovat dění na hřišti a k
 
 \indent
 
-Ultimate Frisbee je mladý a dynamicky se rozvíjející sport s létajícím talířem, který se hraje od roku 1968 \cite{cald-o-ultimate}.
-Hraje jej přibližně sedm miliónů hráčů ve více než 80 zemích světa a jeho popularita rok od roku stoupá. \cite{usa-about-ultimate}.
-Během posledních několika let je běžné sledovat žívé přenosy na sportovním kanálu ESPN z Amerických soutěží, především profesionální ligy AUDL.
-Ultimate v roce 2015 dokonce získalo uznání od Mezinárodního olympijského výboru \cite{cald-uznani}. 
+Ultimate Frisbee je mladý a dynamicky se rozvíjející sport s létajícím talířem,
+který se hraje od roku 1968 \cite{cald-o-ultimate}. Hraje jej přibližně sedm miliónů
+hráčů ve více než 80 zemích světa a jeho popularita rok od roku stoupá \cite{usa-about-ultimate}.
+Během posledních několika let je například běžné sledovat živé přenosy na sportovním kanálu ESPN
+z Amerických soutěží, především profesionální ligy AUDL. Ultimate v roce 2015 dokonce získalo
+uznání od Mezinárodního olympijského výboru \cite{cald-uznani}. Nejčastěji se hraje v kategoriích
+open (muži), ženy, mix (smíšené týmy mužů a žen), junioři (do 19 let) a masters (nad 33 let).
 
 \subsection{Pravidla}
 
+% TODO: Zminit, ze v zime se hraje 5 na 5
+% TODO: Vymyslet, jak ocitovat celou kapitolu Pravidla (mozna by se mohlo pouzit \blockquote{ )
+
 \indent
 
-copypasta:
-Ultimate je kolektivní bezkontaktní sport, v němž vítězí tým, který má na konci hrací doby vyšší počet bodů.
-Hraje se na hřišti o rozměrech cca 100x37 metrů (délka fotbalového hřiště, polovina jeho šířky).
-Na obou koncích hřiště jsou vyznačeny koncové zóny o hloubce cca 18 metrů.
+Ultimate je kolektivní bezkontaktní sport, v němž vítězí tým, který má na konci hrací doby vyšší
+počet bodů. Hraje se na hřišti o rozměrech cca 100x37 metrů (délka fotbalového hřiště, polovina
+jeho šířky). Na obou koncích hřiště jsou vyznačeny koncové zóny o hloubce cca 18 metrů.
 
 \medskip
 
-copypasta:
 V ultimate proti sobě hrají dva sedmičlenné týmy. Smyslem hry je pomocí přihrávek dopravit disk do soupeřovy koncové zóny
 a jeho chycením v zóně získat bod. Po chycení disku se hráč musí zastavit a do 10 vteřin disk přihrát spoluhráči.
 Povoleným pohybem hráče s diskem je pivotování, tedy otáčení se kolem vlastní osy s jednou nohou pevně na zemi.
@@ -122,41 +133,39 @@ jeho zachycením soupeřem nebo při dlouhém držení disku. Není povolen fyzi
 
 \indent
 
-trochu copypasta:
-Frisbee je od samého počátku postaveno na sportovním duchu, který klade odpovědnost za fair play na samotné hráče.
-Předpokládá se vysoce soutěživá hra, ne však za cenu ztráty vzájemné ohleduplnosti a vytracení radosti ze hry.
-Všechny přetupky na hřišti i mimo něj jsou hlášeny samotnými hráči. Jako jediná sportovní hra se obejde bez rozhodčích,
-a to i na nejvyšších soutěžích, kterými jsou mistrovství Evropy a světa.
+Už od počátku je Ultimate Frisbee založeno na sportovním duchu, který klade odpovědnost
+za fair play na samotné hráče. Předpokládá se vysoce soutěživá hra, ne však za cenu ztráty
+vzájemné ohleduplnosti a vytracení radosti ze hry. Všechny přetupky na hřišti i mimo něj jsou
+řešeny samotnými hráči. Jako jediná sportovní hra se tak obejde bez rozhodčích, a to i
+na nejvyšších soutěžích, kterými jsou mistrovství Evropy a světa.
 
 \medskip
 
-Hraní fairplay je otázka cti. Na každém turnaji je vyhlašována cena Spirit of the Game, která je cenou pro ty, kteří se chovali nejčestněji.
-Po každém zápase se týmy navzájem ohodnotí v podobě číselného hodnocení a cenu pak získá tým s nejvyšším průměrem.
-Cena Spirit of the Game je ceněna obdobně jako 1. místo.
+Hraní fairplay je otázka cti. Na každém turnaji je vyhlašována cena Spirit of the Game,
+která je cenou pro ty, kteří se chovali nejčestněji. Po každém zápase se týmy navzájem ohodnotí
+v podobě číselného hodnocení a cenu pak získá tým s nejvyšším průměrem. Cena Spirit of the Game
+je ceněna obdobně jako 1. místo.
 
 \subsection{Ultimate v České republice}
 
-Hraje se v kategoriích open (muži), ženy, mix (smíšené týmy mužů a žen), junioři (do 19 let) a masters (nad 33 let).
-
 \indent
 
-V České republice zastřešuje sporty s létajícím talířem Česká asociace
-lé\-ta\-jícícho disku (dále jen ``ČALD''). Během roku pořádá národní mistrovství 
-pro muže, ženy a juniory a další kategorie. Mistrovství se účastní desítky
-sportovních klubů ze všech koutů republiky. Kluby zároveň pořádají vlastní
-turnaje během celého roku.
+V České republice zastřešuje sporty s létajícím talířem již od roku XXXX Česká asociace
+lé\-ta\-jícícho disku (dále jen ``ČALD''). V celé republice eviduje XX zaregistrovaných klubů,
+které se mezi sebou utkávají nejčastěji na víkendových turnajích. Těch bylo na našem
+území za loňský rok více jak třicet, což je každý druhý týden v roce.
 
 \medskip
 
-Většina turnajů nebo mistrovství trvá zpravidla více dnů, během kterých se odehrají desítky zápasů. A s přibývajícím počtem účastníků vzniká čím dál větší
-poptávka po online přenosech a statistikách z těchto zápasů.
-
-
+Většina turnajů nebo mistrovství pak trvá zpravidla více dnů, během kterých se odehrají desítky
+utkání. A s přibývajícím počtem hráčů a fanoušků vzniká čím dál větší poptávka po online přenosech
+a statistikách z těchto akcí.
 
 % TODO: Bude potreba doplnit, protoze se jedna o dulezity pojem, ktery bude pak zpracovan.
 
 \section{Jak probíhá typický turnaj}
 
+% Vsechno se doposud pise na papir a je to proste cely na prd.
 % TODO: Kdo vsechno, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
 % TODO: Jeste doplnit dal.
 
@@ -166,20 +175,7 @@ poptávka po online přenosech a statistikách z těchto zápasů.
 
 \section{Požadavky na aplikaci}
 
-\subsection{Funkční požadavky}
-
-\subsection{Nefunkční požadavky}
-% TODO: vic rozepsat funkcni a nefunkcni pozadavky na aplikaci
-
 \indent
-
-Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online skórování zápasů a následné zobrazování statistik.
-Sou\-částí práce tak bude analýza dosavadních i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové aplikace. 
-Frontend bude vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého.
-Jeho úkolem je vytvořit především uživatelsky přívětivé prostředí, které bude pohodlné pro správu na mobilních zařízeních. Jeho výstupem bude tedy responzivní web.
-Vznikající systém má pracovní název UFSS.
-
-\medskip
 
 Na základě potřeby ČALD a organizátorů jednotlivých turnajů byly stanoveny základní požadavky na vznikající systém:
 
@@ -197,6 +193,12 @@ Na základě potřeby ČALD a organizátorů jednotlivých turnajů byly stanove
 Specifikum této aplikace bude to, že výsledky v průběhu zápasů budou moci zapisovat i hráči, kteří jsou se svým mobilním zařízením na místě.
 Tato vlastnost má přinést rychlejší přístup k výsledkům na turnajích, na kterých není dostatečný počet organizátorů.
 Některé turnaje si například organizují samotní hráči.
+
+\subsection{Funkční požadavky}
+
+\subsection{Nefunkční požadavky}
+
+% TODO: vic rozepsat funkcni a nefunkcni pozadavky na aplikaci
 
 \section{Uživatelské role}
 
@@ -222,7 +224,7 @@ které mají tuto možnost povolenou, a zadávat hodnocení Spirit of the Game t
 
 \indent
 
-Tým je role pro více uživatelů zároveň. Jde o situaci, kdy tým nemá žádného zaregistrovaného hráče,
+Tým je role pro více více fyzických uživatelů zároveň. Jde o situaci, kdy tým nemá žádného zaregistrovaného hráče,
 ale je po něm vyžadováno vyplňování Spirit of~the~Game. Každý tým tedy obdrží heslo pro přihlášení a kdokoliv,
 kdo tento přihlašovací údaj získá, má možnost SotG vyplňovat.
 
@@ -237,7 +239,7 @@ Dále pak může přidávat nebo editovat rozpis zápasů a rozesílat zprávy �
 
 \indent
 
-Má plnou kontrolu nad správou účtů. Pouze správce může vytvářet organizátorské účty.
+Má plnou kontrolu nad správou účtů. Může tohle, tohle ... Pouze správce může vytvářet organizátorské účty.
 
 \section{Případy užití}
 
