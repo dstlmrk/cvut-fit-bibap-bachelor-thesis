@@ -92,8 +92,8 @@ výstupem bude tedy responzivní web. Vznikající systém má pracovní název 
 
 \indent
 
-Ještě než s čímkoliv začneme, je potřeba představit pojem Ultimate Frisbee, protože v českých podmínkách jde o minoritní sport.
-Dále pak nastíníme problematiku pořádání turnajů v tomto vyjímečném sportu.
+V první kapitole bychom se měli seznámit s pojmem Ultimate Frisbee. Dále pak nastíníme
+problematiku pořádání turnajů v tomto minoritním sportu.
 
 \section{Co je to Ultimate Frisbee}
 
@@ -112,22 +112,23 @@ open (muži), ženy, mix (smíšené týmy mužů a žen), junioři (do 19 let) 
 
 \subsection{Pravidla}
 
-% TODO: Zminit, ze v zime se hraje 5 na 5
-% TODO: Vymyslet, jak ocitovat celou kapitolu Pravidla (mozna by se mohlo pouzit \blockquote{ )
+Stručně popsaná pravidla podle Česká asociace lé\-ta\-jícícho disku:
 
-\indent
+\begin{quote}
+``Ultimate je kolektivní bezkontaktní sport, v němž vítězí tým, který má na konci hrací doby
+vyšší počet bodů. Hraje se na hřišti o rozměrech cca 100x37 metrů (délka fotbalového hřiště,
+polovina jeho šířky). Na obou koncích hřiště jsou vyznačeny koncové zóny o hloubce cca 18 metrů.
 
-Ultimate je kolektivní bezkontaktní sport, v němž vítězí tým, který má na konci hrací doby vyšší
-počet bodů. Hraje se na hřišti o rozměrech cca 100x37 metrů (délka fotbalového hřiště, polovina
-jeho šířky). Na obou koncích hřiště jsou vyznačeny koncové zóny o hloubce cca 18 metrů.
+V ultimate proti sobě hrají dva sedmičlenné týmy. Smyslem hry je pomocí přihrávek dopravit disk
+do soupeřovy koncové zóny a jeho chycením v zóně získat bod. Po chycení disku se hráč musí
+zastavit a do 10 vteřin disk přihrát spoluhráči. Povoleným pohybem hráče s diskem je pivotování,
+tedy otáčení se kolem vlastní osy s jednou nohou pevně na zemi. V ultimate hráči často střídají
+útok a obranu při ztrátě disku, ke které dochází záhozem disku do autu, na zem, jeho zachycením
+soupeřem nebo při dlouhém držení disku. Není povolen fyzický kontakt mezi hráči ani přetahování
+o disk.	''
+\end{quote}
 
-\medskip
-
-V ultimate proti sobě hrají dva sedmičlenné týmy. Smyslem hry je pomocí přihrávek dopravit disk do soupeřovy koncové zóny
-a jeho chycením v zóně získat bod. Po chycení disku se hráč musí zastavit a do 10 vteřin disk přihrát spoluhráči.
-Povoleným pohybem hráče s diskem je pivotování, tedy otáčení se kolem vlastní osy s jednou nohou pevně na zemi.
-V ultimate hráči často střídají útok a obranu při ztrátě disku, ke které dochází záhozem disku do autu, na zem,
-jeho zachycením soupeřem nebo při dlouhém držení disku. Není povolen fyzický kontakt mezi hráči ani přetahování o disk.
+% TODO: Mam zminit, ze se hraje 5 na 5?
 
 \subsection{Spirit of the Game}
 
@@ -158,12 +159,21 @@ které se mezi sebou utkávají nejčastěji na víkendových turnajích. Těch 
 \medskip
 
 Většina turnajů nebo mistrovství pak trvá zpravidla více dnů, během kterých se odehrají desítky
-utkání. A s přibývajícím počtem hráčů a fanoušků vzniká čím dál větší poptávka po online přenosech
-a statistikách z těchto akcí.
+utkání. A s přibývajícím počtem hráčů a fanoušků vzniká čím dál větší poptávka po online
+přenosech a statistikách z těchto akcí.
 
 % TODO: Bude potreba doplnit, protoze se jedna o dulezity pojem, ktery bude pak zpracovan.
 
 \section{Jak probíhá typický turnaj}
+
+\indent
+
+Nejdůležitejším údajem jsou výsledky z jednotlivých zápasů. Ty jsou nejčastěji zapisovány
+na papír, který je vystaven na viditelném místě, aby si jej mohlo prohlédnout co nejvíce lidí.
+
+\medskip
+
+Částečně tyto procesy nahrazuje mobilní aplikace Catcher, ke které se ještě dostaneme.
 
 % Vsechno se doposud pise na papir a je to proste cely na prd.
 % TODO: Kdo vsechno, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
@@ -171,34 +181,104 @@ a statistikách z těchto akcí.
 
 \chapter{Specifikace požadavků}
 
-% TODO: vymyslet, jak, tomu budu rikat (asi nepuzivat slovo aplikace)
+Zadání vzniklo původně z požadavku na rozšíření mobilní aplikace Catcher, ke které se ještě
+dostaneme v analýze již fungujících řešení. Se vznikajícími nároky na rozšiřitelnost přišel
+také požadavek na RESTful rozhraní, které by backend obsluhovalo. V tu chvíli jsem tu byl
+již já s nápadem na vytvoření nového backendu plně ovladatelným pomocí REST API.
 
-\section{Požadavky na aplikaci}
+\section{Požadavky na UFSS}
 
 \indent
 
-Na základě potřeby ČALD a organizátorů jednotlivých turnajů byly stanoveny základní požadavky na vznikající systém:
-
-\begin{enumerate}
-\item Systém umožňuje import a export dat (týmy, hráči, soupisky). Navíc bude automaticky importovat data z databáze ČALD.
-\item Systém poskytuje manuální i automatickou tvorbu rozpisu turnaje. Dále automaticky doplňuje rozpis v závislosti na odehraných zápasech.
-\item Systém autentizuje konkrétní role (organizátor, hráč, návštěvník).
-\item Systém umožňuje zadávání statistik (průběžné skóre, skórující hráč) v~prů\-běhu zápasu i po něm.
-\item Systém tvoří detailní statistiky hráčů i týmů.
-\item Systém rozesílá notifikace (pomocí SMS nebo emailu) všem nebo vybraným účastníkům turnaje z důvodu závažných událostí (odložení zápasu apod.).
-\end{enumerate}
-
-\medskip
-
-Specifikum této aplikace bude to, že výsledky v průběhu zápasů budou moci zapisovat i hráči, kteří jsou se svým mobilním zařízením na místě.
-Tato vlastnost má přinést rychlejší přístup k výsledkům na turnajích, na kterých není dostatečný počet organizátorů.
-Některé turnaje si například organizují samotní hráči.
+Na základě debaty s ČALD, častými organizátory turnajů a některými hráči byly stanoveny
+funkční a nefunkční požadavky na vznikající aplikaci.
 
 \subsection{Funkční požadavky}
 
+% TODO: Vice se rozepsat u jednotlivych bodu.
+
+
+\begin{description}
+  \item[Import a export dat] \hfill \\
+  % TODO: Tohle neni jiste, zda uplne souhlasi.
+  Systém umožňuje import a export dat (týmy, hráči, soupisky). Navíc bude automaticky
+  importovat data z databáze ČALD. Půjde o soupisky odevzdané jednotlivými týmy
+  před turnaji, které to vyžadují.
+
+  \item[Rozpis zápasů] \hfill \\
+  % TODO: Nemam vymyslene, jak budu turnaje vytvaret.
+  Oprávněná role může vytvořit svůj vlastní turnaj a vložit seznam všech zápasů,
+  které se budou hrát. Vytvořený rozpis zápasů systém již doplňuje automaticky na základě
+  odehraných výsledků (např. vítěze semifinále automaticky posune do finále). Ve chvíli,
+  kdy to bude již možné, doplní celkové pořadí. To se týká i tabulky vzájemných hodnocení
+  v kategorii SOTG.
+
+  \item[Zadávání dat v rámci turnaje] \hfill \\
+  Každý tým má možnost vytvořit vlastní soupisku na turnaj, kde bude hrát. Systém pak umožňuje
+  v průbehu turnaje zadávat konkrétní údaje:
+  \begin{itemize}
+    \item průběžné skóre zápasů a jejich závěrečný výsledek
+    \item skórující a asistující hráč
+    \item hodnocení SOTG
+  \end{itemize}
+  
+  \item[Tvorba statistik] \hfill \\
+  Systém tvoří detailní statistiky hráčů, týmů a zápasů (obdržené a udělené body,
+  počet asistencí, průměrná hodnota SOTG).
+  
+  \item[Notifikace] \hfill \\
+  Systém rozesílá notifikace (pomocí SMS nebo emailu) všem nebo vybraným účastníkům
+  turnaje z důvodu závažných událostí (odložení zápasu apod.). 
+\end{description}
+
+% Specifikum této aplikace bude to, že výsledky v průběhu zápasů budou moci zapisovat i hráči,
+% kteří jsou se svým mobilním zařízením na místě. Tato vlastnost má přinést rychlejší přístup
+% k výsledkům na turnajích, na kterých není dostatečný počet organizátorů. Některé turnaje si
+% například organizují samotní hráči.
+
 \subsection{Nefunkční požadavky}
 
-% TODO: vic rozepsat funkcni a nefunkcni pozadavky na aplikaci
+% Zdroj: https://cs.wikipedia.org/wiki/Nefunk%C4%8Dn%C3%AD_po%C5%BEadavky_softwarov%C3%A9_architektury
+% TODO: Muze se pridat Spravovatelnost (monitoring a dynamicka konfigurace aplikace)
+
+\begin{description}
+
+ \item[Snadná rozšířitelnost] \hfill \\
+Už nyní evidujeme změny, o které je zájem, ale nejsou předmětem této práce.
+I proto je nutné projekt dokončit tak, aby byl v budoucnu snadno rozšiřitelný nebo
+modifikovatelný.
+
+ \item[Nízká cena] \hfill \\
+Cílem není vytvořit výdělečný projekt, ale fungující službu pro několik stovek hráčů
+a fanoušku v České republice. I proto je požadavkem použití volně dostupných
+knihoven a technologií.
+
+ \item[Výkon] \hfill \\
+Podle celkem jednoduchých odhadů lze usoudit, že aplikaci budou čekat výkyvy v provozu.
+Většina zápisů a čtění dat probíhá během samotných akcí. Podle statistických údajů
+z již užívané aplikace Catcher víme, že během špičky není počet požadavků za sekundu
+větší než několik desítek. I proto není na celkový výkon kladen žádný zvláštní požadavek.
+Systém by každopádně měl více jak 95 \% žádostí zpracovat do 2 sekund a na žádnou z nich
+nedpovědět za více jak 10 sekund.
+
+ \item[Spolehlivost] \hfill \\
+Spolehlivost je základem pro funkční běh UFSS. Velká část operací, včetně chybných budou
+zapisovány do souborů pro snadné odhalení chyb. V případě výpadku by měl být informován
+administrátor pomocí SMS nebo emailu. Obnova musí být proveditelná ze zálohovacích souborů.
+
+ \item[Bezpečnost] \hfill \\
+% autentizace a autorizace
+Systém musí jednoznačně určit a ověřit uživatele, který přistupuje k UFSS. Zároveň musí
+existovat možnost za chodu přidávat, odebírat nebo měnit oprávnění. Dále pak systém musí
+být datově integritní, tzn. že obsah zpráv nebude při přenosu změněn.
+
+ \item[Nároky na hardware] \hfill \\
+Systém musí být schopen běžet na běžných serverech s ne více jak 4GB RAM.
+
+ \item[Formát importu] \hfill \\
+Pro import soupisek musí systém umět číst data ve formátu, který ČALD pro export používá.
+
+\end{description}
 
 \section{Uživatelské role}
 
@@ -211,6 +291,7 @@ Některé turnaje si například organizují samotní hráči.
 Má přístup ke všem veřejným statistikám a údajům z turnaje. Nemůže žádná data modifikovat
 nebo vytvářet a nevyžaduje přihlášení.
 
+% TODO: Tady to bude chtit neco jako roli: prihlaseny uzivatel a bude se vazat na tym, na nekoho atd., proste tohle se musi jeste promyslet
 \subsection{Hráč}
 
 % TODO: Nejsem si touto rolí jistý.
@@ -320,6 +401,8 @@ XXXXXXXXXXx \cite{JJ92}
 \begin{description}
 	\item[GUI] Graphical user interface
 	\item[XML] Extensible markup language
+	\item[ČALD] Česká asociace létajícího disku
+	\item[SOTG] Spirit of the Game
 \end{description}
 
 \chapter{Obsah přiloženého CD}
