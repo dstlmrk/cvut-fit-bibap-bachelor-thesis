@@ -18,7 +18,72 @@
 \usepackage{dirtree} %directory tree visualisation
 
 
-
+% --------------------------------------------------------------------
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{9} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{9}  % for normal
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\usepackage{listings}
+\lstset{
+     literate=%
+         {á}{{\'a}}1
+         {í}{{\'i}}1
+         {é}{{\'e}}1
+         {ý}{{\'y}}1
+         {ú}{{\'u}}1
+         {ó}{{\'o}}1
+         {ě}{{\v{e}}}1
+         {š}{{\v{s}}}1
+         {č}{{\v{c}}}1
+         {ř}{{\v{r}}}1
+         {ž}{{\v{z}}}1
+         {ď}{{\v{d}}}1
+         {ť}{{\v{t}}}1
+         {ň}{{\v{n}}}1                
+         {ů}{{\r{u}}}1
+         {Á}{{\'A}}1
+         {Í}{{\'I}}1
+         {É}{{\'E}}1
+         {Ý}{{\'Y}}1
+         {Ú}{{\'U}}1
+         {Ó}{{\'O}}1
+         {Ě}{{\v{E}}}1
+         {Š}{{\v{S}}}1
+         {Č}{{\v{C}}}1
+         {Ř}{{\v{R}}}1
+         {Ž}{{\v{Z}}}1
+         {Ď}{{\v{D}}}1
+         {Ť}{{\v{T}}}1
+         {Ň}{{\v{N}}}1                
+         {Ů}{{\r{U}}}1    
+}
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={TestClubs,__init__,setUp,tearDown,testGet,testPost},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+% frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+% --------------------------------------------------------------------
+    
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
 % \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
@@ -63,9 +128,8 @@
 Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online
 skórování zápasů a následné zobrazování statistik. Sou\-částí práce tak bude analýza dosavadních
 i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové aplikace. Frontend bude
-vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého. Jeho úkolem je vytvořit především
-uživatelsky přívětivé prostředí, které bude pohodlné pro správu na mobilních zařízeních. Jeho
-výstupem bude tedy responzivní web. Vznikající systém má pracovní název UFSS.
+vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého. Mým úkolem je vytvořit backend,
+jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní název Catcher.
 
 %- Uvod do problematiky (Analyza problematiky)
 %-- Co je to Ultimate Frisbee
@@ -154,7 +218,7 @@ je ceněna obdobně jako 1. místo.
 V České republice zastřešuje sporty s létajícím talířem již od roku XXXX Česká asociace
 lé\-ta\-jícícho disku (dále jen ``ČALD''). V celé republice eviduje XX zaregistrovaných klubů,
 které se mezi sebou utkávají nejčastěji na víkendových turnajích. Těch bylo na našem
-území za loňský rok více jak třicet, což je každý druhý týden v roce.
+území za loňský rok více jak třicet, což je prakticky každý druhý týden v roce.
 
 \medskip
 
@@ -164,9 +228,14 @@ přenosech a statistikách z těchto akcí.
 
 % TODO: Bude potreba doplnit, protoze se jedna o dulezity pojem, ktery bude pak zpracovan.
 
-\section{Jak probíhá typický turnaj}
+\subsection{Jak probíhá typický turnaj}
+
+% TODO: dokoncit
 
 \indent
+
+Několik dní před turnajem se zveřejní rozpis, zpravidla v podobě dokumentu na Google Drive apod.
+Ten je pak během turnajem editovaný a slouží jako jediný zdroj výsledků, který ... 
 
 Nejdůležitejším údajem jsou výsledky z jednotlivých zápasů. Ty jsou nejčastěji zapisovány
 na papír, který je vystaven na viditelném místě, aby si jej mohlo prohlédnout co nejvíce lidí.
@@ -179,6 +248,9 @@ na papír, který je vystaven na viditelném místě, aby si jej mohlo prohlédn
 % TODO: Kdo vsechno, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
 % TODO: Jeste doplnit dal.
 
+\section{REST API}
+
+
 \chapter{Specifikace požadavků}
 
 Zadání vzniklo původně z požadavku na rozšíření mobilní aplikace Catcher, ke které se ještě
@@ -186,11 +258,11 @@ dostaneme v analýze již fungujících řešení. Se vznikajícími nároky na 
 také požadavek na RESTful rozhraní, které by backend obsluhovalo. V tu chvíli jsem tu byl
 již já s nápadem na vytvoření nového backendu plně ovladatelným pomocí REST API.
 
-\section{Požadavky na UFSS}
+\section{Požadavky na Catchera}
 
 \indent
 
-Na základě debaty s ČALD, častými organizátory turnajů a některými hráči byly stanoveny
+Na základě diskuse s ČALD, častými organizátory turnajů a některými hráči byly stanoveny
 funkční a nefunkční požadavky na vznikající aplikaci.
 
 \subsection{Funkční požadavky}
@@ -201,23 +273,20 @@ funkční a nefunkční požadavky na vznikající aplikaci.
 \begin{description}
   \item[Import a export dat] \hfill \\
   % TODO: Tohle neni jiste, zda uplne souhlasi.
-  Systém umožňuje import a export dat (týmy, hráči, soupisky). Navíc bude automaticky
-  importovat data z databáze ČALD. Půjde o soupisky odevzdané jednotlivými týmy
-  před turnaji, které to vyžadují.
+  Systém umožňuje import oddílů a jeho hráčů z databáze ČALD.
 
-  \item[Rozpis zápasů] \hfill \\
-  % TODO: Nemam vymyslene, jak budu turnaje vytvaret.
+  \item[Rozpis zápasů] \hfill 
   Oprávněná role může vytvořit svůj vlastní turnaj a vložit seznam všech zápasů,
   které se budou hrát. Vytvořený rozpis zápasů systém již doplňuje automaticky na základě
   odehraných výsledků (např. vítěze semifinále automaticky posune do finále). Ve chvíli,
-  kdy to bude již možné, doplní celkové pořadí. To se týká i tabulky vzájemných hodnocení
-  v kategorii SOTG.
+  kdy to bude již možné, doplní celkové pořadí turnaje. Automatické doplnění se týká i 
+  souhrné tabulky vzájemných hodnocení v kategorii SOTG.
 
   \item[Zadávání dat v rámci turnaje] \hfill \\
   Každý tým má možnost vytvořit vlastní soupisku na turnaj, kde bude hrát. Systém pak umožňuje
   v průbehu turnaje zadávat konkrétní údaje:
   \begin{itemize}
-    \item průběžné skóre zápasů a jejich závěrečný výsledek
+    \item průběžné skóre zápasů nebo jejich závěrečný výsledek
     \item skórující a asistující hráč
     \item hodnocení SOTG
   \end{itemize}
@@ -225,16 +294,7 @@ funkční a nefunkční požadavky na vznikající aplikaci.
   \item[Tvorba statistik] \hfill \\
   Systém tvoří detailní statistiky hráčů, týmů a zápasů (obdržené a udělené body,
   počet asistencí, průměrná hodnota SOTG).
-  
-  \item[Notifikace] \hfill \\
-  Systém rozesílá notifikace (pomocí SMS nebo emailu) všem nebo vybraným účastníkům
-  turnaje z důvodu závažných událostí (odložení zápasu apod.).
 \end{description}
-
-% Specifikum této aplikace bude to, že výsledky v průběhu zápasů budou moci zapisovat i hráči,
-% kteří jsou se svým mobilním zařízením na místě. Tato vlastnost má přinést rychlejší přístup
-% k výsledkům na turnajích, na kterých není dostatečný počet organizátorů. Některé turnaje si
-% například organizují samotní hráči.
 
 \subsection{Nefunkční požadavky}
 
@@ -257,18 +317,20 @@ funkční a nefunkční požadavky na vznikající aplikaci.
   Většina zápisů a čtění dat probíhá během samotných akcí. Podle statistických údajů
   z již užívané aplikace Catcher víme, že během špičky není počet požadavků za sekundu
   větší než několik desítek. I proto není na celkový výkon kladen žádný zvláštní požadavek.
-  Systém by každopádně měl více jak 95 \% žádostí zpracovat do 2 sekund a na žádnou z nich
-  nedpovědět za více jak 10 sekund.
+  Systém by každopádně měl více jak 95 \% žádostí zpracovat do 2 sekund (XXX milisekund) a na žádnou z nich
+  nedpovědět za více jak 10 sekund (milisekund??).
 
   \item[Spolehlivost] \hfill \\
-  Spolehlivost je základem pro funkční běh UFSS. Velká část operací, včetně chybných budou
+  Spolehlivost je základem pro funkční běh Catchera. Velká část operací, včetně chybných budou
   zapisovány do souborů pro snadné odhalení chyb. V případě výpadku by měl být informován
   administrátor pomocí SMS nebo emailu. Obnova musí být proveditelná ze zálohovacích souborů.
-
+  
+  % TODO: O vypadku nijak neinformuju, zalohu neprovadim
+  
   \item[Bezpečnost] \hfill \\
   % autentizace a autorizace
-  Systém musí jednoznačně určit a ověřit uživatele, který přistupuje k UFSS. Zároveň musí
-  existovat možnost za chodu přidávat, odebírat nebo měnit oprávnění. Dále pak systém musí
+  Systém musí jednoznačně určit a ověřit uživatele, který přistupuje k rozhraní Catchera. Zároveň
+  musí existovat možnost za chodu přidávat, odebírat nebo měnit oprávnění. Dále pak systém musí
   být datově integritní, tzn. že obsah zpráv nebude při přenosu změněn.
 
   \item[Nároky na hardware] \hfill \\
@@ -276,6 +338,9 @@ funkční a nefunkční požadavky na vznikající aplikaci.
 
   \item[Formát importu] \hfill \\
   Pro import soupisek musí systém umět číst data ve formátu, který ČALD pro export používá.
+  
+  \item[Vytvoření dokumentace] \hfill \\
+  Pro potřeby vývoje frontendu je potřeba vytvořit dostatečně detailní dokumentaci rozhraní API.
 \end{description}
 
 \section{Uživatelské role}
@@ -292,44 +357,94 @@ funkční a nefunkční požadavky na vznikající aplikaci.
   \item[Organizátor] \hfill \\
   Účet pod touto rolí může vytvořit kdokoliv pouhou registrací. Po příhlášení lze přídávat
   nové turnaje a ty následně editovat. Tím se rozumí tvorba rozpisu zápasů a seznamu účastníků
-  z již existujicího seznamu týmů (v případě potřeby nový tým vytvoří). Dále může zadávat
-  průběžné a výsledné skóre zápasů, skórující a asistující hráče a vidí na vzájemnou tabulku
-  hodnocení SOTG pro účely vyhlášení vítěze. Tato tabulka je pro ostatní role až do vyhlášení
-  nezobrazitelná.
+  z již existujícího seznamu týmů. Dále může zadávat průběžné a výsledné skóre zápasů,
+  skórující a asistující hráče a vidí na tabulku vzájemných hodnocení SOTG pro účely vyhlášení
+  vítěze. Tato tabulka je pro ostatní role až do vyhlášení nezobrazitelná.
   
-  \item[Účastník turnaje] \hfill \\
-  % TODO: Kazdy, kdo ma heslo, se muze prihlasit a vysledky turnaje editovat. Je na organizatorovi, zda da tuto volbu i hracum (treba jenom nekterym).
-  Tato role je doplňkem role Organizátor. Nemá všechna jeho práva, ale podstatně pomáhá
-  tvorbě statistik na každém turnaji. Může totiž zapisovat průběžné a výsledné skóre u všech
-  zápasů i skórující a asistující hráče. Účet je vytvořen vždy společně s turnajem.
-  Přihlašovací údaje získá organizátor po vytvoření turnaje a je pouze na něm, komu tyto
-  údaje předá. Sám tak volí, zda do tvorby statistik zasáhne někdo další nebo přenechá
-  tuto možnost pouze sám sobě. Častým případem je rozeslání přihlašovacích údajů emailem všem
-  účastníkům turnaje chvíli před turnajem.
-  
-  \item[Týmový účet] \hfill \\
-  Pro účely odevzdávání hodnocení SOTG a úprav v týmové soupisce je vytvořen pro každý tým
-  jeden společný účet. Tento účet má možnost vytvořit pouze admin nebo organizátor.
-  Přihlašovací údaje pak získá zástupce týmu a je pouze na něm, kdo z jeho týmu bude
-  spravovat týmový učet.
+  \item[Klubový/oddílový účet] \hfill \\
+  Pro účely odevzdávání hodnocení SOTG a úprav v týmové soupisce je vytvořen pro každý oddíl
+  jeden společný účet. Tento účet má možnost vytvořit pouze admin. Přihlašovací údaje pak
+  získá zástupce klubu a je pouze na něm, kdo z jeho oddílu bude spravovat vytvořený učet.
   
   \item[Admin] \hfill \\
-  Má plnou kontrolu nad správou účtů a nad daty v databázi.  
+  Má plnou kontrolu nad správou účtů a nad daty v databázi. Jeho možnosti zahrnují možnosti
+  všech ostatních rolí.
 \end{description}
 
 \section{Případy užití}
 
-Následující část popisuje nejběžnější (většinu?) případy užití. V návrhu RESTful rozhraní jde
+Následující část popisuje nejběžnější případy užití. V návrhu RESTful rozhraní jde
 o jednu z nejdůležitejších součastí, protože určuje směr návrhu. Výsledné API by tak mělo
 pokrývat všechny níže uvedené případy.
 % TODO: Mozna napsat neco o tom, ze kazde spravne api se dela tak, ze se zjisti vsechny usecasy, aby se mohli vytvorit dobre api.
 % TODO: Co budou nejbeznejsi operace v aplikaci (zapisovani skore, zapisovani spiritu, tvorba turnaje a rozpisu). Tady to mozna napsat VSECHNO v bodech, protoze z toho budou vychazet API.
 
-Přehled jednotlivých případů užití, které API umožňuje.
+Následující seznam zachycuje jednotlivé požadavky a jejich popis.
 
-\begin{enumerate}
-\item bla, bla
-\end{enumerate}
+% TODO: Napsat, kdo vsechno muzes tyto operace delat. Napr. organizator muze ukoncit zapas.
+
+\begin{description}
+ \item[F1: Import dat z databáze ČALD] \hfill \\
+ Doplňuje seznam oddílů a jejich hráčů do databáze Catchera. V pravidelném intervalu stáhne
+ aktuální data z ČALD databáze a doplní doposud aktuální data v databázi.
+
+ % TODO: neexistuje zadny automaticky import
+ 
+ \item[Získání libovolného oddílu z databáze] \hfill \\
+ Získá množinu oddílů, jež jsou v databázi uloženy...
+ % TODO: dokoncit
+ 
+ \item[Získání libovolného hráče z databáze] \hfill \\
+ ...
+ % TODO: dokoncit
+ 
+ \item[Vytvoření turnaje] \hfill \\
+ Vytvoří konkrétní podobu turnaje. Do databáze uloží účastníky turnaje, základní skupiny,
+ zápasy ve skupinách a následnující zápasy v play-off.
+ 
+ \item[Získání libovolného turnaje z databáze] \hfill \\
+ Získá množinu turnajů, jež jsou v databázi uloženy. S pomocí několika parametrů lze tuto
+ množinu filtrovat:
+ \begin{itemize}
+    \item turnaj s konkrétním identifikátorem
+    \item pouze ne/ukončené turnaje
+    \item pouze ne/aktivní turnaje
+    \item turnaje odehrávající se v čase od do
+    \item turnaje v kategoriích open, women, mix apod.
+    \item turnaje vytvořené konkrétním uživatelem
+  \end{itemize}
+  Prvek množiny obsahuje informace o turnaji, jako například název, popis, termín a místo turnaje.
+ 
+ \item[Získá účastníky turnaje] \hfill \\
+ Ke konkrétnímu turnaji získá kolekci všech týmů, jež se účastní. 
+ 
+ \item[Získá týmovou soupisku] \hfill \\
+ Ke konkrétnímu týmu získá kolekci všech hráčů, jenž se účastní.
+ 
+ \item[Zadání skórujícího nebo asistujícího hráče] \hfill \\
+ V průběhu zápasu umožňuje zadat skórujícího nebo asistujícího hráče.
+ 
+ \item[Ukončit zápas s výsledným skóre] \hfill \\
+ Ukončí zápas a uloží jeho výsledek do databáze.
+ 
+ \item[Zadat hodnocení SOTG] \hfill \\
+ Po ukončení zápasu lze z týmového účtu udělit soupeři hodnocení SOTG. Tento údaj se uloží do tabulky, kde jsou všechna vzájemná hodnocení. 
+ 
+ \item[Zobrazit tabulku vzájemných hodnocení SOTG] \hfill \\
+ Odešle uživateli vhodnou strukturu, kde budou jasně uvedeny všechna doposud vyplněná hodnocení kategorie SOTG.
+ 
+ \item[Zobrazit pořadí týmů v kategorii SOTG] \hfill \\
+ Vrátí pořadí týmů v kategorii SOTG, včetně průměru všech obdržených hodnocení, a informaci o tom, zda je toto pořadí již finální.
+ 
+ \item[Ukončit turnaj] \hfill \\
+ Změní stav turnaje na ukončený. Tabulka vzájemných hodnocení SOTG a výsledné pořadí se tím stanou veřejnými. 
+ 
+ \item[Zobrazit výsledky všech zápasů] \hfill \\
+ 
+ \item[Zobrazit detail konkrétního zápasu] \hfill \\ hráči, body, čas
+ 
+ \item[Získá seřazené hráče podle bodování] \hfill \\ Seřadí hráče na základě bodovaní.
+\end{description}
 
 \chapter{Analýza}
 
@@ -359,18 +474,144 @@ Přehled jednotlivých případů užití, které API umožňuje.
 
 \section{Výběr technologií}
 
+\indent
+
+V době, kdy existuje obrovské množství programovacích jazyků, jejich ekosystémů a dalších frameworků je důležité se umět nespálit. 
+Vybrat špatné technologie totiž může znamenat prodloužení vývoje, zvýšení celkových nákladů nebo dokonce ukončení projektu.
+Proto je nutnost tuto část dostatečně analyzovat a svědomitě zvážit, aby nedošlo k omylu, který by zabraňoval úspěšné dokončení.
+Pro adekvátní výběr tak bylo potřeba specifikovat příslušná kritéria, které by jasně porovnala všechny zvažované technologie:
+
+\subsubsection*{Podpora webových služeb}
+Při tvorbě webové aplikace nemůže být ani řeč o technologii, která by pro použití na webu nebyla vhodná. Technologie musí
+umět pracovat s mapováním URL a HTTP metod na zdroje a pracovat s běžnými formáty dat v internetové komunikaci (např. JSON).
+
+\subsubsection*{Dokumentace a uživatelská podpora}
+Pro pochopení technologie a její správné používání je často potřeba znát detaily, které se uživatel dozví z dokumentace.
+Ta dokáže často výrazně zkrátit učící křivku a programátorovi tak šetří čas. Pokud dokumentace nestačí, může často její
+nedostatky zachránit dostatečně široká uživatelská základna. Velká uživatelská podpora navíc snižuje riziko zestárnutí zvolené technologie.
+
+\subsubsection*{Znalost technologie}
+Pokud již programátor některou z technologií zná, může mu tato znalost ušetřit mnoho času při vývoji. Nemusí totiž novou technologii
+nijak složitě zavádět nebo se učit její použití. Vhodným výběrem se také může vyvarovat situacím, kdy až v průběhu implementace narazí
+na neřešitelné problémy. Zavrhnout neznámé technologie ale může znamenat přijít o možnost používat nástroje, které jsou problémům šité na míru. 
+
+\subsubsection*{Výkon}
+I když aplikace nepočítá s vetším provozem čítající stovky požadavků za sekundu, není důvod používat technologie, které jsou pomalé
+nebo spotřebovávají příliš moc prostředků.
+
+\section{Programovací jazyk Python}
+% TODO: zdroj k letopoctu: https://cs.wikipedia.org/wiki/Python#cite_note-1
+Python je víceúčelový skriptovací jazyk navrhnut v roce 1991 Guido van Rossumem. 
+
+% TODO: napsat si vsechny zajimave informace do bodu a pak to nejak poskladat
+
+Python je vyvíjen jako open source, nabizi baliky pro unix, windows a mac os, ve vetsine Linuxovych distribuci je soucasti zakladni instalace
+Hybridni jazyk, ...
+% TODO: napsat historii a vsechno o pythonu
+
+\section{Webový framework Falcon}
+
+\section{Databáze MySQL}
+
+\section{Peewee ORM}
+
+\section{Webový server Nginx}
+
+\section{Uwsgi}
+
 % TODO: Jake technologie si vyberu. Ze kterych mam na vyber.
 
 % TODO: Napsat neco o Percone (MySQL), Falconu, Pythonu a mozna necem dalsim.
 
 \chapter{Testování}
 
-% TODO: Co budu pouzivat na testovani a prubeznou integraci. Codevoc nebo Travis CI.
-% TODO: Jake testy budu delat (unit, akceptaci)
+\indent
+
+Jednou z nejdůležitejších součástí vývoje je testování. Pomáhá zkoumat funkčnost softwaru a v případě bezchybného
+a úplného testování zajišťuje, že výsledná aplikace neobsahuje chyby a má požadované vlastnosti.
+Testování se často provádí ve více iteracích, například pravidelně před vydáním nové verze softwaru.
+Součástí testování je pak především reportování nalezených chyb.
+
+\medskip
+
+Testy se dělí na tzv. black-box a white-box testy. Při testování černé skřínky nemáme informace o vnitřní podobě a porovnáváme
+pouze správnost výstupních dat po zadání vstupních. Do testovaného subjektu se nelze podívat, vídíme jen to, jak se chová navenek.
+Důvodem tohoto typu testování je analyzovat software z pohledu uživatele.
+Na opačné straně se při znalosti implementace používá testování bílé skřínky. Sice tato metoda zastiňuje pohled uživatele,
+ale tester je schopen lépe určit, kde hledat případné chyby. Při~částečné znalosti softwaru se ještě používá pojem testování šedé skřínky (gray box).
+Neznáme například přesnou podobu zdrojového kódu, ale jen použitý algoritmus použitý v aplikaci. 
+
+% TODO: moznost se zde rozepsat s rozdelenim dalsich testu
+% Další možností, jak rozdělovat testy je rozdělení dle...
+
+\medskip
+
+% TODO: napsat, co je to manualni testovani
+Testy se také dělí na automatizované a manuální. Méně nákladnou a rychlejší cestou je zpravidla automatizované testování,
+kdy se automaticky spouští velké množství testů, často i s velkým množstvím vstupních dat. Tyto testy se používají v místech,
+kde dochází k opakování stejného nebo velmi podobného scénáře. Ne vždy je ale jejich použití možné, test vyžaduje lidský úsudek
+nebo rozdílné přístupy a testy není nutné pravidelně opakovat, a proto se používá kombinace obojího. 
+
+\section{Testování Catchera}
+
+\indent
+
+Testování softwaru je stále velmi podceňovaný obor a často je tato fáze vývoje odsunuta na druhou kolej nebo zcela vynechána.
+Kromě toho, že psaní testů se ukázalo jako nejrychlejší způsob odhalování chyb, bylo pak ještě více překvapující, že při~použití
+techniky TDD\footnote{Test-driven development - technika, kdy se testy píší ještě před samotným vývojem.} se znatelně zefektivnil
+vývoj. Už při psaní zdrojového kódu jsem tak měl zpětnou vazbu a daleko dříve jsem mohl ukončit tvorbu některých komponent.
+Díky specifickému popisu získání a manipulace se zdroji v architektuře REST jsem většinu testů podřídil tomuto rozdělení a prováděl
+jsem tzv. testování funkcionalit - z pohledu uživatele, ověřování úzce zaměřených scénářů.
+
+\medskip
+
+V Pythonu se nejrozšířenější framwork pro automatizované testování jmenuje Unittest. Já jsem však využil testovací nástroj, jenž přímo
+poskytuje webový framework Falcon. Je potřeba zmínit, že tento nástroj většinu metod dědí od základního Unittestu a jeho možnosti pouze
+rozšiřuje pro lepší a rychlejší testování REST API.
+
+\medskip
+
+Automatizovanými testy jsou v Catcheru pokryty všechny zdroje s jejich metodami. Typicky jsou testy po několika sdružovány do jedné třídy,
+ve které je možnost vytvořit specifické testovací prostředí. V nástroji Unittest jsou pro tyto účely často používány metody \pythoninline{setUp()} a \pythoninline{tearDown()},
+které jsou volány před, respektive po každém testu. Důsledek tohoto chování je tak zajištění nezávislosti na dalších testech.
+Kdyby se tak nestalo, tak například v testech, které modifikují testovací data, by mohlo dojít k tomu, že při pouhém prohození ve frontě testů
+bude test pracovat s odlišnou množinou dat a vracet jiné výsledky, než byly očekávány v původním pořadí fronty. Nejčastější podoba testů pro Catchera
+je vidět v následující velmi zjednodušené ukázce kódu: 
+
+\begin{python}
+class TestClubs(falcon.testing.TestBase):
+
+    def setUp(self):
+      '''
+      Spustí se před každým testem,
+      zpravidla naplní testovací databázi daty.
+      '''
+
+    def tearDown(self):
+      '''
+      Spustí se po každém testu,
+      zpravidla vyčistí testovací databázi.
+      '''
+
+    def testGet(self):
+      '''Testuje požadavek GET - získá kolekci všech oddílů.'''     
+      response = self.simulate_request('GET', '/api/clubs')
+      self.assertEqual(self.srmock.status, HTTP_200)
+
+    def testPost(self):
+      '''Testuje požadavek POST - vytvoří nový oddíl.'''
+      response = self.simulate_request('POST', '/api/clubs', body)
+      self.assertEqual(self.srmock.status, HTTP_201)
+\end{python}
+
+Kromě porovnávání návratových HTTP kódů se v mým testech zkoumá podoba a obsah návratových dat, správné vyhazování vyjímek
+nebo stav testovací databáze před a po volání metod.
+
+% TODO: IDEA: Lze se zminit o testovani a prubezne integraci. Napriklad napsat, ze mame zajem v budoucnu pouzivat Codevoc nebo Travis CI.
 
 \chapter{Nasazení}
 
-% TODO: Tady jeste uvidime, co napiseme.
+% TODO: Popis jake technologie jsem si vybral na provoz aplikace na serveru: web server a uwsgi + uml diagram nasazeni
 
 \section{Softwarové požadavky}
 
@@ -402,6 +643,7 @@ XXXXXXXXXXx \cite{JJ92}
 	\item[XML] Extensible markup language
 	\item[ČALD] Česká asociace létajícího disku
 	\item[SOTG] Spirit of the Game
+	\item[REST] Representational State Transfer
 \end{description}
 
 \chapter{Obsah přiloženého CD}
