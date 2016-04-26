@@ -1,0 +1,132 @@
+\chapter{Implementace}
+
+\section{Výběr technologií}
+
+\indent
+
+V době, kdy existuje obrovské množství programovacích jazyků, jejich ekosystémů a dalších frameworků je důležité se umět nespálit. 
+Vybrat špatné technologie totiž může znamenat prodloužení vývoje, zvýšení celkových nákladů nebo dokonce ukončení projektu.
+Proto je nutnost tuto část dostatečně analyzovat a svědomitě zvážit, aby nedošlo k omylu, který by zabraňoval úspěšné dokončení.
+Pro adekvátní výběr tak bylo potřeba specifikovat příslušná kritéria, které by jasně porovnala všechny zvažované technologie:
+
+\subsubsection*{Podpora webových služeb}
+Při tvorbě webové aplikace nemůže být ani řeč o technologii, která by pro použití na webu nebyla vhodná. Technologie musí
+umět pracovat s mapováním URL a HTTP metod na zdroje a pracovat s běžnými formáty dat v internetové komunikaci (např. JSON).
+
+\subsubsection*{Dokumentace a uživatelská podpora}
+Pro pochopení technologie a její správné používání je často potřeba znát detaily, které se uživatel dozví z dokumentace.
+Ta dokáže často výrazně zkrátit učící křivku a programátorovi tak šetří čas. Pokud dokumentace nestačí, může často její
+nedostatky zachránit dostatečně široká uživatelská základna. Velká uživatelská podpora navíc snižuje riziko zestárnutí zvolené technologie.
+
+\subsubsection*{Znalost technologie}
+Pokud již programátor některou z technologií zná, může mu tato znalost ušetřit mnoho času při vývoji. Nemusí totiž novou technologii
+nijak složitě zavádět nebo se učit její použití. Vhodným výběrem se také může vyvarovat situacím, kdy až v průběhu implementace narazí
+na neřešitelné problémy. Zavrhnout neznámé technologie ale může znamenat přijít o možnost používat nástroje, které jsou problémům šité na míru. 
+
+\subsubsection*{Výkon}
+I když aplikace nepočítá s vetším provozem čítající stovky požadavků za sekundu, není důvod používat technologie, které jsou pomalé
+nebo spotřebovávají příliš moc prostředků.
+
+\section{Programovací jazyk Python}
+
+\indent
+
+Python je víceúčelový skriptovací jazyk navrhnut v roce 1991 \cite{python-year} Guido van Rossumem.
+Je vyvíjen jako open source projekt a je bezplatně dostupný pro většinu dostupných platforem (Unix, Windows, Mac OS).
+V distribucích Linuxu je často součástí základní instalace. Díky velkému množství knihovních modulů z různých oblastí
+má velice široké možnosti uplatnění. Běžně jej používají ve firmách jako Google, Dropbox, YouTube, Red Hat, Cisco,
+Facebook nebo Microsoft \cite{python-companies}.
+
+\medskip
+
+Protože jde o dynamický interpretovaný jazyk, jeho zdrojový kód není nutné překládat překladačem do strojového kódu.
+Je to zárovéň hybridní jazyk, protože umožňuje používat různá programovací paradigmata, včetně objektově orientovaného,
+imperativního, procedurálního nebo v omezené míře i funkcionálního. I když je Python mnohokrát označován za skriptovací jazyk,
+jeho návrh umožňuje psaní rozsáhlých a plnohodnotných aplikací včetně GUI. Podporuje také dynamickou kontrolu datových typů.
+
+\medskip
+
+Je to jazyk, který se velmi snadno učí a bývá považován za jeden z nejvhodnějších programovacích jazyků pro začátečníky.
+Pomáhá tomu jeho jednoduchá syntaxe a čistota kódu. Na rozdíl od jiných jazyků bývá jeho zdrojový kód často krátký a dobře čitelný.
+Je tak vhodný pro výuku i využití v praxi. Podle PYPL indexu\footnote{PopularitY of Programming Language Index je vytvořen analyzováním toho,
+jak často jsou tutoriály jednotlivých programovacích jazyků hledány na Googlu.} je Python celosvětově nejrychleji roustoucí programovací jazyk
+v~oblíbenosti za posledních pět let \cite{python-pypl}.
+V dubnovém žebříčku roku 2016 drží druhé místo mezi jazyky Java a PHP. Mnoho dalších žebříčků pak uvádí Python vždy v prvních pěti místech.
+
+\medskip
+
+Po stránce výkonu je na tom Python relativně dobře, protože mnoho na~výkon náročných knihoven je implementováno v~jazyce C.
+V porovnání s ostatními interpretovanými jazyky je na tom samotný Python taky dobře.
+Fakt se kterým ale musíme počítat je ten, že dynamicky interpretované jazyky jsou obecně pomalejší, než kompilované jazyky.
+
+\section{Webový framework Falcon}
+
+% TODO: dovysvetlit, co je to UWSGI, mozna dat pred Falcon 
+
+\indent
+
+Falcon je minimalistický webový framework pro vývoj aplikačních backendů a jejich API s otevřeným zdrojovým kódem,
+populární pro svoji neuvěřitelnou rychlost. Falcon ctí architektonický styl REST, což znamená, že mapuje použité
+zdroje a jejich metody do HTTP protokolu.
+
+\medskip
+
+Falcon disponuje minimálním množstvím závislostí na jiných knihovnách a díky jeho flexibilitě je ho možné
+používat ve většině verzích Pythonu\footnote{Vývoj v Pythonu poznamenalo v roce 2008 vydání nové verze Python 3.0,
+která je částečně zpětně nekompatibilní.}. Kromě toho umí pracovat s WSGI. Nevýhodou Falconu je menší uživatelská
+základna narozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárnější webové frameworky pro Python.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l||c|c|c|c|}\hline
+\bfseries \bfseries framework & \bfseries req/sec & \bfseries $\mu$s/req & \bfseries výkon \\[2mm]
+\hline
+Falcon (0.3.0) & 21,858 & 46 & 8x \\
+\hline
+Bottle (0.12.8) & 12,583 & 79 & 4x \\
+\hline
+Werkzeug (0.10.4) & 4,708 & 212 & 2x \\
+\hline
+Pecan (0.8.3) & 3,442 & 291 & 1x \\
+\hline
+Flask (0.10.1) & 2,837 & 352 & 1x \\
+\hline
+\hline
+\end{tabular}
+\caption{Výkonnostní test několika webových frameworků pro~CPython~2.7.9 \cite{falcon-benchmarks}. Jde o~implementaci jazyka Python, kterou používá Catcher.}
+\end{table}
+
+%\caption{Porovnání výkonu podobných framworků pro CPython 2.7.9}
+
+\section{Databáze MySQL}
+
+\section{Peewee ORM}
+
+\section{Verzovací systém Git}
+
+\section{Webový server Nginx}
+
+Nginx je webový server a reverzní proxy\footnote{Reverzní proxy se používá pro zvýšení výkonu webového serveru.
+Rozděluje vstupující provoz na více serverů, například vyvažuje zátěž serverů zapojených v clusteru.}, který pracuje s běžnými protokoly.
+První oficiální verze se objevila v roce 2004, kterou vyvynul Ruský softwarový inženýr Igor Sysoev.
+Zaměřuje se na vysoký výkon a nízké nároky na pamět. Je používán velkými firmami
+díky propracované možnosti rozložení zátěže. Z velkých firem je to například například Netflix, Wordpress.com,
+GitHub, Dropbox nebo Seznam.cz.
+
+pod carou:
+Reverzní proxy se používá pro zvýšení výkonu webového serveru. Rozděluje vstupující provoz na více serverů, například vyvažuje zátěž serverů zapojených v clusteru.
+
+Dnes je již s 25 % druhým nejpoužívanějším webovým serverem v prvním milionu nejzatíženějších webů na světě.
+Napříč celým webem je pak na třetím místě s přibližně 16 %. I když je Apache HTTP Server stále jednička, 
+jejich rozdíl se neustále zmenšuje. Nginx je open source.
+
+% TODO: Dat obrazek s grafem? Tabulka s daty z wiki spis bych pouzil.
+
+zdroj: http://news.netcraft.com/archives/2016/02/22/february-2016-web-server-survey.html
+http://nginx.org/en/
+
+\section{Uwsgi}
+
+% TODO: Jake technologie si vyberu. Ze kterych mam na vyber.
+
+% TODO: Napsat neco o Percone (MySQL), Falconu, Pythonu a mozna necem dalsim.

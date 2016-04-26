@@ -1,0 +1,83 @@
+\chapter{Testování}
+
+\indent
+
+Jednou z nejdůležitejších součástí vývoje je testování. Pomáhá zkoumat funkčnost softwaru a v případě bezchybného
+a úplného testování zajišťuje, že výsledná aplikace neobsahuje chyby a má požadované vlastnosti.
+Testování se často provádí ve více iteracích, například pravidelně před vydáním nové verze softwaru.
+Součástí testování je pak především reportování nalezených chyb.
+
+\medskip
+
+Testy se dělí na tzv. black-box a white-box testy. Při testování černé skřínky nemáme informace o vnitřní podobě a porovnáváme
+pouze správnost výstupních dat po zadání vstupních. Do testovaného subjektu se nelze podívat, vídíme jen to, jak se chová navenek.
+Důvodem tohoto typu testování je analyzovat software z pohledu uživatele.
+Na opačné straně se při znalosti implementace používá testování bílé skřínky. Sice tato metoda zastiňuje pohled uživatele,
+ale tester je schopen lépe určit, kde hledat případné chyby. Při~částečné znalosti softwaru se ještě používá pojem testování šedé skřínky (gray box).
+Neznáme například přesnou podobu zdrojového kódu, ale jen použitý algoritmus použitý v aplikaci. 
+
+% TODO: moznost se zde rozepsat s rozdelenim dalsich testu
+% Další možností, jak rozdělovat testy je rozdělení dle...
+
+\medskip
+
+% TODO: napsat, co je to manualni testovani
+Testy se také dělí na automatizované a manuální. Méně nákladnou a rychlejší cestou je zpravidla automatizované testování,
+kdy se automaticky spouští velké množství testů, často i s velkým množstvím vstupních dat. Tyto testy se používají v místech,
+kde dochází k opakování stejného nebo velmi podobného scénáře. Ne vždy je ale jejich použití možné, test vyžaduje lidský úsudek
+nebo rozdílné přístupy a testy není nutné pravidelně opakovat, a proto se používá kombinace obojího. 
+
+\section{Testování Catchera}
+
+\indent
+
+Testování softwaru je stále velmi podceňovaný obor a často je tato fáze vývoje odsunuta na druhou kolej nebo zcela vynechána.
+Kromě toho, že psaní testů se ukázalo jako nejrychlejší způsob odhalování chyb, bylo pak ještě více překvapující, že při~použití
+techniky TDD\footnote{Test-driven development - technika, kdy se testy píší ještě před samotným vývojem.} se znatelně zefektivnil
+vývoj. Už při psaní zdrojového kódu jsem tak měl zpětnou vazbu a daleko dříve jsem mohl ukončit tvorbu některých komponent.
+Díky specifickému popisu získání a manipulace se zdroji v architektuře REST jsem většinu testů podřídil tomuto rozdělení a prováděl
+jsem tzv. testování funkcionalit - z pohledu uživatele, ověřování úzce zaměřených scénářů.
+
+\medskip
+
+V Pythonu se nejrozšířenější framwork pro automatizované testování jmenuje Unittest. Já jsem však využil testovací nástroj, jenž přímo
+poskytuje webový framework Falcon. Je potřeba zmínit, že tento nástroj většinu metod dědí od základního Unittestu a jeho možnosti pouze
+rozšiřuje pro lepší a rychlejší testování REST API.
+
+\medskip
+
+Automatizovanými testy jsou v Catcheru pokryty všechny zdroje s jejich metodami. Typicky jsou testy po několika sdružovány do jedné třídy,
+ve které je možnost vytvořit specifické testovací prostředí. V nástroji Unittest jsou pro tyto účely často používány metody \pythoninline{setUp()} a \pythoninline{tearDown()},
+které jsou volány před, respektive po každém testu. Důsledek tohoto chování je tak zajištění nezávislosti na dalších testech.
+Kdyby se tak nestalo, tak například v testech, které modifikují testovací data, by mohlo dojít k tomu, že při pouhém prohození ve frontě testů
+bude test pracovat s odlišnou množinou dat a vracet jiné výsledky, než byly očekávány v původním pořadí fronty. Nejčastější podoba testů pro Catchera
+je vidět v následující velmi zjednodušené ukázce kódu: 
+
+\begin{python}
+class TestClubs(falcon.testing.TestBase):
+
+    def setUp(self):
+      '''
+      Spustí se před každým testem,
+      zpravidla naplní testovací databázi daty.
+      '''
+
+    def tearDown(self):
+      '''
+      Spustí se po každém testu,
+      zpravidla vyčistí testovací databázi.
+      '''
+
+    def testGet(self):
+      '''Testuje požadavek GET - získá kolekci všech oddílů.'''     
+      response = self.simulate_request('GET', '/api/clubs')
+      self.assertEqual(self.srmock.status, HTTP_200)
+
+    def testPost(self):
+      '''Testuje požadavek POST - vytvoří nový oddíl.'''
+      response = self.simulate_request('POST', '/api/clubs', body)
+      self.assertEqual(self.srmock.status, HTTP_201)
+\end{python}
+
+Kromě porovnávání návratových HTTP kódů se v mým testech zkoumá podoba a obsah návratových dat, správné vyhazování vyjímek
+nebo stav testovací databáze před a po volání metod.
