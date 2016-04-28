@@ -17,6 +17,9 @@
 
 \usepackage{dirtree} %directory tree visualisation
 
+
+
+
 % --------------------------------------------------------------------
 % Default fixed font does not support bold face
 \DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{9} % for bold
@@ -130,6 +133,7 @@ i možných řešení. Výsledkem analýzy pak bude návrh a implementace webov�
 vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého. Mým úkolem je vytvořit backend,
 jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní název Catcher.
 
+
 %- Uvod do problematiky (Analyza problematiky)
 %-- Co je to Ultimate Frisbee
 %-- Uvod do aplikacnich rozhrani
@@ -151,311 +155,25 @@ jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní 
 %- Problemy pri implementaci
 %- ...
 
-\chapter{Úvod do problematiky}
+\input{introduction.tex}
 
-\indent
-
-V první kapitole bychom se měli seznámit s pojmem Ultimate Frisbee. Dále pak nastíníme
-problematiku pořádání turnajů v tomto minoritním sportu.
-
-\section{Co je to Ultimate Frisbee}
-
-% TODO: Tady si mozna napsat neco uz hotovy na netu. Zaroven by bylo dobry zminit, jak se ultimate hraje.
-% TODO: Obrazek???
-
-\indent
-
-Ultimate Frisbee je mladý a dynamicky se rozvíjející sport s létajícím talířem,
-který se hraje od roku 1968 \cite{cald-o-ultimate}. Hraje jej přibližně sedm miliónů
-hráčů ve více než 80 zemích světa a jeho popularita rok od roku stoupá \cite{usa-about-ultimate}.
-Během posledních několika let je například běžné sledovat živé přenosy na sportovním kanálu ESPN
-z Amerických soutěží, především profesionální ligy AUDL. Ultimate v roce 2015 dokonce získalo
-uznání od Mezinárodního olympijského výboru \cite{cald-uznani}. Nejčastěji se hraje v kategoriích
-open (muži), ženy, mix (smíšené týmy mužů a žen), junioři (do 19 let) a masters (nad 33 let).
-
-\subsection{Pravidla}
-
-Stručně popsaná pravidla podle Česká asociace lé\-ta\-jícícho disku:
-
-\begin{quote}
-``Ultimate je kolektivní bezkontaktní sport, v němž vítězí tým, který má na konci hrací doby
-vyšší počet bodů. Hraje se na hřišti o rozměrech cca 100x37 metrů (délka fotbalového hřiště,
-polovina jeho šířky). Na obou koncích hřiště jsou vyznačeny koncové zóny o hloubce cca 18 metrů.
-
-V ultimate proti sobě hrají dva sedmičlenné týmy. Smyslem hry je pomocí přihrávek dopravit disk
-do soupeřovy koncové zóny a jeho chycením v zóně získat bod. Po chycení disku se hráč musí
-zastavit a do 10 vteřin disk přihrát spoluhráči. Povoleným pohybem hráče s diskem je pivotování,
-tedy otáčení se kolem vlastní osy s jednou nohou pevně na zemi. V ultimate hráči často střídají
-útok a obranu při ztrátě disku, ke které dochází záhozem disku do autu, na zem, jeho zachycením
-soupeřem nebo při dlouhém držení disku. Není povolen fyzický kontakt mezi hráči ani přetahování
-o disk.	''
-\end{quote}
-
-% TODO: Mam zminit, ze se hraje 5 na 5?
-
-\subsection{Spirit of the Game}
-
-\indent
-
-Už od počátku je Ultimate Frisbee založeno na sportovním duchu, který klade odpovědnost
-za fair play na samotné hráče. Předpokládá se vysoce soutěživá hra, ne však za cenu ztráty
-vzájemné ohleduplnosti a vytracení radosti ze hry. Všechny přetupky na hřišti i mimo něj jsou
-řešeny samotnými hráči. Jako jediná sportovní hra se tak obejde bez rozhodčích, a to i
-na nejvyšších soutěžích, kterými jsou mistrovství Evropy a světa.
-
-\medskip
-
-Hraní fairplay je otázka cti. Na každém turnaji je vyhlašována cena Spirit of the Game,
-která je cenou pro ty, kteří se chovali nejčestněji. Po každém zápase se týmy navzájem ohodnotí
-v podobě číselného hodnocení a cenu pak získá tým s nejvyšším průměrem. Cena Spirit of the Game
-je ceněna obdobně jako 1. místo.
-
-\subsection{Ultimate v České republice}
-
-\indent
-
-V České republice zastřešuje sporty s létajícím talířem již od roku XXXX Česká asociace
-lé\-ta\-jícícho disku (dále jen ``ČALD''). V celé republice eviduje XX zaregistrovaných klubů,
-které se mezi sebou utkávají nejčastěji na víkendových turnajích. Těch bylo na našem
-území za loňský rok více jak třicet, což je prakticky každý druhý týden v roce.
-
-\medskip
-
-Většina turnajů nebo mistrovství pak trvá zpravidla více dnů, během kterých se odehrají desítky
-utkání. A s přibývajícím počtem hráčů a fanoušků vzniká čím dál větší poptávka po online
-přenosech a statistikách z těchto akcí.
-
-% TODO: Bude potreba doplnit, protoze se jedna o dulezity pojem, ktery bude pak zpracovan.
-
-\subsection{Jak probíhá typický turnaj}
-
-% TODO: dokoncit
-
-\indent
-
-Několik dní před turnajem se zveřejní rozpis, zpravidla v podobě dokumentu na Google Drive apod.
-Ten je pak během turnajem editovaný a slouží jako jediný zdroj výsledků, který ... 
-
-Nejdůležitejším údajem jsou výsledky z jednotlivých zápasů. Ty jsou nejčastěji zapisovány
-na papír, který je vystaven na viditelném místě, aby si jej mohlo prohlédnout co nejvíce lidí.
-
-\medskip
-
-Částečně tyto procesy nahrazuje mobilní aplikace Catcher, ke které se ještě dostaneme.
-
-% Vsechno se doposud pise na papir a je to proste cely na prd.
-% TODO: Kdo vsechno, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
-% TODO: Jeste doplnit dal.
-
-\section{REST API}
-
-
-\chapter{Specifikace požadavků}
-
-Zadání vzniklo původně z požadavku na rozšíření mobilní aplikace Catcher, ke které se ještě
-dostaneme v analýze již fungujících řešení. Se vznikajícími nároky na rozšiřitelnost přišel
-také požadavek na RESTful rozhraní, které by backend obsluhovalo. V tu chvíli jsem tu byl
-již já s nápadem na vytvoření nového backendu plně ovladatelným pomocí REST API.
-
-\section{Požadavky na Catchera}
-
-\indent
-
-Na základě diskuse s ČALD, častými organizátory turnajů a některými hráči byly stanoveny
-funkční a nefunkční požadavky na vznikající aplikaci.
-
-\subsection{Funkční požadavky}
-
-% TODO: Vice se rozepsat u jednotlivych bodu.
-
-
-\begin{description}
-  \item[Import a export dat] \hfill \\
-  % TODO: Tohle neni jiste, zda uplne souhlasi.
-  Systém umožňuje import oddílů a jeho hráčů z databáze ČALD.
-
-  \item[Rozpis zápasů] \hfill 
-  Oprávněná role může vytvořit svůj vlastní turnaj a vložit seznam všech zápasů,
-  které se budou hrát. Vytvořený rozpis zápasů systém již doplňuje automaticky na základě
-  odehraných výsledků (např. vítěze semifinále automaticky posune do finále). Ve chvíli,
-  kdy to bude již možné, doplní celkové pořadí turnaje. Automatické doplnění se týká i 
-  souhrné tabulky vzájemných hodnocení v kategorii SOTG.
-
-  \item[Zadávání dat v rámci turnaje] \hfill \\
-  Každý tým má možnost vytvořit vlastní soupisku na turnaj, kde bude hrát. Systém pak umožňuje
-  v průbehu turnaje zadávat konkrétní údaje:
-  \begin{itemize}
-    \item průběžné skóre zápasů nebo jejich závěrečný výsledek
-    \item skórující a asistující hráč
-    \item hodnocení SOTG
-  \end{itemize}
-  
-  \item[Tvorba statistik] \hfill \\
-  Systém tvoří detailní statistiky hráčů, týmů a zápasů (obdržené a udělené body,
-  počet asistencí, průměrná hodnota SOTG).
-\end{description}
-
-\subsection{Nefunkční požadavky}
-
-% Zdroj: https://cs.wikipedia.org/wiki/Nefunk%C4%8Dn%C3%AD_po%C5%BEadavky_softwarov%C3%A9_architektury
-% TODO: Muze se pridat Spravovatelnost (monitoring a dynamicka konfigurace aplikace)
-
-\begin{description}
-  \item[Snadná rozšířitelnost] \hfill \\
-  Už nyní evidujeme změny, o které je zájem, ale nejsou předmětem této práce.
-  I proto je nutné projekt dokončit tak, aby byl v budoucnu snadno rozšiřitelný nebo
-  modifikovatelný.
-
-  \item[Nízká cena] \hfill \\
-  Cílem není vytvořit výdělečný projekt, ale fungující službu pro několik stovek hráčů
-  a fanoušku v České republice. I proto je požadavkem použití volně dostupných
-  knihoven a technologií.
-
-  \item[Výkon] \hfill \\
-  Podle celkem jednoduchých odhadů lze usoudit, že aplikaci budou čekat výkyvy v provozu.
-  Většina zápisů a čtění dat probíhá během samotných akcí. Podle statistických údajů
-  z již užívané aplikace Catcher víme, že během špičky není počet požadavků za sekundu
-  větší než několik desítek. I proto není na celkový výkon kladen žádný zvláštní požadavek.
-  Systém by každopádně měl více jak 95 \% žádostí zpracovat do 2 sekund (XXX milisekund) a na žádnou z nich
-  nedpovědět za více jak 10 sekund (milisekund??).
-
-  \item[Spolehlivost] \hfill \\
-  Spolehlivost je základem pro funkční běh Catchera. Velká část operací, včetně chybných budou
-  zapisovány do souborů pro snadné odhalení chyb. V případě výpadku by měl být informován
-  administrátor pomocí SMS nebo emailu. Obnova musí být proveditelná ze zálohovacích souborů.
-  
-  % TODO: O vypadku nijak neinformuju, zalohu neprovadim
-  
-  \item[Bezpečnost] \hfill \\
-  % autentizace a autorizace
-  Systém musí jednoznačně určit a ověřit uživatele, který přistupuje k rozhraní Catchera. Zároveň
-  musí existovat možnost za chodu přidávat, odebírat nebo měnit oprávnění. Dále pak systém musí
-  být datově integritní, tzn. že obsah zpráv nebude při přenosu změněn.
-
-  \item[Nároky na hardware] \hfill \\
-  Systém musí být schopen běžet na běžných serverech s ne více jak 4GB RAM.
-
-  \item[Formát importu] \hfill \\
-  Pro import soupisek musí systém umět číst data ve formátu, který ČALD pro export používá.
-  
-  \item[Vytvoření dokumentace] \hfill \\
-  Pro potřeby vývoje frontendu je potřeba vytvořit dostatečně detailní dokumentaci rozhraní API.
-\end{description}
-
-\section{Uživatelské role}
-
-% TODO: Kdo vsechno bude do aplikace pristupovat
-% TODO: Asi bych mel poznamenat do pozadavku, ze na kazdy turnaj je jine heslo.
-
-\begin{description}
-  \item[Nepřihlášený návštěvník] \hfill \\
-  Jde o nejčastější přístup k aplikaci. Slouží k zobrazení všech statistik (aktuální skóre,
-  statistika všech hráčů, hodnocení SOTG). Nemůže žádná data vytvářet nebo modifikovat
-  a nevyžaduje přihlášení.
-  
-  \item[Organizátor] \hfill \\
-  Účet pod touto rolí může vytvořit kdokoliv pouhou registrací. Po příhlášení lze přídávat
-  nové turnaje a ty následně editovat. Tím se rozumí tvorba rozpisu zápasů a seznamu účastníků
-  z již existujícího seznamu týmů. Dále může zadávat průběžné a výsledné skóre zápasů,
-  skórující a asistující hráče a vidí na tabulku vzájemných hodnocení SOTG pro účely vyhlášení
-  vítěze. Tato tabulka je pro ostatní role až do vyhlášení nezobrazitelná.
-  
-  \item[Klubový/oddílový účet] \hfill \\
-  Pro účely odevzdávání hodnocení SOTG a úprav v týmové soupisce je vytvořen pro každý oddíl
-  jeden společný účet. Tento účet má možnost vytvořit pouze admin. Přihlašovací údaje pak
-  získá zástupce klubu a je pouze na něm, kdo z jeho oddílu bude spravovat vytvořený učet.
-  
-  \item[Admin] \hfill \\
-  Má plnou kontrolu nad správou účtů a nad daty v databázi. Jeho možnosti zahrnují možnosti
-  všech ostatních rolí.
-\end{description}
-
-\section{Případy užití}
-
-Následující část popisuje nejběžnější případy užití. V návrhu RESTful rozhraní jde
-o jednu z nejdůležitejších součastí, protože určuje směr návrhu. Výsledné API by tak mělo
-pokrývat všechny níže uvedené případy.
-% TODO: Mozna napsat neco o tom, ze kazde spravne api se dela tak, ze se zjisti vsechny usecasy, aby se mohli vytvorit dobre api.
-% TODO: Co budou nejbeznejsi operace v aplikaci (zapisovani skore, zapisovani spiritu, tvorba turnaje a rozpisu). Tady to mozna napsat VSECHNO v bodech, protoze z toho budou vychazet API.
-
-Následující seznam zachycuje jednotlivé požadavky a jejich popis.
-
-% TODO: Napsat, kdo vsechno muzes tyto operace delat. Napr. organizator muze ukoncit zapas.
-
-\begin{description}
- \item[F1: Import dat z databáze ČALD] \hfill \\
- Doplňuje seznam oddílů a jejich hráčů do databáze Catchera. V pravidelném intervalu stáhne
- aktuální data z ČALD databáze a doplní doposud aktuální data v databázi.
-
- % TODO: neexistuje zadny automaticky import
- 
- \item[Získání libovolného oddílu z databáze] \hfill \\
- Získá množinu oddílů, jež jsou v databázi uloženy...
- % TODO: dokoncit
- 
- \item[Získání libovolného hráče z databáze] \hfill \\
- ...
- % TODO: dokoncit
- 
- \item[Vytvoření turnaje] \hfill \\
- Vytvoří konkrétní podobu turnaje. Do databáze uloží účastníky turnaje, základní skupiny,
- zápasy ve skupinách a následnující zápasy v play-off.
- 
- \item[Získání libovolného turnaje z databáze] \hfill \\
- Získá množinu turnajů, jež jsou v databázi uloženy. S pomocí několika parametrů lze tuto
- množinu filtrovat:
- \begin{itemize}
-    \item turnaj s konkrétním identifikátorem
-    \item pouze ne/ukončené turnaje
-    \item pouze ne/aktivní turnaje
-    \item turnaje odehrávající se v čase od do
-    \item turnaje v kategoriích open, women, mix apod.
-    \item turnaje vytvořené konkrétním uživatelem
-  \end{itemize}
-  Prvek množiny obsahuje informace o turnaji, jako například název, popis, termín a místo turnaje.
- 
- \item[Získá účastníky turnaje] \hfill \\
- Ke konkrétnímu turnaji získá kolekci všech týmů, jež se účastní. 
- 
- \item[Získá týmovou soupisku] \hfill \\
- Ke konkrétnímu týmu získá kolekci všech hráčů, jenž se účastní.
- 
- \item[Zadání skórujícího nebo asistujícího hráče] \hfill \\
- V průběhu zápasu umožňuje zadat skórujícího nebo asistujícího hráče.
- 
- \item[Ukončit zápas s výsledným skóre] \hfill \\
- Ukončí zápas a uloží jeho výsledek do databáze.
- 
- \item[Zadat hodnocení SOTG] \hfill \\
- Po ukončení zápasu lze z týmového účtu udělit soupeři hodnocení SOTG. Tento údaj se uloží do tabulky, kde jsou všechna vzájemná hodnocení. 
- 
- \item[Zobrazit tabulku vzájemných hodnocení SOTG] \hfill \\
- Odešle uživateli vhodnou strukturu, kde budou jasně uvedeny všechna doposud vyplněná hodnocení kategorie SOTG.
- 
- \item[Zobrazit pořadí týmů v kategorii SOTG] \hfill \\
- Vrátí pořadí týmů v kategorii SOTG, včetně průměru všech obdržených hodnocení, a informaci o tom, zda je toto pořadí již finální.
- 
- \item[Ukončit turnaj] \hfill \\
- Změní stav turnaje na ukončený. Tabulka vzájemných hodnocení SOTG a výsledné pořadí se tím stanou veřejnými. 
- 
- \item[Zobrazit výsledky všech zápasů] \hfill \\
- 
- \item[Zobrazit detail konkrétního zápasu] \hfill \\ hráči, body, čas
- 
- \item[Získá seřazené hráče podle bodování] \hfill \\ Seřadí hráče na základě bodovaní.
-\end{description}
+\input{requirements.tex}
 
 \chapter{Analýza}
 
 \section{Existující řešení}
 
+\subsection{Catcher}
+
+\subsection{UltimateOrganizer}
+
+\subsection{Ultimate Central}
+
 % TODO: Jake reseni uz existuji. Catcher, UltimateCentral atd., co je na nich dobryho a co ne
 
 \section{Možnosti řešení}
 
-% TODO: Co vsechno si z techto aplikaci muzu vzit. Pouzit API nebo jine technologie.
-
-\section{Něco o API}
+\section{REST API - SOAP a ostatni}
 
 % TODO: Napsat neco o teorii REST API. Mozna lze sjednotit s predchozi kapitolou.
 
@@ -473,17 +191,7 @@ Následující seznam zachycuje jednotlivé požadavky a jejich popis.
 
 \input{testing.tex}
 
-% TODO: IDEA: Lze se zminit o testovani a prubezne integraci. Napriklad napsat, ze mame zajem v budoucnu pouzivat Codevoc nebo Travis CI.
-
-\chapter{Nasazení}
-
-% TODO: Popis jake technologie jsem si vybral na provoz aplikace na serveru: web server a uwsgi + uml diagram nasazeni
-
-\section{Softwarové požadavky}
-
-\section{Konfigurace}
-
-\section{Údržba}
+\input{deploy.tex}
 
 % \chapter{Analýza a návrh}
 % \chapter{Realizace}
@@ -530,6 +238,15 @@ Následující seznam zachycuje jednotlivé požadavky a jejich popis.
 \end{figure}
 
 \end{document}
+
+% KDYBYCH NEKDY CHTEL POUZIT:
+
+%\begin{description}
+%  \item[Snadná rozšířitelnost] \hfill \\
+%  Už nyní evidujeme změny, o které je zájem, ale nejsou předmětem této práce.
+%  I proto je nutné projekt dokončit tak, aby byl v budoucnu snadno rozšiřitelný nebo
+%  modifikovatelný.
+%\end{description}
 
 \iffalse
 \fi

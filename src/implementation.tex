@@ -27,7 +27,9 @@ na neřešitelné problémy. Zavrhnout neznámé technologie ale může znamenat
 I když aplikace nepočítá s vetším provozem čítající stovky požadavků za sekundu, není důvod používat technologie, které jsou pomalé
 nebo spotřebovávají příliš moc prostředků.
 
-\section{Programovací jazyk Python}
+\section{Zvolené technologie}
+
+\subsection{Programovací jazyk Python}
 
 \indent
 
@@ -59,7 +61,7 @@ Po stránce výkonu je na tom Python relativně dobře, protože mnoho na~výkon
 V porovnání s ostatními interpretovanými jazyky je na tom samotný Python taky dobře.
 Fakt se kterým ale musíme počítat je ten, že dynamicky interpretované jazyky jsou obecně pomalejší, než kompilované jazyky.
 
-\section{Webový framework Falcon}
+\subsection{Webový framework Falcon}
 
 % TODO: dovysvetlit, co je to UWSGI, mozna dat pred Falcon 
 
@@ -91,41 +93,38 @@ Pecan (0.8.3) & 3,442 & 291 & 1x \\
 \hline
 Flask (0.10.1) & 2,837 & 352 & 1x \\
 \hline
-\hline
 \end{tabular}
-\caption{Výkonnostní test několika webových frameworků pro~CPython~2.7.9 \cite{falcon-benchmarks}. Jde o~implementaci jazyka Python, kterou používá Catcher.}
+\caption{Výkonnostní test několika podobných webových frameworků pro~CPython~2.7.9 \cite{falcon-benchmarks}. Jde o~implementaci jazyka Python, kterou používá Catcher.}
 \end{table}
 
 %\caption{Porovnání výkonu podobných framworků pro CPython 2.7.9}
 
-\section{Databáze MySQL}
+\subsection{Databáze MySQL}
 
-\section{Peewee ORM}
+\subsection{Peewee ORM}
 
-\section{Verzovací systém Git}
+\subsection{Verzovací systém Git}
 
-\section{Webový server Nginx}
+\subsection{Webový server Nginx}
+
+\indent
 
 Nginx je webový server a reverzní proxy\footnote{Reverzní proxy se používá pro zvýšení výkonu webového serveru.
 Rozděluje vstupující provoz na více serverů, například vyvažuje zátěž serverů zapojených v clusteru.}, který pracuje s běžnými protokoly.
-První oficiální verze se objevila v roce 2004, kterou vyvynul Ruský softwarový inženýr Igor Sysoev.
+První oficiální verze se objevila v roce 2004 \cite{nginx-changes}, kterou vyvynul Ruský softwarový inženýr Igor Sysoev.
 Zaměřuje se na vysoký výkon a nízké nároky na pamět. Je používán velkými firmami
-díky propracované možnosti rozložení zátěže. Z velkých firem je to například například Netflix, Wordpress.com,
+díky propracované možnosti rozložení zátěže. Z velkých firem je to například Netflix, Wordpress.com,
 GitHub, Dropbox nebo Seznam.cz.
 
-pod carou:
-Reverzní proxy se používá pro zvýšení výkonu webového serveru. Rozděluje vstupující provoz na více serverů, například vyvažuje zátěž serverů zapojených v clusteru.
+\medskip
 
-Dnes je již s 25 % druhým nejpoužívanějším webovým serverem v prvním milionu nejzatíženějších webů na světě.
-Napříč celým webem je pak na třetím místě s přibližně 16 %. I když je Apache HTTP Server stále jednička, 
-jejich rozdíl se neustále zmenšuje. Nginx je open source.
+Dnes je již s 25 \% druhým nejpoužívanějším webovým serverem v prvním milionu nejzatíženějších webů na světě.
+Napříč celým webem je pak na třetím místě s přibližně 16 \%. I když je Apache HTTP Server stále jednička, 
+jejich rozdíl se neustále zmenšuje \cite{nginx-statistic}. Nginx je open source.
 
-% TODO: Dat obrazek s grafem? Tabulka s daty z wiki spis bych pouzil.
+% TODO: IDEA: Moznost prilozit obrazek s grafem nebo tabulkou.
 
-zdroj: http://news.netcraft.com/archives/2016/02/22/february-2016-web-server-survey.html
-http://nginx.org/en/
-
-\section{Uwsgi}
+\subsection{Uwsgi}
 
 % TODO: Jake technologie si vyberu. Ze kterych mam na vyber.
 
