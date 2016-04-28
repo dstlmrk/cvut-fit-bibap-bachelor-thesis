@@ -85,7 +85,7 @@ showstringspaces=false            %
 % Python for inline
 \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 % --------------------------------------------------------------------
-    
+
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
 % \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
@@ -112,7 +112,7 @@ showstringspaces=false            %
 \keywordsCS{Nahraďte seznamem klíčových slov v češtině oddělených čárkou.}
 \keywordsEN{Nahraďte seznamem klíčových slov v angličtině oddělených čárkou.}
 
-
+\usepackage{fancyvrb}
 \begin{document}
 
 % TODO: Vyresit, jak budu formatovat odstavce.
@@ -155,9 +155,9 @@ jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní 
 %- Problemy pri implementaci
 %- ...
 
-\input{introduction.tex}
+\input{./chapters/introduction.tex}
 
-\input{requirements.tex}
+\input{./chapters/requirements.tex}
 
 \chapter{Analýza}
 
@@ -187,11 +187,12 @@ jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní 
 
 % TODO: Nevim, ale asi jak se to cely nasadi.
 
-\input{implementation.tex}
+\input{./chapters/implementation.tex}
 
-\input{testing.tex}
+\input{./chapters/testing.tex}
 
-\input{deploy.tex}
+
+\input{./chapters/deploy.tex}
 
 % \chapter{Analýza a návrh}
 % \chapter{Realizace}
@@ -206,7 +207,7 @@ jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní 
 %\bibliographystyle{iso690}
 %\bibliography{ref}
 
-\input{bib.tex}
+\input{./reference/bib.tex}
 
 \appendix
 
