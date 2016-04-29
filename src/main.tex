@@ -129,10 +129,11 @@ showstringspaces=false            %
 
 Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online
 skórování zápasů a následné zobrazování statistik. Sou\-částí práce tak bude analýza dosavadních
-i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové aplikace. Frontend bude
-vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého. Mým úkolem je vytvořit backend,
-jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní název Catcher.
+i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové služby. Ta bude obsluhovatelná
+pomocí veřejného rozhraní. Frontend bude vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého.
+Vznikající systém má pracovní název Catcher.
 
+% TODO: TODO: TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
 
 %- Uvod do problematiky (Analyza problematiky)
 %-- Co je to Ultimate Frisbee
@@ -159,38 +160,39 @@ jenž bude obsluhovatelný pomocí REST API. Vznikající systém má pracovní 
 
 \input{./chapters/requirements.tex}
 
-\chapter{Analýza}
+\input{./chapters/analysis.tex}
 
-\section{Existující řešení}
+\subsubsection*{REST}
 
-\subsection{Catcher}
+\indent
 
-\subsection{UltimateOrganizer}
+Protokol REST (\textit{Representational State Transfer}) je založený na vystavování a jednotnému přístupu ke zdrojům,
+anglicky jako \textit{resources}. REST navíc není žádným standartem, jde spíše o sadu doporučení a omezení.
 
-\subsection{Ultimate Central}
+\medskip
 
-% TODO: Jake reseni uz existuji. Catcher, UltimateCentral atd., co je na nich dobryho a co ne
+\textit{Zde bude další pokračování o RESTu. Povídání o zdroji, požadavcích na RESTful rozhraní, formátech zpráv (JSON).}
 
-\section{Možnosti řešení}
+\paragraph{Požadavky na RESTful rozhraní}
 
-\section{REST API - SOAP a ostatni}
+\paragraph{Zdroj}
 
-% TODO: Napsat neco o teorii REST API. Mozna lze sjednotit s predchozi kapitolou.
+\paragraph{Formát zpráv}
+
+
+% Zdroj má unikátní identifikátor u svoji URL
 
 \chapter{Návrh}
 
-\section{Návrh tříd a databáze}
-
+\textit{V této kapitole se podíváme na návrh aplikace, na jednotlivé RESTové zdroje,
+adresářovou strukturu. Ukážeme konceptuální a databázový model a trochu si o nich něco řekneme.
+Možná provedeme diskuzi smyček.}
+%\section{Návrh tříd a databáze}
 % TODO: Takovy ty kecy teoreticky. Jak ma vypadat diagram trid, databazovy model apod.
-
-\section{Architektura a návrh nasazení}
-
-% TODO: Nevim, ale asi jak se to cely nasadi.
 
 \input{./chapters/implementation.tex}
 
 \input{./chapters/testing.tex}
-
 
 \input{./chapters/deploy.tex}
 
