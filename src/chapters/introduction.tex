@@ -94,6 +94,105 @@ přenosech a statistikách z těchto akcí.
 
 % Vsechno se doposud pise na papir a je to proste cely na prd.
 % TODO: Kdo vsechno, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
-% TODO: Jeste doplnit dal.
 
-% TODO: sem prijde rest api
+\section{Aplikační rozhraní}
+
+\indent
+
+Častěji se označuje zkratkou API\footnote{Application Programming Interface}.
+V informatice se tímto pojmem označuje sbírka procedur, funkcí, tříd
+nebo protokolů nějaké knihovny, jež mohou ostatní programátoři používat.
+Jde v podstatě o abstrakci, která popisuje rozhraní pro interakci s řadou programových celků,
+které programátor využívá namísto toho, aby je sám programoval.
+Určuje, jak budou knihovní funkce volány ze zdrojového kódu. API může mít následující vlastnosti.
+
+\begin{itemize}
+  % TODO: IDEA: Moznost popsat rozdeleni obecne a konkretni
+  \item \textbf{Jazykově závislé API} - Lze volat pouze v daném programovacím jazyce, pomocí základních prvků jazyka.
+  \item \textbf{Jazykově nezávislé API} - Jeho použití je možné ve více programovacích jazycích, což je žádoucí vlastnost
+    služeb orientovaných na API, které nejsou vázány na určitý systém nebo proces.
+    Tato služba pak může být poskytnuta jako webová služba.
+\end{itemize}
+
+\section{Protokol HTTP}
+
+\indent
+
+% TODO: Zde bych mel uvest zdroj na cizi diplomku.
+
+Protokol HTTP je základním transportním protokolem na síti internet.
+Jde o protokol typu požadavek-odpověd (request-response). Se serverem naváže klient spojení,
+odešle mu požadavek a následně obdrží odpověď. Spojení je pak ukončeno.
+Požadavek představuje textový dokument, ve kterém dochází ke specifikování paramatru dotazu.
+Konkrétní požadavek můžeme vidět na následující ukázce.
+
+\medskip
+
+DOPLNIT: UKÁZKA KÓDU S REQUEST:GET
+
+\medskip
+
+Na prvním řádku se nachází název HTTP metody (HTTP obsahuje řadu metod, které mají různý význam, více v tabulce X),
+identifikace požadovaného zdroje a verze protokolu. Na následujicích řádcích najdeme tzv. \uv{hlavičky}
+(ve formátu \textit{klíč: hodnota}), které specifikují parametry spojení. Jestliže chceme zaslat společně s požadavkem
+nějaká data k dalšímu zpracování, umístí se až za hlavičky a jeden prázdný řádek.
+
+% TODO: uvest zdroj!!
+% TODO: nesouvisi s predchozim: mel bych mozna trochu popsat, co to zdroj je
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|l|}\hline
+\bfseries \bfseries Metoda & \bfseries Význam \\[2mm]
+\hline
+GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\
+\hline
+POST & X \\
+\hline
+DELETE & X \\
+\hline
+PUT & X\\
+\hline
+\end{tabular}
+\caption{Přehled vybraných metod HTTP protokolu v kontextu této práce.} 
+%\cite{}.
+\end{table}
+
+\medskip
+
+Odpověď serveru je opět textový dokument, ve kterém se nachází verze protokolu a stavový kód,
+který reprezentuje výsledek požadavku. Server může vrátit stavový kód z celkem pěti kategorií,
+jejich popis je uveden v tabulce X. Za stavovým kódem je ještě krátký textový popisek. Na následujících
+řádcích jsou hlavičky a výsledek požadavku, který je oddělen opět prázdným řádkem jako v požadavku.
+Následující ukázka zobrazuje typickou odpověď z Catchera. 
+
+\medskip
+
+DOPLNIT: UKÁZKA KÓDU S RESPONSE
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=70mm]{./images/http-komunikace.png}
+\caption{Sekvenční diagram HTTP komunikace.\label{overflow}}
+% TODO: ocitatovat \cite{}
+\end{figure}
+
+
+DOPLNIT: TABULKA S NAVRATOVYMI KODY
+
+\medskip
+
+\textit{Povídání o HTTP metodách, HTTP komunikaci (diagram), ukázka kódu, návratové kódy.}
+
+% TODO: uvest zdroj cizi diplomku
+
+% TODO: Presunout do uvodu.
+\section{Webová služba}
+
+\indent
+
+Webová služba je zapouzdřená funkcionalita nějaké aplikace, kterou využívají další aplikace.
+Mluvíme tedy o strojové interakci, nevhodné například pro prohlížení ve webovém prohlížeči.
+S veřejně vystavenou webovou službou komunikují ostatní aplikace pomocí definovaného rozhraní.
+Pro realizaci API se dnes nejčastěji využívají dva protokoly - \textbf{SOAP} a \textbf{REST}.
+Tyto protokoly jsou přepravené pomocí již zavedených protokolů (hlavně pomocí HTTP).

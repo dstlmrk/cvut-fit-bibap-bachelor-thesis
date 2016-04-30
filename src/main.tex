@@ -135,26 +135,9 @@ Vznikající systém má pracovní název Catcher.
 
 % TODO: TODO: TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
 
-%- Uvod do problematiky (Analyza problematiky)
-%-- Co je to Ultimate Frisbee
-%-- Uvod do aplikacnich rozhrani
-%--- API
-%
-%- Pozadavky a zadani
-%- Existujici reseni (Analyza dostupnych sluzeb)
-%-- Catcher
-%-- UltimateCentral
-%
-%- Požadavky a zadání
-%- Analýza dostupných služeb
-%  - Catcher
-%  - UltimateCentral
-%- Analýza dostupných technologií
-%  - Výběr a detailnější popis vybraných technologií.
 %- Návrh aplikace (db, model, atd.)
 %  - Podivat se na to, co rikal Hunka.
 %- Problemy pri implementaci
-%- ...
 
 \input{./chapters/introduction.tex}
 
@@ -169,13 +152,35 @@ Vznikající systém má pracovní název Catcher.
 Protokol REST (\textit{Representational State Transfer}) je založený na vystavování a jednotnému přístupu ke zdrojům,
 anglicky jako \textit{resources}. REST navíc není žádným standartem, jde spíše o sadu doporučení a omezení.
 
+REST je o architektonický styl návrhu API popsaným Royem Fieldingem [ZDROJ].
+
 \medskip
 
 \textit{Zde bude další pokračování o RESTu. Povídání o zdroji, požadavcích na RESTful rozhraní, formátech zpráv (JSON).}
 
-\paragraph{Požadavky na RESTful rozhraní}
+\paragraph{Požadavky na RESTové rozhraní}
+
+Aby se mohlo nějaké aplikační rozhraní požadovat za RESTové (tzv. RESTful),
+musí splňovat několik základních předpokladů definované Fieldingem [ZDROJ].
+Nyní si uvedeme ty nejdůležitější:
+
+\begin{description}
+    \item[Architektura klient-server] \hfill \\
+    Rozděluje zodpovědnost mezi různé části. Klientské aplikace se nemusí starat o správu dat a server o jejich prezentaci.
+    Z toho vyplývá možnost vývíjet obě kompomenty (klient a server) nezávisle na sobě.
+    \item[Bezstavovost] \hfill \\
+    Aplikační stav je udržován na straně klienta. Všechny požadavky tak obsahují pouze informace nutné k jeho zpracování.  
+    \item[Jednotné rozhraní] \hfill \\
+    Lze získat reprezentaci nebo manipulovat s libovolným zdrojem pomocí unikátního identifikátoru.
+    Z reprezentace zdroje musí být klient schopen s daným zdrojem manipulovat. Zprávy by měly být dostatečně popisné.
+  \end{description}
 
 \paragraph{Zdroj}
+
+Architektonický styl REST je postaven na základním prvku - zdroji. Jde o logický objekt,
+který lze vyjádřit smysluplnou reprezentací, a s kterém lze manipulovat pomocí zpřístupněných metod.
+
+%
 
 \paragraph{Formát zpráv}
 

@@ -116,40 +116,9 @@ Protože už od počátku známe požadavek na možnost připojení klienta v~po
 je nutné poskytnout žadatelům o~přístup k datům rozhraní, které dostatečně pokryje jejich požadavky.
 V našem případě je symbolizují již výše zmíněné případy užití.
 
-\subsection{Aplikační rozhraní}
+% TODO: jestli by nebylo lepsi tuhle cast presunout do uvodu do probelmatiky?
 
-\indent
-
-Častěji se označuje zkratkou API\footnote{Application Programming Interface}.
-V informatice se tímto pojmem označuje sbírka procedur, funkcí, tříd
-nebo protokolů nějaké knihovny, jež mohou ostatní programátoři používat.
-Jde v podstatě o abstrakci, která popisuje rozhraní pro interakci s řadou programových celků,
-které programátor využívá namísto toho, aby je sám programoval.
-Určuje, jak budou knihovní funkce volány ze zdrojového kódu. API může mít následující vlastnosti.
-
-\begin{itemize}
-  % TODO: IDEA: Moznost popsat rozdeleni obecne a konkretni
-  \item \textbf{Jazykově závislé API} - Lze volat pouze v daném programovacím jazyce, pomocí základních prvků jazyka.
-  \item \textbf{Jazykově nezávislé API} - Jeho použití je možné ve více programovacích jazycích, což je žádoucí vlastnost
-    služeb orientovaných na API, které nejsou vázány na určitý systém nebo proces.
-    Tato služba pak může být poskytnuta jako webová služba.
-\end{itemize}
-
-\subsection{Protokol HTTP}
-
-\textit{Povídání o HTTP metodách, HTTP komunikaci (diagram), ukázka kódu, návratové kódy.}
-
-% TODO: uvest zdroj cizi diplomku
-
-\subsection{Webová služba}
-
-\indent
-
-Webová služba je zapouzdřená funkcionalita nějaké aplikace, kterou využívají další aplikace.
-Mluvíme tedy o strojové interakci, nevhodné například pro prohlížení ve webovém prohlížeči.
-S veřejně vystavenou webovou službou komunikují ostatní aplikace pomocí definovaného rozhraní.
-Pro realizaci API se dnes nejčastěji využívají dva protokoly - \textbf{SOAP} a \textbf{REST}.
-Tyto protokoly jsou přepravené pomocí již zavedených protokolů (hlavně pomocí HTTP).
+\textit{Nějaký kecy o tom, jak mám možnost použít SOAP a REST z úvodní kapitoly.}
 
 \subsubsection*{SOAP}
 
@@ -158,4 +127,4 @@ Tyto protokoly jsou přepravené pomocí již zavedených protokolů (hlavně po
 Protokol SOAP (\textit{Simple Object Access Protocol}) vystavuje aplikační logiku jako službu
 a~je proveden v~syntaxi jazyka XML. Svým navržením se snaží
 být co nejméně závislý na zvolené verzi standartu XML.
-SOAP služby standartně obsahují v URL nějaké sloveso (např. zobrazInfo). 
+SOAP služby standartně obsahují v URL nějaké sloveso (např. zobrazInfo).
