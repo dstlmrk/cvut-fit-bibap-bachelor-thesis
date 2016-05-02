@@ -121,54 +121,10 @@ Určuje, jak budou knihovní funkce volány ze zdrojového kódu. API může mí
 % TODO: Zde bych mel uvest zdroj na cizi diplomku.
 
 Protokol HTTP je základním transportním protokolem na síti internet.
-Jde o protokol typu požadavek-odpověd (request-response). Se serverem naváže klient spojení,
+Jde o protokol typu požadavek-odpověď (request-response). Se serverem naváže klient spojení,
 odešle mu požadavek a následně obdrží odpověď. Spojení je pak ukončeno.
 Požadavek představuje textový dokument, ve kterém dochází ke specifikování paramatru dotazu.
 Konkrétní požadavek můžeme vidět na následující ukázce.
-
-\medskip
-
-DOPLNIT: UKÁZKA KÓDU S REQUEST:GET
-
-\medskip
-
-Na prvním řádku se nachází název HTTP metody (HTTP obsahuje řadu metod, které mají různý význam, více v tabulce X),
-identifikace požadovaného zdroje a verze protokolu. Na následujicích řádcích najdeme tzv. \uv{hlavičky}
-(ve formátu \textit{klíč: hodnota}), které specifikují parametry spojení. Jestliže chceme zaslat společně s požadavkem
-nějaká data k dalšímu zpracování, umístí se až za hlavičky a jeden prázdný řádek.
-
-% TODO: uvest zdroj!!
-% TODO: nesouvisi s predchozim: mel bych mozna trochu popsat, co to zdroj je
-
-\begin{table}[htb]
-\centering
-\begin{tabular}{|l|l|}\hline
-\bfseries \bfseries Metoda & \bfseries Význam \\[2mm]
-\hline
-GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\
-\hline
-POST & X \\
-\hline
-DELETE & X \\
-\hline
-PUT & X\\
-\hline
-\end{tabular}
-\caption{Přehled vybraných metod HTTP protokolu v kontextu této práce.} 
-%\cite{}.
-\end{table}
-
-\medskip
-
-Odpověď serveru je opět textový dokument, ve kterém se nachází verze protokolu a stavový kód,
-který reprezentuje výsledek požadavku. Server může vrátit stavový kód z celkem pěti kategorií,
-jejich popis je uveden v tabulce X. Za stavovým kódem je ještě krátký textový popisek. Na následujících
-řádcích jsou hlavičky a výsledek požadavku, který je oddělen opět prázdným řádkem jako v požadavku.
-Následující ukázka zobrazuje typickou odpověď z Catchera. 
-
-\medskip
-
-DOPLNIT: UKÁZKA KÓDU S RESPONSE
 
 \begin{figure}[ht!]
 \centering
@@ -177,12 +133,71 @@ DOPLNIT: UKÁZKA KÓDU S RESPONSE
 % TODO: ocitatovat \cite{}
 \end{figure}
 
+\begingroup
+\fontsize{9.5pt}{11pt}\selectfont
+\begin{verbatim}
+GET /api/player/1 HTTP/1.1
+Host: catcher.zlutazimnice.cz
+\end{verbatim}
+\endgroup
 
-DOPLNIT: TABULKA S NAVRATOVYMI KODY
+Na prvním řádku se nachází název HTTP metody (HTTP obsahuje řadu metod, které mají různý význam, více v tabulce X),
+identifikace požadovaného zdroje a verze protokolu. Na následujicích řádcích najdeme tzv. \uv{hlavičky}
+(ve formátu \textit{klíč: hodnota}), které specifikují parametry spojení. Jestliže chceme zaslat společně s požadavkem
+nějaká data k dalšímu zpracování, umístí se až za hlavičky a jeden prázdný řádek.
 
 \medskip
 
-\textit{Povídání o HTTP metodách, HTTP komunikaci (diagram), ukázka kódu, návratové kódy.}
+% TODO: uvest zdroj!!
+% TODO: nesouvisi s predchozim: mel bych mozna trochu popsat, co to zdroj je
+
+Odpověď serveru je opět textový dokument, ve kterém se nachází verze protokolu a stavový kód,
+který reprezentuje výsledek požadavku. Server může vrátit stavový kód z celkem pěti kategorií,
+jejich popis je uveden v tabulce ~\ref{tab:http_metody}. Za stavovým kódem je ještě krátký textový popisek. Na následujících
+řádcích jsou hlavičky a výsledek požadavku, který je oddělen opět prázdným řádkem jako v požadavku.
+Následující ukázka zobrazuje typickou odpověď z Catchera. 
+
+\begingroup
+\fontsize{9.5pt}{11pt}\selectfont
+\begin{verbatim}
+HTTP/1.1 200 OK
+Server: nginx/1.6.3
+Date: Mon, 02 May 2016 19:18:18 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 140
+Connection: keep-alive
+access-control-allow-origin: *
+access-control-allow-headers: Content-Type,Authorization,X-Name
+access-control-allow-methods: PUT,POST,DELETE,GET
+
+{
+  "ranking": null,
+  "clubId": 11,
+  "firstname": "Pavel",
+  "caldId": 976,
+  "lastname": "Matoušek",
+  "number": 11,
+  "nickname": "Maty",
+  "id": 1
+}
+\end{verbatim}
+\endgroup
+
+\begin{table}[]
+\centering
+\begin{tabular}{lp{9.5cm}}
+\textbf{Metoda} & \textbf{Význam}\\ \midrule
+GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\ \midrule
+POST & Metoda pro odesílání dat ke zpracování (data jsou vložena do těla požadavku). Tato metoda může být použita pro tvorbu nebo úpravu zdrojů.\\
+\midrule
+DELETE & Metoda určená k mazání zdrojů.\\
+\midrule
+PUT & Podobně jako POST slouží k odeslání dat ke zpracování.\\
+\midrule
+\end{tabular}
+\caption{Přehled vybraných metod HTTP protokolu v~kontextu této práce \cite{http_metody}.}
+\label{tab:http_metody}
+\end{table}
 
 % TODO: uvest zdroj cizi diplomku
 

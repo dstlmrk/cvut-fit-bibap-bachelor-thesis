@@ -113,87 +113,79 @@ showstringspaces=false            %
 \keywordsEN{Nahraďte seznamem klíčových slov v angličtině oddělených čárkou.}
 
 \usepackage{fancyvrb}
+
 \begin{document}
 
-% TODO: Vyresit, jak budu formatovat odstavce.
-% TODO: Zjistit, jak se vkladaji citace.
+ % TODO: Vyresit, jak budu formatovat odstavce.
+ % TODO: Zjistit, jak se vkladaji citace.
+ 
+ % \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
+ % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
+ 
+ \begin{introduction}
+ 	%sem napište úvod Vaší práce
+ \end{introduction}
+ 
+ \chapter{Cíl práce}
+ 
+ Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online
+ skórování zápasů a následné zobrazování statistik. Sou\-částí práce tak bude analýza dosavadních
+ i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové služby. Ta bude obsluhovatelná
+ pomocí veřejného rozhraní. Frontend bude vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého.
+ Vznikající systém má pracovní název Catcher.
 
-% \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
-% \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
-
-\begin{introduction}
-	%sem napište úvod Vaší práce
-\end{introduction}
-
-\chapter{Cíl práce}
-
-Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online
-skórování zápasů a následné zobrazování statistik. Sou\-částí práce tak bude analýza dosavadních
-i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové služby. Ta bude obsluhovatelná
-pomocí veřejného rozhraní. Frontend bude vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého.
-Vznikající systém má pracovní název Catcher.
-
-% TODO: TODO: TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
-
-%- Návrh aplikace (db, model, atd.)
-%  - Podivat se na to, co rikal Hunka.
-%- Problemy pri implementaci
-
+ % TODO: TODO: TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
+ 
+ %- Návrh aplikace (db, model, atd.)
+ %  - Podivat se na to, co rikal Hunka.
+ %- Problemy pri implementaci
+ 
 \input{./chapters/introduction.tex}
-
+ 
 \input{./chapters/requirements.tex}
-
+ 
 \input{./chapters/analysis.tex}
 
-\subsubsection*{REST}
+\section{Možnosti řešení}
+
+\indent
+
+Protože už od počátku známe požadavek na možnost připojení klienta v~podobě mobilní nebo webové aplikace,
+je nutné poskytnout žadatelům o~přístup rozhraní, které dostatečně pokryje jejich požadavky.
+Z úvodní kapitoly víme, že webová služba se dělí na dva typy - SOAP a REST.
+
+\subsection{SOAP}
+
+\indent
+
+Protokol SOAP (\textit{Simple Object Access Protocol}) vystavuje aplikační logiku jako službu
+a~je proveden v~syntaxi jazyka XML. Svým navržením se snaží
+být co nejméně závislý na zvolené verzi standartu XML.
+SOAP služby standartně obsahují v URL nějaké sloveso (např. zobrazInfo).
+
+% TODO: Napsat nejake nevyhody
+ 
+\subsection{REST}
 
 \indent
 
 Protokol REST (\textit{Representational State Transfer}) je založený na vystavování a jednotnému přístupu ke zdrojům,
 anglicky jako \textit{resources}. REST navíc není žádným standartem, jde spíše o sadu doporučení a omezení.
 
+% TODO: nasledujici radek mozna presnuout do navrhu
 REST je o architektonický styl návrhu API popsaným Royem Fieldingem [ZDROJ].
 
 \medskip
 
+\subsection{Shrnutí}
+
+% TODO: proc jsem si vybral tohle apod.
+
 \textit{Zde bude další pokračování o RESTu. Povídání o zdroji, požadavcích na RESTful rozhraní, formátech zpráv (JSON).}
 
-\paragraph{Požadavky na RESTové rozhraní}
-
-Aby se mohlo nějaké aplikační rozhraní požadovat za RESTové (tzv. RESTful),
-musí splňovat několik základních předpokladů definované Fieldingem [ZDROJ].
-Nyní si uvedeme ty nejdůležitější:
-
-\begin{description}
-    \item[Architektura klient-server] \hfill \\
-    Rozděluje zodpovědnost mezi různé části. Klientské aplikace se nemusí starat o správu dat a server o jejich prezentaci.
-    Z toho vyplývá možnost vývíjet obě kompomenty (klient a server) nezávisle na sobě.
-    \item[Bezstavovost] \hfill \\
-    Aplikační stav je udržován na straně klienta. Všechny požadavky tak obsahují pouze informace nutné k jeho zpracování.  
-    \item[Jednotné rozhraní] \hfill \\
-    Lze získat reprezentaci nebo manipulovat s libovolným zdrojem pomocí unikátního identifikátoru.
-    Z reprezentace zdroje musí být klient schopen s daným zdrojem manipulovat. Zprávy by měly být dostatečně popisné.
-  \end{description}
-
-\paragraph{Zdroj}
-
-Architektonický styl REST je postaven na základním prvku - zdroji. Jde o logický objekt,
-který lze vyjádřit smysluplnou reprezentací, a s kterém lze manipulovat pomocí zpřístupněných metod.
-
-%
-
-\paragraph{Formát zpráv}
 
 
-% Zdroj má unikátní identifikátor u svoji URL
-
-\chapter{Návrh}
-
-\textit{V této kapitole se podíváme na návrh aplikace, na jednotlivé RESTové zdroje,
-adresářovou strukturu. Ukážeme konceptuální a databázový model a trochu si o nich něco řekneme.
-Možná provedeme diskuzi smyček.}
-%\section{Návrh tříd a databáze}
-% TODO: Takovy ty kecy teoreticky. Jak ma vypadat diagram trid, databazovy model apod.
+\input{./chapters/design.tex}
 
 \input{./chapters/implementation.tex}
 
@@ -217,7 +209,7 @@ Možná provedeme diskuzi smyček.}
 \input{./reference/bib.tex}
 
 \appendix
-
+% 
 \chapter{Seznam použitých zkratek}
 % \printglossaries
 \begin{description}

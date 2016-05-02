@@ -79,33 +79,48 @@ která je částečně zpětně nekompatibilní.}. Kromě toho umí pracovat s W
 základna na rozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárnější webové frameworky pro Python.
 
 \begin{table}[htb]
-\centering
-\begin{tabular}{|l||c|c|c|c|}\hline
-\bfseries \bfseries framework & \bfseries req/sec & \bfseries $\mu$s/req & \bfseries výkon \\[2mm]
-\hline
-Falcon (0.3.0) & 21,858 & 46 & 8x \\
-\hline
-Bottle (0.12.8) & 12,583 & 79 & 4x \\
-\hline
-Werkzeug (0.10.4) & 4,708 & 212 & 2x \\
-\hline
-Pecan (0.8.3) & 3,442 & 291 & 1x \\
-\hline
-Flask (0.10.1) & 2,837 & 352 & 1x \\
-\hline
-\end{tabular}
-\caption{Výkonnostní test několika podobných webových frameworků pro~CPython~2.7.9 \cite{falcon-benchmarks}. Jde o~implementaci jazyka Python, kterou používá Catcher.}
+ \centering
+ \begin{tabular}{|l||c|c|c|c|}\hline
+ \bfseries \bfseries framework & \bfseries req/sec & \bfseries $\mu$s/req & \bfseries výkon \\[2mm]
+ \hline
+ Falcon (0.3.0) & 21,858 & 46 & 8x \\
+ \hline
+ Bottle (0.12.8) & 12,583 & 79 & 4x \\
+ \hline
+ Werkzeug (0.10.4) & 4,708 & 212 & 2x \\
+ \hline
+ Pecan (0.8.3) & 3,442 & 291 & 1x \\
+ \hline
+ Flask (0.10.1) & 2,837 & 352 & 1x \\
+ \hline
+ \end{tabular}
+ \caption{Výkonnostní test několika podobných webových frameworků pro~CPython~2.7.9 \cite{falcon-benchmarks}. Jde o~implementaci jazyka Python, kterou používá Catcher.}
 \end{table}
-
-%\caption{Porovnání výkonu podobných framworků pro CPython 2.7.9}
 
 \subsection{Databáze MySQL}
 
-\textit{Povídání o MySQL.}
+\indent
+
+Relační datábáze, se kterou probíhá komunikace pomocí jazyka SQL, jak už název napovídá.
+Díky svému výkonu, snadné použitelnosti (lze ji nainstalovat na Linux, Windows, OS X a další) a faktu,
+že jde o volně šiřitelný software (je k dispozici i pod komerční licencí),
+je MySQL velmi populární. Je součástí velmi oblíbené kombinace
+základního softwaru na serverech známou pod zkratkou LAMP\footnote{Linux, Apache, MySQL, PHP}.
+
+\medskip
+
+Pro správu databáze se používá zpravidla příkazový řádek nebo lze separátně stáhnout
+a nainstalovat nástroj zvaný MySQL Workbench. Ten byl použit i v této práci při návrhu databázového modelu.
+Od svého vzniku v roce 1995 [ZDROJ] se od MySQL odpojilo několik alternativních větví (tzv. fork).
+Mezi nejznámější případy patří MariaDB [ZDROJ] a Percona [ZDROJ].
 
 \subsection{Peewee ORM}
 
-\textit{Povídání o Peewee.}
+\indent
+
+Peewee je implementace ORM (co je to ORM a co se snazi, prestat psat sql dotazy, nevyhody?) pro jazyk Python.
+Obsahuje podporu pro databáze SQLite, PostgreSQL a MySQL. Je otevřeným softwarem a jeho zdrojový kód
+je dostupný na GitHubu.
 
 \subsection{Verzovací systém Git}
 

@@ -1,0 +1,37 @@
+\chapter{Návrh}
+
+\textit{V této kapitole se podíváme na návrh aplikace, na jednotlivé RESTové zdroje,
+adresářovou strukturu. Ukážeme konceptuální a databázový model a trochu si o nich něco řekneme.
+Možná provedeme diskuzi smyček.}
+%\section{Návrh tříd a databáze}
+% TODO: Takovy ty kecy teoreticky. Jak ma vypadat diagram trid, databazovy model apod.
+
+
+
+% TODO: tohle vsechno ostatni presunout do navrhu, abychom vedeli, jak spravne navrhnout restful prostredi
+
+\paragraph{Požadavky na RESTové rozhraní}
+
+Aby se mohlo nějaké aplikační rozhraní požadovat za RESTové (tzv. RESTful),
+musí splňovat několik základních předpokladů definované Fieldingem [ZDROJ].
+Nyní si uvedeme ty nejdůležitější:
+
+\begin{description}
+    \item[Architektura klient-server] \hfill \\
+    Rozděluje zodpovědnost mezi různé části. Klientské aplikace se nemusí starat o správu dat a server o jejich prezentaci.
+    Z toho vyplývá možnost vývíjet obě kompomenty (klient a server) nezávisle na sobě.
+    \item[Bezstavovost] \hfill \\
+    Aplikační stav je udržován na straně klienta. Všechny požadavky tak obsahují pouze informace nutné k jeho zpracování.  
+    \item[Jednotné rozhraní] \hfill \\
+    Lze získat reprezentaci nebo manipulovat s libovolným zdrojem pomocí unikátního identifikátoru.
+    Z reprezentace zdroje musí být klient schopen s daným zdrojem manipulovat. Zprávy by měly být dostatečně popisné.
+\end{description}
+ 
+\paragraph{Zdroj}
+
+Architektonický styl REST je postaven na základním prvku - zdroji. Jde o logický objekt,
+který lze vyjádřit smysluplnou reprezentací, a s kterém lze manipulovat pomocí zpřístupněných metod.
+% Zdroj má unikátní identifikátor u svoji URL
+
+
+\paragraph{Formát zpráv}
