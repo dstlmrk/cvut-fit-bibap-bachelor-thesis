@@ -107,3 +107,75 @@ Průzkum existujících řešení naznačil, že náš projekt má smysl. Stále
 která by byla plně automatizovaná (před započetím turnaje se vytvoří rozpis a~ten se
 již doplňuje na základě zadaných výsledků), měla rozhraní pro libovolné tenké klienty
 a~dokázala použít data z~databáze ČALD.
+
+\section{Možnosti řešení}
+
+\indent
+
+Protože už od počátku známe požadavek na možnost připojení klienta v~podobě mobilní nebo webové aplikace,
+je nutné poskytnout žadatelům o~přístup rozhraní, které dostatečně pokryje jejich požadavky.
+Z úvodní kapitoly víme, že webová služba se dělí na dva typy - SOAP a REST.
+
+\subsection{SOAP}
+
+\indent
+
+Protokol SOAP (\textit{Simple Object Access Protocol}) vystavuje aplikační logiku jako službu
+a~je proveden v~syntaxi jazyka XML. Výhodou standartního značkovacího jazyka je jeho rozšíření
+a značná podpora ve většině programovacích jazycích. Syntaxe XML (uvest ve zkratkach) je pro člověka relativně čitelná,
+protože bývá zdlouhavá, avšak počítač musí parsování dat věnovat více času i paměti.
+
+\medskip
+
+Nevýhodou je nestálost prostředí. Ve chvíli, kdy dojde v SOAP API ke změně, klient může přestat pracovat,
+protože si nemusí umět poradit s odpovědí, přesněji s novou strukturou přijímaného XML souboru.
+Podobně je potřeba upravovat při změnách API i strukturu požadavku.
+
+% TODO: IDEA: Moznost napsat vice o SOAP, napriklad vlozit nejakou ukazku.
+% SOAP služby standartně obsahují v URL nějaké sloveso (např. zobrazInfo).
+ 
+\subsection{REST}
+
+\indent
+
+Protokol REST (\textit{Representational State Transfer}) je architektonický styl návrhu API popsaným Royem Fieldingem \cite{fielding}.
+Je založený na vystavování a jednotném přístupu ke~zdrojům\footnote{resources}, kterými jsou určitá data.
+Přistupuje se k~nim pomocí HTTP metod GET, POST, DELETE a PUT.
+
+\medskip
+
+RESTová služba používá pro přenos dat řadu formátů, nejstandartnějšími jsou XML a JSON.
+JSON je datově méně náročnější a stejně jako XML je podporován v mnoha programovacích jazycích.
+
+\subsubsection*{Zdroj}
+
+Architektonický styl REST je postaven na základním prvku - zdroji. Jde o logický objekt,
+který lze vyjádřit smysluplnou reprezentací, a s kterém lze manipulovat pomocí zpřístupněných metod.
+Každý zdroj má svůj unikátní identifikátor URI\footnote{Uniform Resource Identifier}.
+
+\subsubsection*{Požadavky na RESTové rozhraní}
+
+Aby se mohlo nějaké aplikační rozhraní požadovat za RESTové (tzv. RESTful),
+musí splňovat několik základních předpokladů definované Fieldingem [ZDROJ].
+Nyní si uvedeme ty nejdůležitější:
+
+\begin{description}
+    \item[Architektura klient-server]
+    Rozděluje zodpovědnost mezi různé části. Klientské aplikace se nemusí starat o správu dat a server o jejich prezentaci.
+    Z toho vyplývá možnost vývíjet obě kompomenty (klient a server) nezávisle na sobě.
+    \item[Bezstavovost]
+    Aplikační stav je udržován na straně klienta. Všechny požadavky tak obsahují pouze informace nutné k jeho zpracování.  
+    \item[Jednotné rozhraní]
+    Lze získat reprezentaci nebo manipulovat s libovolným zdrojem pomocí unikátního identifikátoru.
+    Z reprezentace zdroje musí být klient schopen s daným zdrojem manipulovat. Zprávy by měly být dostatečně popisné.
+\end{description}
+
+% REST navíc není žádným standartem, jde spíše o sadu doporučení a omezení.
+% TODO: nasledujici radek mozna presnuout do navrhu
+% REST je architektonický styl návrhu API popsaným Royem Fieldingem [ZDROJ].
+
+\subsection{Shrnutí}
+
+Z předcházejícího srovnání je patrné, že na flexibilní v budoucnu rozšiřitelné rozhraní se spíše hodí REST.
+Klienti nebudou tak nachýlní na úpravy API a navíc jim budou data poskytnuta ve formátu JSON,
+který se hodí pro přenos dat více. XML je přece jenom spíš jazyk než formát dat.

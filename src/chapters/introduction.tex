@@ -141,7 +141,7 @@ Host: catcher.zlutazimnice.cz
 \end{verbatim}
 \endgroup
 
-Na prvním řádku se nachází název HTTP metody (HTTP obsahuje řadu metod, které mají různý význam, více v tabulce X),
+Na prvním řádku se nachází název HTTP metody (HTTP obsahuje řadu metod, které mají různý význam, více v tabulce ~\ref{tab:http_metody}),
 identifikace požadovaného zdroje a verze protokolu. Na následujicích řádcích najdeme tzv. \uv{hlavičky}
 (ve formátu \textit{klíč: hodnota}), které specifikují parametry spojení. Jestliže chceme zaslat společně s požadavkem
 nějaká data k dalšímu zpracování, umístí se až za hlavičky a jeden prázdný řádek.
@@ -153,7 +153,7 @@ nějaká data k dalšímu zpracování, umístí se až za hlavičky a jeden pr�
 
 Odpověď serveru je opět textový dokument, ve kterém se nachází verze protokolu a stavový kód,
 který reprezentuje výsledek požadavku. Server může vrátit stavový kód z celkem pěti kategorií,
-jejich popis je uveden v tabulce ~\ref{tab:http_metody}. Za stavovým kódem je ještě krátký textový popisek. Na následujících
+jejich popis je uveden v tabulce ~\ref{tab:http_kody}. Za stavovým kódem je ještě krátký textový popisek. Na následujících
 řádcích jsou hlavičky a výsledek požadavku, který je oddělen opět prázdným řádkem jako v požadavku.
 Následující ukázka zobrazuje typickou odpověď z Catchera. 
 
@@ -186,8 +186,10 @@ access-control-allow-methods: PUT,POST,DELETE,GET
 \begin{table}[]
 \centering
 \begin{tabular}{lp{9.5cm}}
-\textbf{Metoda} & \textbf{Význam}\\ \midrule
-GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\ \midrule
+\textbf{Metoda} & \textbf{Význam}\\
+\midrule
+GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\
+\midrule
 POST & Metoda pro odesílání dat ke zpracování (data jsou vložena do těla požadavku). Tato metoda může být použita pro tvorbu nebo úpravu zdrojů.\\
 \midrule
 DELETE & Metoda určená k mazání zdrojů.\\
@@ -197,6 +199,21 @@ PUT & Podobně jako POST slouží k odeslání dat ke zpracování.\\
 \end{tabular}
 \caption{Přehled vybraných metod HTTP protokolu v~kontextu této práce \cite{http_metody}.}
 \label{tab:http_metody}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{lp{9cm}}
+\textbf{Skupina kódů} & \textbf{Význam}\\ \midrule
+1xx & Informační kódy.\\ \midrule
+2xx & Kódy označující úspěšné vykonání požadavku.\\ \midrule
+3xx & Přesměrování - tyto kódy označují odpověď, která obsahuje adresu, na které se nachází požadovaný zdroj.\\ \midrule
+4xx & Chybové kódy označující problém při zpracování, způsobený klientem (odeslání nesprávných dat). Před opakováním požadavku je nutné opravit vstupní data.\\ \midrule
+5xx & Chybové kódy onzačující problém při zpracování, který vznikl na straně serveru. Požadavek je možné opakovat.\\ \midrule
+\end{tabular}
+\caption{Kategorie návratových kódů HTTP protokolu [Zdroj: DP VSE].}
+% \cite{http_metody}
+\label{tab:http_kody}
 \end{table}
 
 % TODO: uvest zdroj cizi diplomku

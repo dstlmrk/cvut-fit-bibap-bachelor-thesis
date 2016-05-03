@@ -118,13 +118,45 @@ Mezi nejznámější případy patří MariaDB [ZDROJ] a Percona [ZDROJ].
 
 \indent
 
-Peewee je implementace ORM (co je to ORM a co se snazi, prestat psat sql dotazy, nevyhody?) pro jazyk Python.
-Obsahuje podporu pro databáze SQLite, PostgreSQL a MySQL. Je otevřeným softwarem a jeho zdrojový kód
-je dostupný na GitHubu.
+Peewee je implementace ORM pro jazyk Python. Obsahuje podporu pro~databáze SQLite,
+PostgreSQL a~MySQL. Je otevřeným softwarem a jeho zdrojový kód je dostupný na~GitHubu.
+
+\subsubsection{Co je to ORM?}
+
+\indent
+
+ORM (\textit{Object-relational mapping}) je programovací technika, která zajišuje, že data z relační databáze
+se automaticky konvertují do objektů v OOP. Programátor tak pracuje s perzistentními objekty,
+místo psaní SQL dotazů. Pokročilejší ORM dokonce dokážou využít objektovou dědičnost, což relační databáze nepodporují.
+
+\medskip
+
+Technika je často kritizována, protože jde často o zbytečnou režii navíc
+a programátory odnaučuje psát SQL dotazy, navíc efektivně.
+Mnoho ORM nástrojů složitější dotazy přeloží do jazyka SQL tak neúčinně,
+že dotaz může být mnohonásobně pomalejší, než kdyby je programátor napsal v SQL sám.
+V závěru této práce jsem použití ORM zhodnotil.
 
 \subsection{Verzovací systém Git}
 
-\textit{Povídání o Gitu a GitHubu.}
+\indent
+
+Git je nástroj vytvořený Linusem Torvaldem (tvůrcem Linuxového jádra).
+Slouží k distribuované správě verzí libovolných digitálních informací, například zdrojových kódů.
+Výraznou výhodou je možnost spolupráce velkého množství programátorů na jednom softwarovém projektu. 
+Každý programátor má adresář s projektem na svém lokálním disku a všechny změny sdílí s centrálním repozitářem,
+ke kterému mají přístup i všichni ostatní programátoři. Ti si pak mohou stáhnout všechny změny,
+které se na projektu staly. Git neuchovává úplný stav každé verze, ale pouze rozdíly mezi jednotlivými verzemi.
+Tím výrazně šetří paměť.  
+
+\medskip
+
+Ruku v ruce jde s popularitou Gitu nahoru i služba GitHub.
+Ta nabízí bezplatný i komerční hosting pro repozitáře softwarových projektů.
+Zdarma, a díky tomu populární v dané oblasti, je GitHub pro open source projekty.
+Funguje od roku 2008 a hostuje už více jak 11 miliónů repozitářů [ZDROJ].
+Poskytuje mnoho dalších vlastností, jako například možnost diskutovat nad kódem
+nebo zasílat notifikace o změnách.
 
 \subsection{Webový server Nginx}
 
