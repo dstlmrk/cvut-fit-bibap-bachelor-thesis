@@ -119,6 +119,10 @@ showstringspaces=false            %
  % TODO: Vyresit, jak budu formatovat odstavce.
  % TODO: Zjistit, jak se vkladaji citace.
  
+ %- Návrh aplikace (db, model, atd.)
+ %  - Podivat se na to, co rikal Hunka.
+ %- Problemy pri implementaci
+ 
  % \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
  % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
  
@@ -136,10 +140,6 @@ showstringspaces=false            %
 
  % TODO: TODO: TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
  
- %- Návrh aplikace (db, model, atd.)
- %  - Podivat se na to, co rikal Hunka.
- %- Problemy pri implementaci
- 
 \input{./chapters/introduction.tex}
  
 \input{./chapters/requirements.tex}
@@ -147,6 +147,16 @@ showstringspaces=false            %
 \input{./chapters/analysis.tex}
 
 \input{./chapters/design.tex}
+
+\section{Doménový model}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=130mm]{./images/domenovy-model.png}
+\caption{Doménový model.\label{overflow}}
+\label{fig:domain_model}
+\end{figure}
+
 
 \input{./chapters/implementation.tex}
 

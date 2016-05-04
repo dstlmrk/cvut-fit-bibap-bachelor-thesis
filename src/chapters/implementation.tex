@@ -177,6 +177,49 @@ jejich rozdíl se neustále zmenšuje \cite{nginx-statistic}. Nginx je open sour
 
 % TODO: IDEA: Moznost prilozit obrazek s grafem nebo tabulkou.
 
+\section{Adresářová struktura}
+
+% TODO: tady se trochu vic rozepsat
+
+\indent
+
+Adresářová struktura popsaná v této sekci odpovídá struktuře, ve které projekt najdete na GitHubu.
+Služba se dělí na dvě časti, v jedné se nachází aplikační logika a v druhé je jednoduchá webová stránka s dokumentací.
+
+\medskip
+
+Celou aplikační logiku najdeme v adresáři \texttt{/catcher}, kde se nachází zdroje a jejich mapování na URL,
+mapování relační databáze na objekty nebo zdrojové kódy zajišťující autentizaci a autorizaci uživatelů.
+Dokumentace se nachází v adresáři \texttt{/html}, kde jsou všechny důležité soubory pro použití JavaScriptu a~CSS na webu.
+
+\medskip
+
+Konfigurační soubory jsou uloženy v adresáři \texttt{/catcher/config}.
+Nachází se zde přístupové údaje k databázím (produkční a testovací) nebo emailovému účtu pro zasílání nového hesla.
+Konfigurační soubory nejsou uloženy v~repozitáři na Gitu. 
+
+\begin{figure}[ht!]
+\dirtree{%
+  .1 /.\DTcomment{kořenová složka}.
+  .2 /bin\DTcomment{spustitelné skripty}.
+  .2 /catcher\DTcomment{aplikační logika}.
+  .3 /api\DTcomment{vrstva spravující API}.
+  .3 /config\DTcomment{konfigurační soubory}.
+  .3 /logger\DTcomment{logování aplikace}.
+  .3 /models\DTcomment{mapování relační databáze na OOP}.
+  .3 /resources\DTcomment{zdroje}.
+  .3 /test\DTcomment{testy}.
+  .3 /restapi.py\DTcomment{spouštěcí skript}.
+  .2 /html\DTcomment{adresář dostupný z webu (dokumentace)}.
+  .2 /nginx\DTcomment{konfigurační soubory webového serveru}.
+  .2 /sql\DTcomment{SQL skripty}.
+  .2 /LICENSE\DTcomment{licence softwaru}.
+  .2 /README.md\DTcomment{výčet závislostí a ostatní informace}.
+  .2 /VERSION\DTcomment{aktuální verze}.
+}
+\caption{Struktura webové služby včetně adresáře pro webovou dokumentaci.\label{overflow}}
+\end{figure}
+
 \section{Bezpečnost}
 
 \textit{Jak probíhá komunikace, jak se uživatelé autentizují a autorizují.}
