@@ -148,14 +148,138 @@ showstringspaces=false            %
 
 \input{./chapters/design.tex}
 
-\section{Doménový model}
+\section{Identifikace zdrojů}
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=130mm]{./images/domenovy-model.png}
-\caption{Doménový model.\label{overflow}}
-\label{fig:domain_model}
-\end{figure}
+% TODO: v nasledujicich odstavcich je potreba doplnit zdroje
+
+\indent
+
+Abychom mohli namapovat zdroje na konkrétní URL, musíme nejprve jednoznačně určit zdroje.
+Mnoho programátorů zde postupuje tak, že vychází z datového modelu a použijí prosté mapování \textit{tabulka = zdroj}.
+Návrh je sice rychlý, ale nemusí být dostatečný. Navíc vytváří příliš těsnou vazbu mezi interní datovou reprezentací
+a~logickou strukturou zdrojů. Zdroje v této práci vycházejí z doménového modelu.
+
+\subsection{Základní typy zdrojů}
+
+%\medskip
+[ZDROJ VSE]
+\begin{description}
+  \item[Dokument] Reprezentace jednoho konkrétního zdroje v určitém formátu.
+  \item[Kolekce] Množina zdrojů stejného typu. Jedná se o skupiny samostných entit.
+  \item[Kontroler] Nezávislé metody aplikace. Akce, které nelze vyjádřit pomocí standartních
+  CRUD\footnote{Create, Read, Update, Delete - vytváření, čtení, úpravy a mazání} metod HTTP protokolu.
+\end{description}
+
+\subsection{Návrh URL}
+
+\indent
+
+Pro udržení kvality návrhu je doporučené se při návrhu URL držet několika zásad. URL by podle [ZDROJ] měla:
+\begin{itemize}
+\item mít konzistentní a logickou strukturu
+\item mít dobře znázorněnou hierarchickou strukturu
+\item být nezávislá na zvolené technologii
+\item transparentně používat HTTP metody a kódy
+\item používat:
+\begin{itemize}
+\item jednotná čísla pro označení konkrétních zdrojů
+\item množná čísla pro kolekce
+\item slovesa pro kontrolery
+\end{itemize}
+\end{itemize}
+
+S těmito zásady byl vytvořen následující návrh na mapování operací, které lze provádět nad zdroji.
+Identifikátor zdroje značíme \textit{\{id\}} nebo \textit{\{ide\}} (druhý identifikátor je textový).
+
+\begin{itemize}
+\item URI: /login
+\begin{itemize}
+\item popis: ...
+\item metoda: POST
+\end{itemize}
+\end{itemize}
+
+%Pro ještě lepší pochopení je na obrázku Y zobrazena hierarchická struktura zdrojů.
+
+% TODO: tahle tabulka ma sirsi radky
+% \renewcommand{\arraystretch}{1.5}
+% 
+% \begin{table}[ht!]
+%  \begin{tabular}{ |l|l|l|l|  }
+% \hline
+% Zdroj & URL & Dostupné HTTP metody & popis \\
+% \hline
+% x & /login & x &  \\
+% \hline
+% Aland Islands & AX & ALA & \\
+% Albania &AL & ALB & \\
+% Algeria    &DZ & DZA & \\
+% American Samoa & AS & ASM & \\
+% Andorra & AD & AND &  \\
+% Angola & AO & AGO &\\
+% \hline
+% \end{tabular}
+% \caption{...}
+% \end{table}
+
+
+
+% /login
+% Přihlášení
+% /forgotten-password
+% Zapomenuté heslo
+% /users
+% Registrace nového uživatele
+% /user/{id}
+% Úprava uživatele
+% /clubs
+% Oddíly
+% /club/{id}
+% Oddíl
+% /club/{id}/players
+% Hráči oddílu
+% /club/{id}/teams
+% Týmy oddílu
+% /players
+% Hráči
+% /player/{id}
+% Hráč
+% /teams/
+% Týmy
+% /team/{id}
+% Tým
+% /divisions
+% Divize
+% /tournaments
+% Turnaje
+% /tournament/{id}
+% Turnaj
+% /tournament/{id}/standings
+% Výsledky turnaje
+% /tournament/{id}/players
+% Hráči na turnaji
+% /tournament/{id}/teams
+% Týmy na turnaji
+% /tournament/{id}/matches
+% Turnajová utkání
+% /tournament/{id}/groups
+% Skupiny
+% /tournament/{id}/group/{ide}
+% Skupina
+% /tournament/{id}/spirits
+% Spirit of the Game
+% /tournament/{id}/missing-spirits
+% Chybějící hodnocení SOTG
+% /match/{id}
+% Utkání
+% /match/{id}/points
+% Body v zápase
+% /match/{id}/spirits
+% Spirit of the Game
+
+
+
+
 
 
 \input{./chapters/implementation.tex}
@@ -187,6 +311,15 @@ showstringspaces=false            %
 	\item[SOTG] Spirit of the Game
 	\item[REST] Representational State Transfer
 \end{description}
+
+\chapter{Datový model}
+  \label{appendix:data_model}
+  \begin{figure}[ht!]
+    \centering
+    \includegraphics[width=95mm]{./images/datovy-model.pdf}
+    \caption{Datový model.\label{overflow}}
+    \label{fig:domain_model}
+  \end{figure}
 
 \chapter{Obsah přiloženého CD}
 
