@@ -1,13 +1,9 @@
 \chapter{Úvod do problematiky}
 
-\indent
-
 V první kapitole bychom se měli seznámit s pojmem Ultimate Frisbee. Dále pak nastíníme
 problematiku pořádání turnajů v tomto minoritním sportu.
 
 \section{Co je to Ultimate Frisbee}
-
-\indent
 
 Ultimate Frisbee je mladý a dynamicky se rozvíjející sport s létajícím talířem,
 který se hraje od roku 1968 \cite{cald-ultimate}. Hraje jej přibližně sedm miliónů
@@ -18,8 +14,6 @@ uznání od Mezinárodního olympijského výboru \cite{cald-uznani}. Nejčastě
 open (muži), ženy, mix (smíšené týmy mužů a žen), junioři (do 19 let) a masters (nad 33 let).
 
 \subsection{Pravidla}
-
-\indent
 
 Popularitě přidává fakt, že jde o celkem vzato nenáročnou hru na vybavení s jednoduchými pravidly:
 
@@ -43,18 +37,13 @@ o disk (\cite{cald-ultimate}).
 \caption{Fotografie z amerického časopisu TIME ze zápasu mezi univerzitními týmy z Pittsburgu a Floridy \cite{ultimate-time}.\label{overflow}}
 \end{figure}
 
-
 \subsection{Spirit of the Game}
-
-\indent
 
 Už od počátku je Ultimate Frisbee založeno na sportovním duchu, který klade odpovědnost
 za fair play na samotné hráče. Předpokládá se vysoce soutěživá hra, ne však za cenu ztráty
 vzájemné ohleduplnosti a vytracení radosti ze hry. Všechny přetupky na hřišti i mimo něj jsou
 řešeny samotnými hráči. Jako jediná sportovní hra se tak obejde bez rozhodčích, a to i
 na nejvyšších soutěžích, kterými jsou mistrovství Evropy a světa.
-
-\medskip
 
 Hraní fairplay je otázka cti. Na každém turnaji je vyhlašována cena Spirit of the Game,
 která je cenou pro ty, kteří se chovali nejčestněji. Po každém zápase se týmy navzájem ohodnotí
@@ -63,14 +52,10 @@ je ceněna obdobně jako 1. místo.
 
 \subsection{Ultimate v České republice}
 
-\indent
-
 V České republice zastřešuje sporty s létajícím talířem již od roku 1991\cite{cald-historie} Česká asociace
 lé\-ta\-jícícho disku (dále jen ``ČALD''). V celé republice eviduje desítky zaregistrovaných
 klubů (často zvaných oddílů), které se mezi sebou utkávají v rámci celého roku na akcích zvané turnaje.
 Jenom za loňský rok jich bylo na našem území přes třicet \cite{cald-kalendar}.
-
-\medskip
 
 Většina turnajů nebo mistrovství pak trvá zpravidla více dnů, během kterých se odehrají desítky
 utkání. A s přibývajícím počtem hráčů a fanoušků vzniká čím dál větší poptávka po online
@@ -97,8 +82,6 @@ přenosech a statistikách z těchto akcí.
 
 \section{Aplikační rozhraní}
 
-\indent
-
 Častěji se označuje zkratkou API\footnote{Application Programming Interface}.
 V informatice se tímto pojmem označuje sbírka procedur, funkcí, tříd
 nebo protokolů nějaké knihovny, jež mohou ostatní programátoři používat.
@@ -115,8 +98,6 @@ Určuje, jak budou knihovní funkce volány ze zdrojového kódu. API může mí
 \end{itemize}
 
 \section{Protokol HTTP}
-
-\indent
 
 % TODO: Zde bych mel uvest zdroj na cizi diplomku.
 
@@ -145,8 +126,6 @@ Na prvním řádku se nachází název HTTP metody (HTTP obsahuje řadu metod, k
 identifikace požadovaného zdroje a verze protokolu. Na následujicích řádcích najdeme tzv. \uv{hlavičky}
 (ve formátu \textit{klíč: hodnota}), které specifikují parametry spojení. Jestliže chceme zaslat společně s požadavkem
 nějaká data k dalšímu zpracování, umístí se až za hlavičky a jeden prázdný řádek.
-
-\medskip
 
 % TODO: uvest zdroj!!
 % TODO: nesouvisi s predchozim: mel bych mozna trochu popsat, co to zdroj je
@@ -182,46 +161,51 @@ access-control-allow-methods: PUT,POST,DELETE,GET
 }
 \end{verbatim}
 \endgroup
-
-\begin{table}[]
-\centering
-\begin{tabular}{lp{9.5cm}}
-\textbf{Metoda} & \textbf{Význam}\\
-\midrule
-GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\
-\midrule
-POST & Metoda pro odesílání dat ke zpracování (data jsou vložena do těla požadavku). Tato metoda může být použita pro tvorbu nebo úpravu zdrojů.\\
-\midrule
-DELETE & Metoda určená k mazání zdrojů.\\
-\midrule
-PUT & Podobně jako POST slouží k odeslání dat ke zpracování.\\
-\midrule
-\end{tabular}
-\caption{Přehled vybraných metod HTTP protokolu v~kontextu této práce \cite{http_metody}.}
-\label{tab:http_metody}
+ 
+\begin{table}[ht!]
+  \centering
+  \begin{tabular}{|l|p{10.1cm}|}
+    \hline
+    \textbf{Metoda} & \textbf{Význam}\\
+	\hline
+	GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\
+    \hline
+    POST & Metoda pro odesílání dat ke zpracování (data jsou vložena do těla požadavku). Tato metoda může být použita pro tvorbu nebo úpravu zdrojů.\\
+    \hline
+    DELETE & Metoda určená k mazání zdrojů.\\
+    \hline
+    PUT & Podobně jako POST slouží k odeslání dat ke zpracování.\\
+    \hline
+  \end{tabular}
+  \caption{Přehled vybraných metod HTTP protokolu v~kontextu této práce; Zdroj: \cite{http_metody}.}
+  \label{tab:http_metody}
 \end{table}
 
-\begin{table}[]
-\centering
-\begin{tabular}{lp{9cm}}
-\textbf{Skupina kódů} & \textbf{Význam}\\ \midrule
-1xx & Informační kódy.\\ \midrule
-2xx & Kódy označující úspěšné vykonání požadavku.\\ \midrule
-3xx & Přesměrování - tyto kódy označují odpověď, která obsahuje adresu, na které se nachází požadovaný zdroj.\\ \midrule
-4xx & Chybové kódy označující problém při zpracování, způsobený klientem (odeslání nesprávných dat). Před opakováním požadavku je nutné opravit vstupní data.\\ \midrule
-5xx & Chybové kódy onzačující problém při zpracování, který vznikl na straně serveru. Požadavek je možné opakovat.\\ \midrule
-\end{tabular}
-\caption{Kategorie návratových kódů HTTP protokolu [Zdroj: DP VSE].}
-% \cite{http_metody}
-\label{tab:http_kody}
+\begin{table}[ht!]
+  \centering
+  \begin{tabular}{|l|p{9cm}|}
+    \hline
+    \textbf{Skupina kódů} & \textbf{Význam}\\
+    \hline
+    1xx & Informační kódy.\\
+    \hline
+    2xx & Kódy označující úspěšné vykonání požadavku.\\
+    \hline
+    3xx & Přesměrování - tyto kódy označují odpověď, která obsahuje adresu, na které se nachází požadovaný zdroj.\\
+    \hline
+    4xx & Chybové kódy označující problém při zpracování, způsobený klientem (odeslání nesprávných dat). Před opakováním požadavku je nutné opravit vstupní data.\\
+    \hline
+    5xx & Chybové kódy onzačující problém při zpracování, který vznikl na straně serveru. Požadavek je možné opakovat.\\
+    \hline
+  \end{tabular}
+  \caption{Kategorie návratových kódů HTTP protokolu; Zdroj: \cite{rest_vse}.}
+  \label{tab:http_kody}
 \end{table}
 
 % TODO: uvest zdroj cizi diplomku
 
 % TODO: Presunout do uvodu.
 \section{Webová služba}
-
-\indent
 
 Webová služba je zapouzdřená funkcionalita nějaké aplikace, kterou využívají další aplikace.
 Mluvíme tedy o strojové interakci, nevhodné například pro prohlížení ve webovém prohlížeči.

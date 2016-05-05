@@ -1,7 +1,5 @@
 \chapter{Analýza}
 
-\indent
-
 Poněvadž původní záměr zněl rozšířit mobilní aplikaci Catcher,
 měli bychom se v této kapitole zabývat jejím průzkumem. Neopomene ani jiné podobné projekty.
 V druhé části se podíváme na možnosti našeho řešení.
@@ -10,16 +8,12 @@ V druhé části se podíváme na možnosti našeho řešení.
 
 \subsection*{Mobilní aplikace Catcher}
 
-\indent
-
 V roce 2013 \cite{cald-catcher} byla zveřejněna první verze této aplikace pro mobilní telefony s operačním systémem Android.
 Autory byli dva aktivní hráči Jiří Voseček a Ondřej Burkert. Aplikace si dobu od svého vzniku získala velkou popularitu
 ve~frisbee komunitě a dnes je používaná na většině českých turnajů. Umí zadávat výsledky
 zápasů včetně podrobného průběhu bodů, rozhodovat o umístění v základních skupinách, počítat statistiky hráčů napříč
 všemi zápasy na turnaji, odevzdávat a zveřejnit vzájemná hodnocení SOTG týmů na turnaji. Dokáže omezeně importovat oficiální soupisky týmů
 na nadcházející turnaje spadající pod Českou asociaci létajícího talíře.
-
-\medskip
 
 Kromě mobilní aplikace Catcher byl vytvořen backend v PHP, který ukládá a počítá data na serveru. Ten nicméně není
 objektově orientovaný a všechna jeho eventuální rozšíření jsou velmi náročná.
@@ -101,8 +95,6 @@ které se na některých turnajích stávají povinností (např. zřeknutí se 
 
 \subsection{Výsledek}
 
-\indent
-
 Průzkum existujících řešení naznačil, že náš projekt má smysl. Stále chybí aplikace,
 která by byla plně automatizovaná (před započetím turnaje se vytvoří rozpis a~ten se
 již doplňuje na základě zadaných výsledků), měla rozhraní pro libovolné tenké klienty
@@ -110,22 +102,16 @@ a~dokázala použít data z~databáze ČALD.
 
 \section{Možnosti řešení}
 
-\indent
-
 Protože už od počátku známe požadavek na možnost připojení klienta v~podobě mobilní nebo webové aplikace,
 je nutné poskytnout žadatelům o~přístup rozhraní, které dostatečně pokryje jejich požadavky.
 Z úvodní kapitoly víme, že webová služba se dělí na dva typy - SOAP a REST.
 
 \subsection{SOAP}
 
-\indent
-
 Protokol SOAP (\textit{Simple Object Access Protocol}) vystavuje aplikační logiku jako službu
 a~je proveden v~syntaxi jazyka XML. Výhodou standartního značkovacího jazyka je jeho rozšíření
 a značná podpora ve většině programovacích jazycích. Syntaxe XML (uvest ve zkratkach) je pro člověka relativně čitelná,
 protože bývá zdlouhavá, avšak počítač musí parsování dat věnovat více času i paměti.
-
-\medskip
 
 Nevýhodou je nestálost prostředí. Ve chvíli, kdy dojde v SOAP API ke změně, klient může přestat pracovat,
 protože si nemusí umět poradit s odpovědí, přesněji s novou strukturou přijímaného XML souboru.
@@ -136,13 +122,9 @@ Podobně je potřeba upravovat při změnách API i strukturu požadavku.
  
 \subsection{REST}
 
-\indent
-
 Protokol REST (\textit{Representational State Transfer}) je architektonický styl návrhu API popsaným Royem Fieldingem \cite{fielding}.
 Je založený na vystavování a jednotném přístupu ke~zdrojům\footnote{resources}, kterými jsou určitá data.
 Přistupuje se k~nim pomocí HTTP metod GET, POST, DELETE a PUT.
-
-\medskip
 
 RESTová služba používá pro přenos dat řadu formátů, nejstandartnějšími jsou XML a JSON.
 JSON je datově méně náročnější a stejně jako XML je podporován v mnoha programovacích jazycích.
@@ -156,7 +138,7 @@ Každý zdroj má svůj unikátní identifikátor URI\footnote{Uniform Resource 
 \subsubsection*{Požadavky na RESTové rozhraní}
 
 Aby se mohlo nějaké aplikační rozhraní požadovat za RESTové (tzv. RESTful),
-musí splňovat několik základních předpokladů definované Fieldingem [ZDROJ].
+musí splňovat několik základních předpokladů definované Fieldingem \cite{fielding}.
 Nyní si uvedeme ty nejdůležitější:
 
 \begin{description}

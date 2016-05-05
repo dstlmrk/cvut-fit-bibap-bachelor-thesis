@@ -1,8 +1,7 @@
 \chapter{Implementace}
 
+% TODO: screenshot z dokumentace pri psani o dukementaci
 \section{Výběr technologií}
-
-\indent
 
 V době, kdy existuje obrovské množství programovacích jazyků, jejich ekosystémů a dalších frameworků je důležité se umět nespálit. 
 Vybrat špatné technologie totiž může znamenat prodloužení vývoje, zvýšení celkových nákladů nebo dokonce ukončení projektu.
@@ -31,22 +30,16 @@ nebo spotřebovávají příliš moc prostředků.
 
 \subsection{Programovací jazyk Python}
 
-\indent
-
 Python je víceúčelový skriptovací jazyk navrhnut v roce 1991 \cite{python-year} Guido van Rossumem.
 Je vyvíjen jako open source projekt a je bezplatně dostupný pro většinu dostupných platforem (Unix, Windows, Mac OS).
 V distribucích Linuxu je často součástí základní instalace. Díky velkému množství knihovních modulů z různých oblastí
 má velice široké možnosti uplatnění. Běžně jej používají ve firmách jako Google, Dropbox, YouTube, Red Hat, Cisco,
 Facebook nebo Microsoft \cite{python-companies}.
 
-\medskip
-
 Protože jde o dynamický interpretovaný jazyk, jeho zdrojový kód není nutné překládat překladačem do strojového kódu.
 Je to zárovéň hybridní jazyk, protože umožňuje používat různá programovací paradigmata, včetně objektově orientovaného,
 imperativního, procedurálního nebo v omezené míře i funkcionálního. I když je Python mnohokrát označován za skriptovací jazyk,
 jeho návrh umožňuje psaní rozsáhlých a plnohodnotných aplikací včetně GUI. Podporuje také dynamickou kontrolu datových typů.
-
-\medskip
 
 Je to jazyk, který se velmi snadno učí a bývá považován za jeden z nejvhodnějších programovacích jazyků pro začátečníky.
 Pomáhá tomu jeho jednoduchá syntaxe a čistota kódu. Na rozdíl od jiných jazyků bývá jeho zdrojový kód často krátký a dobře čitelný.
@@ -55,28 +48,21 @@ jak často jsou tutoriály jednotlivých programovacích jazyků hledány na Goo
 v~oblíbenosti za posledních pět let \cite{python-pypl}.
 V dubnovém žebříčku roku 2016 drží druhé místo mezi jazyky Java a PHP. Mnoho dalších žebříčků pak uvádí Python vždy v prvních pěti místech.
 
-\medskip
-
 Po stránce výkonu je na tom Python relativně dobře, protože mnoho na~výkon náročných knihoven je implementováno v~jazyce C.
 V porovnání s ostatními interpretovanými jazyky je na tom samotný Python taky dobře.
 Fakt se kterým ale musíme počítat je ten, že dynamicky interpretované jazyky jsou obecně pomalejší, než kompilované jazyky.
 
 \subsection{Webový framework Falcon}
 
-% TODO: dovysvetlit, co je to UWSGI, mozna dat pred Falcon 
-
-\indent
-
 Falcon je minimalistický webový framework pro vývoj aplikačních backendů a jejich API s otevřeným zdrojovým kódem,
 populární pro svoji neuvěřitelnou rychlost. Falcon ctí architektonický styl REST, což znamená, že mapuje použité
 zdroje a jejich metody do HTTP protokolu.
-
-\medskip
 
 Falcon disponuje minimálním množstvím závislostí na jiných knihovnách a díky jeho flexibilitě je ho možné
 používat ve většině verzích Pythonu\footnote{Vývoj v Pythonu poznamenalo v roce 2008 vydání nové verze Python 3.0,
 která je částečně zpětně nekompatibilní.}. Kromě toho umí pracovat s WSGI. Nevýhodou Falconu je menší uživatelská
 základna na rozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárnější webové frameworky pro Python.
+
 
 \begin{table}[htb]
  \centering
@@ -99,15 +85,11 @@ základna na rozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárn�
 
 \subsection{Databáze MySQL}
 
-\indent
-
 Relační datábáze, se kterou probíhá komunikace pomocí jazyka SQL, jak už název napovídá.
 Díky svému výkonu, snadné použitelnosti (lze ji nainstalovat na Linux, Windows, OS X a další) a faktu,
 že jde o volně šiřitelný software (je k dispozici i pod komerční licencí),
 je MySQL velmi populární. Je součástí velmi oblíbené kombinace
 základního softwaru na serverech známou pod zkratkou LAMP\footnote{Linux, Apache, MySQL, PHP}.
-
-\medskip
 
 Pro správu databáze se používá zpravidla příkazový řádek nebo lze separátně stáhnout
 a nainstalovat nástroj zvaný MySQL Workbench. Ten byl použit i v této práci při návrhu databázového modelu.
@@ -116,20 +98,14 @@ Mezi nejznámější případy patří MariaDB [ZDROJ] a Percona [ZDROJ].
 
 \subsection{Peewee ORM}
 
-\indent
-
 Peewee je implementace ORM pro jazyk Python. Obsahuje podporu pro~databáze SQLite,
 PostgreSQL a~MySQL. Je otevřeným softwarem a jeho zdrojový kód je dostupný na~GitHubu.
 
 \subsubsection{Co je to ORM?}
 
-\indent
-
 ORM (\textit{Object-relational mapping}) je programovací technika, která zajišuje, že data z relační databáze
 se automaticky konvertují do objektů v OOP. Programátor tak pracuje s perzistentními objekty,
 místo psaní SQL dotazů. Pokročilejší ORM dokonce dokážou využít objektovou dědičnost, což relační databáze nepodporují.
-
-\medskip
 
 Technika je často kritizována, protože jde často o zbytečnou režii navíc
 a programátory odnaučuje psát SQL dotazy, navíc efektivně.
@@ -139,8 +115,6 @@ V závěru této práce jsem použití ORM zhodnotil.
 
 \subsection{Verzovací systém Git}
 
-\indent
-
 Git je nástroj vytvořený Linusem Torvaldem (tvůrcem Linuxového jádra).
 Slouží k distribuované správě verzí libovolných digitálních informací, například zdrojových kódů.
 Výraznou výhodou je možnost spolupráce velkého množství programátorů na jednom softwarovém projektu. 
@@ -148,8 +122,6 @@ Každý programátor má adresář s projektem na svém lokálním disku a všec
 ke kterému mají přístup i všichni ostatní programátoři. Ti si pak mohou stáhnout všechny změny,
 které se na projektu staly. Git neuchovává úplný stav každé verze, ale pouze rozdíly mezi jednotlivými verzemi.
 Tím výrazně šetří paměť.  
-
-\medskip
 
 Ruku v ruce jde s popularitou Gitu nahoru i služba GitHub.
 Ta nabízí bezplatný i komerční hosting pro repozitáře softwarových projektů.
@@ -160,16 +132,12 @@ nebo zasílat notifikace o změnách.
 
 \subsection{Webový server Nginx}
 
-\indent
-
 Nginx je webový server a reverzní proxy\footnote{Reverzní proxy se používá pro zvýšení výkonu webového serveru.
 Rozděluje vstupující provoz na více serverů, například vyvažuje zátěž serverů zapojených v clusteru.}, který pracuje s běžnými protokoly.
 První oficiální verze se objevila v roce 2004 \cite{nginx-changes}, kterou vyvynul Ruský softwarový inženýr Igor Sysoev.
 Zaměřuje se na vysoký výkon a nízké nároky na pamět. Je používán velkými firmami
 díky propracované možnosti rozložení zátěže. Z velkých firem je to například Netflix, Wordpress.com,
 GitHub, Dropbox nebo Seznam.cz.
-
-\medskip
 
 Dnes je již s 25 \% druhým nejpoužívanějším webovým serverem v prvním milionu nejzatíženějších webů na světě.
 Napříč celým webem je pak na třetím místě s přibližně 16 \%. I když je Apache HTTP Server stále jednička, 
@@ -181,18 +149,12 @@ jejich rozdíl se neustále zmenšuje \cite{nginx-statistic}. Nginx je open sour
 
 % TODO: tady se trochu vic rozepsat
 
-\indent
-
 Adresářová struktura popsaná v této sekci odpovídá struktuře, ve které projekt najdete na GitHubu.
 Služba se dělí na dvě časti, v jedné se nachází aplikační logika a v druhé je jednoduchá webová stránka s dokumentací.
-
-\medskip
 
 Celou aplikační logiku najdeme v adresáři \texttt{/catcher}, kde se nachází zdroje a jejich mapování na URL,
 mapování relační databáze na objekty nebo zdrojové kódy zajišťující autentizaci a autorizaci uživatelů.
 Dokumentace se nachází v adresáři \texttt{/html}, kde jsou všechny důležité soubory pro použití JavaScriptu a~CSS na webu.
-
-\medskip
 
 Konfigurační soubory jsou uloženy v adresáři \texttt{/catcher/config}.
 Nachází se zde přístupové údaje k databázím (produkční a testovací) nebo emailovému účtu pro zasílání nového hesla.
