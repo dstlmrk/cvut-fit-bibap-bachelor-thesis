@@ -31,7 +31,7 @@ objektově orientovaný a všechna jeho eventuální rozšíření jsou velmi n�
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=60mm]{./images/catcher.png}
-\caption{Mobilní aplikace Catcher \cite{catcher-play}.\label{overflow}}
+\caption{Mobilní aplikace Catcherů; zdroj: \cite{catcher-play}\label{overflow}}
 \label{fig:uwsgi}
 \end{figure}
 
@@ -69,14 +69,14 @@ a~spoustu dalších vlastností. Dokáže zobrazit podrobné detaily o průběhu
 
 \subsection*{Ultimate Central}
 
-Webová služba, která spíš než ke statistikám slouží k správě soupisek na turnajích. Pořadatel turnaje vytvoří událost
+Webová aplikace, která spíš než ke statistikám slouží k správě soupisek na turnajích. Pořadatel turnaje vytvoří událost
 v kalendáři a zapíše všechny účastnící se týmy. Ty pak musí odevzdat svoje soupisky a potvrdit náležité dokumenty,
 které se na některých turnajích stávají povinností (např. zřeknutí se možnosti žalovat organizátora aj.).
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=130mm]{./images/ultimate-central.png}
-\caption{Webová aplikace Ultimate Central.\label{overflow}}
+\caption{Webová aplikace Ultimate Central\label{overflow}}
 \label{fig:uwsgi}
 \end{figure}
 
@@ -96,7 +96,7 @@ které se na některých turnajích stávají povinností (např. zřeknutí se 
 \subsection{Výsledek}
 
 Průzkum existujících řešení naznačil, že náš projekt má smysl. Stále chybí aplikace,
-která by byla plně automatizovaná (před započetím turnaje se vytvoří rozpis a~ten se
+která by byla zároveň plně automatizovaná (před započetím turnaje se vytvoří rozpis a~ten se
 již doplňuje na základě zadaných výsledků), měla rozhraní pro libovolné tenké klienty
 a~dokázala použít data z~databáze ČALD.
 
@@ -131,7 +131,7 @@ JSON je datově méně náročnější a stejně jako XML je podporován v mnoha
 
 \subsubsection*{Zdroj}
 
-Architektonický styl REST je postaven na základním prvku - zdroji. Jde o logický objekt,
+Architektonický styl REST je postaven na základním prvku -- zdroji. Jde o logický objekt,
 který lze vyjádřit smysluplnou reprezentací, a s kterém lze manipulovat pomocí zpřístupněných metod.
 Každý zdroj má svůj unikátní identifikátor URI\footnote{Uniform Resource Identifier}.
 
@@ -159,5 +159,5 @@ Nyní si uvedeme ty nejdůležitější:
 \subsection{Shrnutí}
 
 Z předcházejícího srovnání je patrné, že na flexibilní v budoucnu rozšiřitelné rozhraní se spíše hodí REST.
-Klienti nebudou tak nachýlní na úpravy API a navíc jim budou data poskytnuta ve formátu JSON,
-který se hodí pro přenos dat více. XML je přece jenom spíš jazyk než formát dat.
+Klienti nebudou tak nachýlní na úpravy API a~navíc jim budou data poskytnuta ve~formátu JSON,
+který se pro~jejich přenos hodí daleko více. XML je přece jenom spíš jazyk než formát dat.

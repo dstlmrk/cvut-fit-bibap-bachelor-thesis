@@ -28,13 +28,14 @@ zastavit a do 10 vteřin disk přihrát spoluhráči. Povoleným pohybem hráče
 tedy otáčení se kolem vlastní osy s jednou nohou pevně na zemi. V ultimate hráči často střídají
 útok a obranu při ztrátě disku, ke které dochází záhozem disku do autu, na zem, jeho zachycením
 soupeřem nebo při dlouhém držení disku. Není povolen fyzický kontakt mezi hráči ani přetahování
-o disk (\cite{cald-ultimate}).
+o~disk (zdroj:~\cite{cald-ultimate}).
 \end{quote}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=130mm]{./images/ultimate-frisbee.jpg}
-\caption{Fotografie z amerického časopisu TIME ze zápasu mezi univerzitními týmy z Pittsburgu a Floridy \cite{ultimate-time}.\label{overflow}}
+\caption{Fotografie z amerického časopisu TIME ze zápasu mezi univerzitními týmy z Pittsburgu a Floridy;
+zdroj:~\cite{ultimate-time}\label{overflow}}
 \end{figure}
 
 \subsection{Spirit of the Game}
@@ -53,19 +54,33 @@ je ceněna obdobně jako 1. místo.
 \subsection{Ultimate v České republice}
 
 V České republice zastřešuje sporty s létajícím talířem již od roku 1991\cite{cald-historie} Česká asociace
-lé\-ta\-jícícho disku (dále jen ``ČALD''). V celé republice eviduje desítky zaregistrovaných
-klubů (často zvaných oddílů), které se mezi sebou utkávají v rámci celého roku na akcích zvané turnaje.
+lé\-ta\-jícícho disku (dále jen \uv{ČALD}). V celé republice eviduje desítky zaregistrovaných
+klubů (zvaných oddílů), které se mezi sebou utkávají v rámci celého roku na akcích zvané turnaje.
 Jenom za loňský rok jich bylo na našem území přes třicet \cite{cald-kalendar}.
 
 Většina turnajů nebo mistrovství pak trvá zpravidla více dnů, během kterých se odehrají desítky
 utkání. A s přibývajícím počtem hráčů a fanoušků vzniká čím dál větší poptávka po online
 přenosech a statistikách z těchto akcí.
 
-% TODO: Bude potreba doplnit, protoze se jedna o dulezity pojem, ktery bude pak zpracovan.
+\subsection{Jak vypadá turnaj}
 
-%\subsection{Jak probíhá typický turnaj - IDEA - nedokonceno}
+Běžný turnaj v Ultimate Frisbee se odehrává stylem \textit{skupina - playoff}. Všechny týmy jsou rozlosovány do základních skupin,
+ve~kterých se mezi sebou utkají. Celkový počet vítězství nebo celkové skóre pak určí pořadí ve skupině a týmy
+jsou nalosovány do vyřazovacích zápasů, tzv. play-off. Vítězné týmy v těchto zápasech postupují turnajem nahoru
+a~poražené bojují o co nejlepší umístění vzhledem k situaci, ve které jsou. Když použijeme analogii z jiných sportů, jde o zápasy typu semifinále,
+kde vítězný tým postoupí do finále a poražený do zápasu o třetí místo.
 
-%\indent
+Dalším typem turnaje, který se běžně hraje je liga. Týmy jsou pouze v jedné skupině,
+kde je po odehrání všech vzájemných zápasů, určeno finální pořadí.
+
+Názornou ukázku turnaje lze vidět na obrázku ~\ref{fig:tournament}.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=130mm]{./images/turnaj.pdf}
+\caption{Struktura jednoduchého turnaje, kterého se účastní 8 týmů; zdroj: autor\label{overflow}}
+\label{fig:tournament}
+\end{figure}
 
 %Několik dní před turnajem se zveřejní rozpis, zpravidla v podobě dokumentu na Google Drive apod.
 %Ten je pak během turnajem editovaný a slouží jako jediný zdroj výsledků, který ... 
@@ -73,12 +88,8 @@ přenosech a statistikách z těchto akcí.
 %Nejdůležitejším údajem jsou výsledky z jednotlivých zápasů. Ty jsou nejčastěji zapisovány
 %na papír, který je vystaven na viditelném místě, aby si jej mohlo prohlédnout co nejvíce lidí.
 
-%\medskip
-
-%Částečně tyto procesy nahrazuje mobilní aplikace Catcher, ke které se ještě dostaneme.
-
-% Vsechno se doposud pise na papir a je to proste cely na prd.
-% TODO: Kdo vsechno, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
+% TODO: Vsechno se doposud pise na papir a je to proste cely na prd.
+% TODO: Kdo vsechno turnaj prad, kolik lidi, na turnaji pobyva. Kolik probiha zapasu, treba i paralelne, kdo se o nej stara (navrh ma mobilni app). Co vsechno se da vycist z vysledku.
 
 \section{Aplikační rozhraní}
 
@@ -107,13 +118,6 @@ odešle mu požadavek a následně obdrží odpověď. Spojení je pak ukončeno
 Požadavek představuje textový dokument, ve kterém dochází ke specifikování paramatru dotazu.
 Konkrétní požadavek můžeme vidět na následující ukázce.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=70mm]{./images/http-komunikace.png}
-\caption{Sekvenční diagram HTTP komunikace.\label{overflow}}
-% TODO: ocitatovat \cite{}
-\end{figure}
-
 \begingroup
 \fontsize{9.5pt}{11pt}\selectfont
 \begin{verbatim}
@@ -123,7 +127,7 @@ Host: catcher.zlutazimnice.cz
 \endgroup
 
 Na prvním řádku se nachází název HTTP metody (HTTP obsahuje řadu metod, které mají různý význam, více v tabulce ~\ref{tab:http_metody}),
-identifikace požadovaného zdroje a verze protokolu. Na následujicích řádcích najdeme tzv. \uv{hlavičky}
+identifikace požadovaného zdroje a verze protokolu. Na následujicích řádcích najdeme tzv.~\uv{hlavičky}
 (ve formátu \textit{klíč: hodnota}), které specifikují parametry spojení. Jestliže chceme zaslat společně s požadavkem
 nějaká data k dalšímu zpracování, umístí se až za hlavičky a jeden prázdný řádek.
 
@@ -162,22 +166,28 @@ access-control-allow-methods: PUT,POST,DELETE,GET
 \end{verbatim}
 \endgroup
  
+ \begin{figure}[ht!]
+\centering
+\includegraphics[width=70mm]{./images/http-komunikace.png}
+\caption{Sekvenční diagram HTTP komunikace; zdroj: autor na základě~\cite{rest_vse}\label{overflow}}
+\end{figure}
+
 \begin{table}[ht!]
   \centering
   \begin{tabular}{|l|p{10.1cm}|}
     \hline
     \textbf{Metoda} & \textbf{Význam}\\
-	\hline
-	GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\
     \hline
-    POST & Metoda pro odesílání dat ke zpracování (data jsou vložena do těla požadavku). Tato metoda může být použita pro tvorbu nebo úpravu zdrojů.\\
+    GET & Základní metoda, jejíž účel je získat požadovaný zdroj. Neměla by mít žádné postraní efekty, jako tvorba nebo mazaní zdrojů.\\
     \hline
-    DELETE & Metoda určená k mazání zdrojů.\\
+    POST & Metoda pro odesílání dat ke zpracování (data jsou vložena do~těla požadavku). Tato metoda může být použita pro~tvorbu nebo úpravu zdrojů.\\
+    \hline
+    DELETE & Metoda určená k~mazání zdrojů.\\
     \hline
     PUT & Podobně jako POST slouží k odeslání dat ke zpracování.\\
     \hline
   \end{tabular}
-  \caption{Přehled vybraných metod HTTP protokolu v~kontextu této práce; Zdroj: \cite{http_metody}.}
+  \caption{Přehled vybraných metod HTTP protokolu v~kontextu této práce; zdroj:~\cite{http_metody}}
   \label{tab:http_metody}
 \end{table}
 
@@ -198,13 +208,12 @@ access-control-allow-methods: PUT,POST,DELETE,GET
     5xx & Chybové kódy onzačující problém při zpracování, který vznikl na straně serveru. Požadavek je možné opakovat.\\
     \hline
   \end{tabular}
-  \caption{Kategorie návratových kódů HTTP protokolu; Zdroj: \cite{rest_vse}.}
+  \caption{Kategorie návratových kódů HTTP protokolu; zdroj:~\cite{rest_vse}}
   \label{tab:http_kody}
 \end{table}
 
 % TODO: uvest zdroj cizi diplomku
 
-% TODO: Presunout do uvodu.
 \section{Webová služba}
 
 Webová služba je zapouzdřená funkcionalita nějaké aplikace, kterou využívají další aplikace.

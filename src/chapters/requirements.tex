@@ -65,7 +65,7 @@ zapisovány do souborů pro snadné odhalení chyb. Obnova musí být proveditel
 Systém musí jednoznačně určit a ověřit uživatele, který přistupuje k rozhraní Catchera. Zároveň
 musí existovat možnost za chodu přidávat, odebírat nebo měnit oprávnění. Dále pak systém musí
 být datově integritní, tzn. že obsah zpráv nebude při přenosu změněn. Pro tento projekt není
-nutné používat HTTPS protokol.
+nutné používat HTTPS\footnote{Hypertext Transfer Protocol Secure} protokol.
 
 \subsubsection*{Nároky na hardware}
 Systém musí být schopen běžet na běžných serverech s ne více jak 4GB RAM.
@@ -111,81 +111,77 @@ o jednu z nejdůležitejších součastí, protože určuje směr návrhu. Výsl
 pokrývat všechny níže uvedené případy. Následující seznam zachycuje jednotlivé požadavky
 a jejich popis:
 
-% TODO: Co budou nejbeznejsi operace v aplikaci (zapisovani skore, zapisovani spiritu, tvorba turnaje a rozpisu).
-% Tady to mozna napsat VSECHNO v bodech, protoze z toho budou vychazet API.
-% TODO: Napsat, kdo vsechno muzes tyto operace delat. Napr. organizator muze ukoncit zapas.
-
-\subsection*{Import}
-  \begin{description}
-    \item[UC1: Import dat z databáze ČALD] \hfill \\
-    Doplňuje seznam oddílů a jejich hráčů do databáze Catchera. Manuálně lze stáhnout
-    %V pravidelném intervalu stáhne
-    aktuální data z ČALD databáze a doplní doposud aktuální data v databázi.
-  \end{description}
-
-\subsection*{Uživatelé}
-  \begin{description}
-    \item[UC2: Registruje nového uživatele] \hfill \\
-    Kdokoliv se může stát organizátorem turnaje. Stačí se zaregistrovat s platným emailem.
-    Klubové účty vytváří administrátor.
-    \item[UC3: Autentizuje uživatele] \hfill \\
-    Určí skutečnou identitu uživatele. Jinými slovy jej přihlásí.
-    \item[UC4: Odesílá zapomenuté heslo] \hfill \\
-    Pokud má uživatel přístup ke svému emailu, přijde mu nové heslo ke svému účtu.
-  \end{description}
-
-\subsection*{Oddíly}
-  \begin{description}
-    \item[UC5: Vytvoří oddíl] \hfill \\
-    Uloží nový oddíl do databáze.
-    \item[UC6: Získá oddíly] \hfill \\
-    Vrátí informace o jednom nebo více oddílech.
-    \item[UC7: Edituje oddíl] \hfill \\
-    Upraví informace o oddílu.
-    \item[UC8: Smaže oddíl] \hfill \\
-    Smaže oddíl z databáze.
-  \end{description}
-
-\subsection*{Hráči}
-  \begin{description}
-    \item[UC9: Vytvoří hráče] \hfill \\
-    Klubový účet a administrátor mají možnost vytvořit nového hráče. Hráči lze vytvořit vazba
-    pouze k jednomu klubu. Kromě jména a příjmení u něj lze uložit číslo dresu a jeho přezdívku.
-    \item[UC10: Získá hráče] \hfill \\
-    Vrátí informace o jednom nebo více hráčích.
-    \item[UC11: Edituje hráče] \hfill \\
-    Klubový účet a administrátor mohou upravovat informace o klubu.
-    \item[UC12: Smaže hráče] \hfill \\
-    Administrátor může smazat hráče.
-  \end{description}
-
-\subsection*{Týmy}
-  \begin{description}
-    \item[UC13: Vytvoří tým] \hfill \\
-    Klubový účet a administrátor má možnost vytvořit tým spadající pod klub. Týmu musí přiřadit
-    konkrétní divizi (např. open) a stupeň (např. A~tým).
-    \item[UC14: Získá týmy] \hfill \\
-    Vrátí informace o jednom nebo více týmech.
-    \item[UC15: Edituje tým] \hfill \\
-    Klubový účet a administrátor mohou upravovat informace o týmu. 
-    \item[UC16: Smaže tým] \hfill \\
-    Právem smazat tým disponuje pouze administrátor.
-  \end{description}
-
-\subsection*{Turnaje}
-  \begin{description}
-    \item[UC17: Vytvoří turnaj] \hfill \\
-    Organizátor a administrátor vytvoří turnaj. Do databáze se uloží účastníci turnaje,
-    základní skupiny, zápasy ve skupinách a play-off.
-    \item[UC18: Edituje turnaj] \hfill \\
-    Oprávněné role upraví informace o turnaji.
-    %Aby se mohly editovat soupisky týmů na turnaji a započítávat výsledky, musí být turnaj aktivovaný příznakem \pythoninline{ready}. 
-    \item[UC19: Získá turnaje] \hfill \\
-    Vrátí informace o jednom nebo více turnajích.
-    \item[UC20: Získá konečné pořadí] \hfill \\
-    Získá známé pořadí týmů na turnaji a pokud turnaj již skončil, zobrazí i hodnocení SOTG.
-  \end{description}
-
+  \subsection*{Import}
+    \begin{description}
+      \item[UC1: Import dat z databáze ČALD] \hfill \\
+      Doplňuje seznam oddílů a jejich hráčů do databáze Catchera. Manuálně lze stáhnout
+      %V pravidelném intervalu stáhne
+      aktuální data z ČALD databáze a doplní doposud aktuální data v databázi.
+    \end{description}
+  
+  \subsection*{Uživatelé}
+    \begin{description}
+      \item[UC2: Registruje nového uživatele] \hfill \\
+      Kdokoliv se může stát organizátorem turnaje. Stačí se zaregistrovat s platným emailem.
+      Klubové účty vytváří administrátor.
+      \item[UC3: Autentizuje uživatele] \hfill \\
+      Určí skutečnou identitu uživatele. Jinými slovy jej přihlásí.
+      \item[UC4: Odesílá zapomenuté heslo] \hfill \\
+      Pokud má uživatel přístup ke svému emailu, přijde mu nové heslo ke svému účtu.
+    \end{description}
+  
+  \subsection*{Oddíly}
+    \begin{description}
+      \item[UC5: Vytvoří oddíl] \hfill \\
+      Uloží nový oddíl do databáze.
+      \item[UC6: Získá oddíly] \hfill \\
+      Vrátí informace o jednom nebo více oddílech.
+      \item[UC7: Edituje oddíl] \hfill \\
+      Upraví informace o oddílu.
+      \item[UC8: Smaže oddíl] \hfill \\
+      Smaže oddíl z databáze.
+    \end{description}
+  
+  \subsection*{Hráči}
+    \begin{description}
+      \item[UC9: Vytvoří hráče] \hfill \\
+      Klubový účet a administrátor mají možnost vytvořit nového hráče. Hráči lze vytvořit vazba
+      pouze k jednomu klubu. Kromě jména a příjmení u něj lze uložit číslo dresu a jeho přezdívku.
+      \item[UC10: Získá hráče] \hfill \\
+      Vrátí informace o jednom nebo více hráčích.
+      \item[UC11: Edituje hráče] \hfill \\
+      Klubový účet a administrátor mohou upravovat informace o klubu.
+      \item[UC12: Smaže hráče] \hfill \\
+      Administrátor může smazat hráče.
+    \end{description}
+  
+  \subsection*{Týmy}
+    \begin{description}
+      \item[UC13: Vytvoří tým] \hfill \\
+      Klubový účet a administrátor má možnost vytvořit tým spadající pod klub. Týmu musí přiřadit
+      konkrétní divizi (např. open) a stupeň (např. A~tým).
+      \item[UC14: Získá týmy] \hfill \\
+      Vrátí informace o jednom nebo více týmech.
+      \item[UC15: Edituje tým] \hfill \\
+      Klubový účet a administrátor mohou upravovat informace o týmu. 
+      \item[UC16: Smaže tým] \hfill \\
+      Právem smazat tým disponuje pouze administrátor.
+    \end{description}
+  
+  \subsection*{Turnaje}
+    \begin{description}
+      \item[UC17: Vytvoří turnaj] \hfill \\
+      Organizátor a administrátor vytvoří turnaj. Do databáze se uloží účastníci turnaje,
+      základní skupiny, zápasy ve skupinách a play-off.
+      \item[UC18: Edituje turnaj] \hfill \\
+      Oprávněné role upraví informace o turnaji.
+      %Aby se mohly editovat soupisky týmů na turnaji a započítávat výsledky, musí být turnaj aktivovaný příznakem \pythoninline{ready}. 
+      \item[UC19: Získá turnaje] \hfill \\
+      Vrátí informace o jednom nebo více turnajích.
+      \item[UC20: Získá konečné pořadí] \hfill \\
+      Získá známé pořadí týmů na turnaji a pokud turnaj již skončil, zobrazí i hodnocení SOTG.
+    \end{description}
+  
   \subsubsection*{Týmové soupisky}
     \begin{description}
       \item[UC21: Připsat hráče na soupisku] \hfill \\
@@ -196,7 +192,7 @@ a jejich popis:
       \item[UC23: Odebere hráče ze soupisky] \hfill \\
       Jestliže hráč nedisponuje žádnými statistikami a je zřejmé, že do žádného zápasu nezasáhl, je možné jej odstranit ze soupisky.
     \end{description}
-  
+    
   \subsubsection*{Skupiny a zápasy}
     \begin{description}
       \item[UC24: Získá skupiny] \hfill \\
@@ -211,7 +207,7 @@ a jejich popis:
       \item[UC28: Smaže body v zápase] \hfill \\
       V případě potřeby může organizátor nebo administrátor smazat vložené body.
     \end{description}
-    
+  
   \subsubsection*{SOTG na turnaji}
     \begin{description}
       \item[UC29: Ohodnotí soupeře v daném zápase hodnocením SOTG ] \hfill \\
@@ -231,49 +227,3 @@ a jejich popis:
 \includegraphics[width=130mm]{./images/use-case.png}
 \caption{Use case diagram\label{overflow}}
 \end{figure}
-    
-% \begin{description}
-% 
-% \item[Získání libovolného turnaje z databáze] \hfill \\
-% Získá množinu turnajů, jež jsou v databázi uloženy. S pomocí několika parametrů lze tuto
-% množinu filtrovat:
-% \begin{itemize}
-%    \item turnaj s konkrétním identifikátorem
-%    \item pouze ne/ukončené turnaje
-%    \item pouze ne/aktivní turnaje
-%    \item turnaje odehrávající se v čase od do
-%    \item turnaje v kategoriích open, women, mix apod.
-%    \item turnaje vytvořené konkrétním uživatelem
-%  \end{itemize}
-%  Prvek množiny obsahuje informace o turnaji, jako například název, popis, termín a místo turnaje.
-%
-% \item[Získá účastníky turnaje] \hfill \\
-% Ke konkrétnímu turnaji získá kolekci všech týmů, jež se účastní. 
-% 
-% \item[Získá týmovou soupisku] \hfill \\
-% Ke konkrétnímu týmu získá kolekci všech hráčů, jenž se účastní.
-% 
-%\item[Zadání skórujícího nebo asistujícího hráče] \hfill \\
-% V průběhu zápasu umožňuje zadat skórujícího nebo asistujícího hráče.
-% 
-%\item[Ukončit zápas s výsledným skóre] \hfill \\
-% Ukončí zápas a uloží jeho výsledek do databáze.
-% 
-% \item[Zadat hodnocení SOTG] \hfill \\
-% Po ukončení zápasu lze z týmového účtu udělit soupeři hodnocení SOTG. Tento údaj se uloží do tabulky, kde jsou všechna vzájemná hodnocení. 
-% 
-% \item[Zobrazit tabulku vzájemných hodnocení SOTG] \hfill \\
-% Odešle uživateli vhodnou strukturu, kde budou jasně uvedeny všechna doposud vyplněná hodnocení kategorie SOTG.
-% 
-% \item[Zobrazit pořadí týmů v kategorii SOTG] \hfill \\
-% Vrátí pořadí týmů v kategorii SOTG, včetně průměru všech obdržených hodnocení, a informaci o tom, zda je toto pořadí již finální.
-% 
-% \item[Ukončit turnaj] \hfill \\
-% Změní stav turnaje na ukončený. Tabulka vzájemných hodnocení SOTG a výsledné pořadí se tím stanou veřejnými. 
-% 
-% \item[Zobrazit výsledky všech zápasů] \hfill \\
-% 
-% \item[Zobrazit detail konkrétního zápasu] \hfill \\ hráči, body, čas
-% 
-% \item[Získá seřazené hráče podle bodování] \hfill \\ Seřadí hráče na základě bodovaní.
-%\end{description}

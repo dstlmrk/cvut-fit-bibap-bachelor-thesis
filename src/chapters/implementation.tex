@@ -1,6 +1,5 @@
 \chapter{Implementace}
 
-% TODO: screenshot z dokumentace pri psani o dukementaci
 \section{Výběr technologií}
 
 V době, kdy existuje obrovské množství programovacích jazyků, jejich ekosystémů a dalších frameworků je důležité se umět nespálit. 
@@ -30,7 +29,7 @@ nebo spotřebovávají příliš moc prostředků.
 
 \subsection{Programovací jazyk Python}
 
-Python je víceúčelový skriptovací jazyk navrhnut v roce 1991 \cite{python-year} Guido van Rossumem.
+Python\cite{python} je víceúčelový skriptovací jazyk navrhnut v roce 1991 \cite{python-year} Guido van Rossumem.
 Je vyvíjen jako open source projekt a je bezplatně dostupný pro většinu dostupných platforem (Unix, Windows, Mac OS).
 V distribucích Linuxu je často součástí základní instalace. Díky velkému množství knihovních modulů z různých oblastí
 má velice široké možnosti uplatnění. Běžně jej používají ve firmách jako Google, Dropbox, YouTube, Red Hat, Cisco,
@@ -45,8 +44,8 @@ Je to jazyk, který se velmi snadno učí a bývá považován za jeden z nejvho
 Pomáhá tomu jeho jednoduchá syntaxe a čistota kódu. Na rozdíl od jiných jazyků bývá jeho zdrojový kód často krátký a dobře čitelný.
 Je tak vhodný pro výuku i využití v praxi. Podle PYPL indexu\footnote{PopularitY of Programming Language Index je vytvořen analyzováním toho,
 jak často jsou tutoriály jednotlivých programovacích jazyků hledány na Googlu.} je Python celosvětově nejrychleji roustoucí programovací jazyk
-v~oblíbenosti za posledních pět let \cite{python-pypl}.
-V dubnovém žebříčku roku 2016 drží druhé místo mezi jazyky Java a PHP. Mnoho dalších žebříčků pak uvádí Python vždy v prvních pěti místech.
+v~oblíbenosti za posledních pět let \cite{python-pypl} a v jeho dubnovém žebříčku roku 2016 drží druhé místo mezi jazyky Java a PHP.
+Mnoho dalších žebříčků pak uvádí Python vždy v prvních pěti místech.
 
 Po stránce výkonu je na tom Python relativně dobře, protože mnoho na~výkon náročných knihoven je implementováno v~jazyce C.
 V porovnání s ostatními interpretovanými jazyky je na tom samotný Python taky dobře.
@@ -54,15 +53,9 @@ Fakt se kterým ale musíme počítat je ten, že dynamicky interpretované jazy
 
 \subsection{Webový framework Falcon}
 
-Falcon je minimalistický webový framework pro vývoj aplikačních backendů a jejich API s otevřeným zdrojovým kódem,
+Falcon\cite{falcon} je minimalistický webový framework pro vývoj aplikačních backendů a jejich API s otevřeným zdrojovým kódem,
 populární pro svoji neuvěřitelnou rychlost. Falcon ctí architektonický styl REST, což znamená, že mapuje použité
 zdroje a jejich metody do HTTP protokolu.
-
-Falcon disponuje minimálním množstvím závislostí na jiných knihovnách a díky jeho flexibilitě je ho možné
-používat ve většině verzích Pythonu\footnote{Vývoj v Pythonu poznamenalo v roce 2008 vydání nové verze Python 3.0,
-která je částečně zpětně nekompatibilní.}. Kromě toho umí pracovat s WSGI. Nevýhodou Falconu je menší uživatelská
-základna na rozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárnější webové frameworky pro Python.
-
 
 \begin{table}[htb]
  \centering
@@ -80,28 +73,70 @@ základna na rozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárn�
  Flask (0.10.1) & 2,837 & 352 & 1x \\
  \hline
  \end{tabular}
- \caption{Výkonnostní test několika podobných webových frameworků pro~CPython~2.7.9 \cite{falcon-benchmarks}. Jde o~implementaci jazyka Python, kterou používá Catcher.}
+ \caption{Výkonnostní test několika podobných webových frameworků pro~CPython~2.7.9 \cite{falcon-benchmarks}.
+ Jde o~implementaci jazyka Python, kterou používá Catcher.}
 \end{table}
+
+Falcon disponuje minimálním množstvím závislostí na jiných knihovnách a díky jeho flexibilitě je ho možné
+používat ve většině verzích Pythonu\footnote{Vývoj v Pythonu poznamenalo v roce 2008 vydání nové verze Python 3.0,
+která je částečně zpětně nekompatibilní.}. Kromě toho umí pracovat s WSGI. Nevýhodou Falconu je menší uživatelská
+základna na rozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárnější webové frameworky pro Python.
+
+Na následujících řádcích si můžete prohlédnout ukázku použití Falconu v mé práci. Jde o metodu GET pro kolekci oddílů.
+
+\begin{python}
+class Clubs(Collection):
+    def on_get(self, req, resp):
+        '''
+        metoda getClubs() vrátí všechny kluby
+        pomocí předpřipravených dotazů a data
+        uloží do odpovědi
+        '''
+        clubs = Queries.getClubs()
+        collection = {
+            'count' : len(clubs),
+            'items' : clubs
+        }
+        req.context['result'] = collection
+\end{python}
 
 \subsection{Databáze MySQL}
 
-Relační datábáze, se kterou probíhá komunikace pomocí jazyka SQL, jak už název napovídá.
+MySQL\cite{mysql} je relační datábáze, se kterou probíhá komunikace pomocí jazyka SQL\cite{sql}, jak už název napovídá.
 Díky svému výkonu, snadné použitelnosti (lze ji nainstalovat na Linux, Windows, OS X a další) a faktu,
 že jde o volně šiřitelný software (je k dispozici i pod komerční licencí),
 je MySQL velmi populární. Je součástí velmi oblíbené kombinace
 základního softwaru na serverech známou pod zkratkou LAMP\footnote{Linux, Apache, MySQL, PHP}.
 
 Pro správu databáze se používá zpravidla příkazový řádek nebo lze separátně stáhnout
-a nainstalovat nástroj zvaný MySQL Workbench. Ten byl použit i v této práci při návrhu databázového modelu.
-Od svého vzniku v roce 1995 [ZDROJ] se od MySQL odpojilo několik alternativních větví (tzv. fork).
-Mezi nejznámější případy patří MariaDB [ZDROJ] a Percona [ZDROJ].
+a nainstalovat nástroj zvaný MySQL Workbench\cite{workbench}. Ten byl použit i v této práci při návrhu databázového modelu.
+Od svého vzniku v roce 1995\cite{mysql_history} se od MySQL odpojilo několik alternativních větví, tzv. fork.
+Mezi nejznámější případy patří MariaDB\cite{mariadb} a Percona\cite{percona}.
 
 \subsection{Peewee ORM}
 
-Peewee je implementace ORM pro jazyk Python. Obsahuje podporu pro~databáze SQLite,
-PostgreSQL a~MySQL. Je otevřeným softwarem a jeho zdrojový kód je dostupný na~GitHubu.
+% TODO: uvest priklad peewee
+
+Peewee\cite{peewee} je implementace ORM pro jazyk Python. Obsahuje podporu pro~databáze SQLite\cite{sqllite},
+PostgreSQL\cite{postgresql} a~MySQL. Je otevřeným softwarem a jeho zdrojový kód je dostupný na~GitHubu. Použítí Peewee zde: 
+
+\begin{python}
+import peewee
+
+class Tournament(MySQLModel):
+   '''reprezentace tabulky tournament v DB'''
+   id = peewee.PrimaryKeyField()
+   name = peewee.CharField(db_column='name')
+
+'''získání konkrétního záznamu s id = 1'''
+tournament = Tournament.get(id=1)
+'''tisk jména turnaje'''
+print tournament.name
+\end{python}
 
 \subsubsection{Co je to ORM?}
+
+% TODO: v nasledujicich odstavcich doplnit dalsi zdroje
 
 ORM (\textit{Object-relational mapping}) je programovací technika, která zajišuje, že data z relační databáze
 se automaticky konvertují do objektů v OOP. Programátor tak pracuje s perzistentními objekty,
@@ -184,14 +219,154 @@ Konfigurační soubory nejsou uloženy v~repozitáři na Gitu.
 
 \section{Bezpečnost}
 
-\textit{Jak probíhá komunikace, jak se uživatelé autentizují a autorizují.}
+% IDEA: popsat oAuth
+% IDEA: muzu pouzit diagram komunikace o token
 
-Oauth
+Zabezpečit webovou aplikaci je dnes často diskutovaným problémem. Mnoho systémů již postihlo napadení
+nebo únik důležitých dat. Navíc neexistuje stav, kdy je možné o své práci prohlásit, že je naprosto
+bezpečná. Případní útočníci jsou totiž stále vynalezávější a~hledají každou chybu v~systému.
+Aplikaci je tedy nutné obohatit o co nejvíce ochranných prvků a držet se zásad,
+které jejich možnosti minimalizují.
+
+\subsection{Zabezpečená komunikace}
+
+Základem všech aplikací, ve které se můžou nacházet citlivá nebo jinak důležitá data,
+je použití protokolu HTTPS, který zabezpečuje spojení šifrováním pomocí SSL nebo TSL.
+Důsledkem je znemožnění odposlechu, např.~přihlašovacích údajů. Moje práce HTTPS protokol nepoužívá,
+ale v případě nasazení do ostrého provozu je jeho použití bezpodmínečně nutné.
+
+\subsection{Autentizace}
+
+Autentizace je procesem, kdy se ověří identita uživatele. Protože jedním ze~základních pilířů RESTové
+služby je jeho bezstavovost, je potřeba s každým požadavkem posílat i data, která slouží k autentizaci.
+Zdroje a jejich metody, které jsou ze své podstaty veřejné a nevyžadují autentizaci, jsou tohoto procesu zbaveny.
+
+Mým řešením je posílání přístupového tokenu (náhodně generovaný hash o~32 znacích) v~hlavičce požadavku
+\texttt{Authorization}. Uživatel se před dotazováním služby přihlásí pomocí svého emailu a hesla.
+V případě úspěšného přihlášení je mu vrácen stavový kód 200 a přístupový token, který může používát po dobu jeho platnosti.
+
+\subsection{Autorizace}
+
+Autorizace je proces, který na svém konci schválí uživatele k provedení nějaké akce. Každý uživatel
+v~mém projektu má přiřazenou roli, která mu povoluje nebo zakazuje konkrétní operace. V případě, že
+se jedná o organizátora (role \texttt{organizer}), je ověřováno, zda pracuje pouze s jeho vytvořenými turnaji.
+Každý turnaj si totiž v~databázi uchovává informaci o~tom, kým byl vytvořen. Klubové účty
+(role \texttt{club}) mají právo volat požadavky týkajících se týmů, které zastřešuje jejich klub.
+Uživatel s rolí \texttt{admin} disponuje přístupem ke~všem operacím.
+
+\section{Reprezentace dat}
+
+Pro komunikaci ze strany klienta i serveru používám jediný formát -- JSON.
+Jde o zápis dat, který je nezávislý na platformě, a je přímo určený pro přenos dat.
+Vstupní data, kterými může být libovolná datová struktura, transformuje do řetězce.
+Data v JSON formátu mohou být hierarchicky řazeny nebo organizována v polích.
+Pro lepší pochopení je na následujících řádcích uveden praktický příklad.
+Jde o návratová data z GET požadavku na adrese \texttt{/api/divisons}.
+Obsahujem atributu \texttt{items} je pole s jednotlivými divizemi.
+
+\begingroup
+\fontsize{9.5pt}{11pt}\selectfont
+\begin{verbatim}
+{
+  "count":5,
+  "items":[
+    {
+      "division":"junior",
+      "id":5
+    },
+    {
+      "division":"masters",
+      "id":4
+    },
+    {
+      "division":"mixed",
+      "id":3
+    },
+    {
+      "division":"open",
+      "id":1
+    },
+    {
+      "division":"women",
+      "id":2
+    }
+  ]
+}
+\end{verbatim}
+\endgroup
+
+V Pythonu se formátu JSONu velmi podobá datová struktura \pythoninline{dict()}\cite{python_dict}.
+Vzájemnou konverzi poskytuje několik knihoven, některé jsou dokonce specializovány pouze na přeměnu v jednom směru.
+Já používám ve většině případech standartní knihovnu \texttt{json}\cite{python_json}
+nebo doinstalovanou \texttt{ujson}\cite{python_ujson}.
+
+\section{Vytvoření turnaje}
+
+Vytvoření turnaje je jednou z nejsložitější operace systému. V metodě POST jsou vloženy:
+
+\begin{itemize}
+ \item základní informace o turnaj
+ \item hřiště, na kterých se bude hrát
+ \item utkání s detailem, kam postupuje vítěz i poražený
+ \item skupiny s postupovým klíčem, aby bylo zřejmé, do kterého zápasu tým postupí nebo na kterém místě skončí
+\end{itemize}
+
+Než se data uloží, je nejprve nutné zkontrolovat validnost dat. Musí se zrevidovat, zda: 
+
+\begin{itemize}
+ \item nechybí data
+ \item nedochází k časové i místní kolizi zápasů
+ \item na turnaji nehrají neexistující týmy
+ \item struktura turnaje je hratelná, nedochází k nelogickým situacím (například do finále postoupí tři týmy)
+\end{itemize}
+
+Data navíc musí být ukládána atomicky, tzn. že při odhalení chyby v průběhu ukládání dat je celá transakce
+vrácena zpět a data nejsou uložena. Atomičnost operací je využíváná v mnoha operacích,
+ne jenom při vytváření turnaje.
+
+\section{Průběh turnaje}
+
+V okamžik, kdy je turnaj a má příznak \texttt{ready}, je možné odehrávat zápasy.
+Pro zápasy lze vkládat body jednotlivě nebo rovnou celé výsledky.
+Ať už si uživatel vybere jakkýkoliv způsob, po každé změně jsou přepočítávány
+statistiky hráčů, aby byly co nejaktuálnější. Po skončení zápasu se vyhodnotí vítěz
+a~poražený a~jsou automaticky doplněny do dalšího kola podle postupového klíče,
+jenž organizátor vložil již při tvorbě turnaje.
+
+Pokud vyřazovacím zápasům předchází skupiny, po ukončení každého zápasu ve skupině se kontroluje,
+zda ještě existuje nějaký neodehraný zápas. Pokud ne, týmy jsou podle pořadí ve skupině, které je
+opět přepočítáváno po každém zápase, posunuty v rámci turnaje do dalšího kola.
+
+% TODO: IDEA: udelat diagram aktivit?
+
+\section{Hodnocení SOTG}
+
+Hodnocení se odevzdává po každém ukončeném utkání. Při odevzdání jsou uloženy konkrétní hodnoty
+v databázi a navíc přepočítám tabulku průměrných hodnocení, ze které pak vychází celkové pořadí v této kategorii.
+Každá změna hodnocení znamená opětovné přepočítání.
 
 \section{Dokumentace}
 
-Sphinx atd.
+% IDEA: popsat Sphinx a ostatni nastroje
 
-\section{Další}
+I když sepsání dokumentace není požadavkem této práce, je vhodné celé rozhraní popsat. Programátoři,
+kteří budou v budoucnu pracovat na klientech (webová nebo mobilní aplikace) toto rozhodnutí ocení.
+Dokumentace je tu totiž k tomu, aby usnadnila práci.
 
-\textit{Popíšu vybrané části systému. Například jak aplikace komunikuje s databází, nebo jak se počítají SOTG, postupy ze skupin apod. Nemám ještě dovymšlené.}
+Dokumentace, na adrese \texttt{http://catcher.zlutazimnice.cz},
+poskytuje seznam všech zdrojů a metod, které lze volat. Popisuje způsob autentizace,
+formát komunikace, parametry dotazů nebo strukturu jejich odpovědí.
+Dokumentace byla využívána Jaroslavem Veselým k vývoji frontendu. Jak dokumentace vypadá, můžete vidět na obrázku~\ref{fig:doc}.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=130mm]{./images/doc.png}
+\caption{Ukázka z dokumentace\label{overflow}}
+\label{fig:doc}
+\end{figure}
+
+% \section{Další}
+
+% \textit{Popíšu vybrané části systému. Například jak aplikace komunikuje s databází, nebo jak se počítají SOTG, postupy ze skupin apod. Nemám ještě dovymšlené.}
+
+ % TODO: Zminit, ze vsechno ukladani (vetsina) probiha v transakci

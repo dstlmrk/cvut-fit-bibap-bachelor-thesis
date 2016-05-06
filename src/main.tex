@@ -6,19 +6,12 @@
 % english thesis in English language
 % hidelinks remove colour boxes around hyperlinks
 
-
 \documentclass[thesis=B,czech]{FITthesis}[2012/06/26]
-
 \usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
-
 \usepackage{graphicx} %graphics files inclusion
 % \usepackage{amsmath} %advanced maths
 % \usepackage{amssymb} %additional math symbols
-
 \usepackage{dirtree} %directory tree visualisation
-
-
-
 
 % --------------------------------------------------------------------
 % Default fixed font does not support bold face
@@ -91,9 +84,6 @@ showstringspaces=false            %
 % \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
 % \makeglossaries
 
-\newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
-\newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % ODTUD DAL VSE ZMENTE
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -117,17 +107,11 @@ showstringspaces=false            %
 \renewcommand{\arraystretch}{1.3}
 
 \begin{document}
-
- % TODO: Vyresit, jak budu formatovat odstavce.
- % TODO: Zjistit, jak se vkladaji citace.
  
+ % TODO: podivat se na to, co rikal Hunka + problemy pri implementaci
  
- %- Návrh aplikace (db, model, atd.)
- %  - Podivat se na to, co rikal Hunka.
- %- Problemy pri implementaci
- 
- % \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
- % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
+% \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
+% \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
  
  \begin{introduction}
  	%sem napište úvod Vaší práce
@@ -141,9 +125,7 @@ showstringspaces=false            %
  pomocí veřejného rozhraní. Frontend bude vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého.
  Vznikající systém má pracovní název Catcher.
 
- % TODO: TODO: TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
-
- % TODO: mel bych popsat, jak vypada turnaj, jeho zakladni struktura
+ % TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
  
 \input{./chapters/introduction.tex}
  
@@ -154,8 +136,6 @@ showstringspaces=false            %
 \input{./chapters/design.tex}
 
 \input{./chapters/implementation.tex}
-
- % TODO: Zminit, ze vsechno ukladani (vetsina) probiha v transakci
 
 \input{./chapters/testing.tex}
 
@@ -178,11 +158,23 @@ showstringspaces=false            %
 \chapter{Seznam použitých zkratek}
 % \printglossaries
 \begin{description}
-	\item[GUI] Graphical user interface
-	\item[XML] Extensible markup language
 	\item[ČALD] Česká asociace létajícího disku
 	\item[SOTG] Spirit of the Game
+	\item[URI] Uniform Resource Identifier
+	\item[URL] Uniform Resource Locator
+	\item[GUI] Graphical user interface
+	\item[API] Application Programming Interface
+	\item[SOAP] Simple Object Access Protocol
 	\item[REST] Representational State Transfer
+	\item[CRUD] Create, read, update and delete
+	\item[XML] Extensible markup language
+	\item[JSON] JavaScript Object Notation
+	\item[UML] Unified Modeling Language
+	\item[ORM] Object-relational mapping
+	\item[SQL] Structured Query Language
+	\item[HTML] HyperText Markup Language
+	\item[CSS] Cascading Style Sheets
+
 \end{description}
 
 \chapter{Datový model}
