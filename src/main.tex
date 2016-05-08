@@ -95,11 +95,18 @@ showstringspaces=false            %
 \authorWithDegrees{Marek Dostál} %jméno autora včetně současných akademických titulů
 \supervisor{Ing. Jiří Hunka}
 \acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
-\abstractCS{V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by se čtenář měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.}
+\abstractCS{
+Tato bakalářská práce se zabývá návrhem a realizací backendu webové aplikace
+sloužící ke správě turnajů a tvorbě statistik v Ultimate Frisbee.
+Podstatou řešení je vývoj RESTového rozhraní v Pythonu a jeho nasazení do provozu pomocí uWSGI.
+Výsledkem je fungující webová aplikace a backend nezávislý na frontendu.  
+}
+
+
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
-\keywordsCS{Nahraďte seznamem klíčových slov v češtině oddělených čárkou.}
+\keywordsCS{webová služba, REST API, Python, framework Falcon, Ultimate Frisbee}
 \keywordsEN{Nahraďte seznamem klíčových slov v angličtině oddělených čárkou.}
 
 \usepackage{fancyvrb}
@@ -112,21 +119,9 @@ showstringspaces=false            %
  
 % \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
- 
- \begin{introduction}
- 	%sem napište úvod Vaší práce
- \end{introduction}
- 
- \chapter{Cíl práce}
- 
- Cílem mé bakalářské práce je vytvořit backend pro webovou aplikaci, která bude zajišťovat online
- skórování zápasů a následné zobrazování statistik. Sou\-částí práce tak bude analýza dosavadních
- i možných řešení. Výsledkem analýzy pak bude návrh a implementace webové služby. Ta bude obsluhovatelná
- pomocí veřejného rozhraní. Frontend bude vyvíjen v~rámci souběžné bakalářské práce Jaroslava Veselého.
- Vznikající systém má pracovní název Catcher.
 
- % TODO: Vsude v textu nahradit, ze neprogramuju webovou aplikaci ale webovou sluzbu.
- 
+\input{./introduction.tex}
+
 \input{./chapters/introduction.tex}
  
 \input{./chapters/requirements.tex}
@@ -141,10 +136,7 @@ showstringspaces=false            %
 
 \input{./chapters/deploy.tex}
 
-\begin{conclusion}
-	%sem napište závěr Vaší práce
-	% TODO: Budoucnost projektu.
-\end{conclusion}
+\input{./conclusion.tex}
 
 % TODO: Promyslet, jak presne odevzdavat citace.
 %\bibliographystyle{csn690}
