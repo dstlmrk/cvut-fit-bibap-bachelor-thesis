@@ -35,7 +35,7 @@ jenž slouží pro správu nesystémových knihoven v Pythonu. Detailní seznam 
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=130mm]{./images/diagram-nasazeni.png}
+\includegraphics[width=130mm]{./images/diagram-nasazeni.pdf}
 \caption{Diagram nasazení\label{overflow}}
 \end{figure}
 
@@ -48,15 +48,15 @@ Aby bylo lépe pochopitelné zapojení uWSGI do celého procesu nasazení, popí
 \medskip
 
 Projekt uWSGI je malý program, který se stará o management procesu aplikace.
-Funguje jako prostředník mezi aplikací a webovým serverem,
-se kterými komunikuje vlastním uwsgi protokolem, respektive standartním WSGI
-\footnote{WSGI je komunikační protokol mezi aplikací napsanou v Pythonu a webovým serverem.}.
-Detaily komunikace jsou vidět na obrázku ~\ref{fig:uwsgi}.
+Funguje jako prostředník mezi webovým serverem a aplikací,
+se kterými komunikuje vlastním uwsgi protokolem, respektive standartním WSGI\footnote{
+WSGI je komunikační protokol mezi aplikací napsanou v Pythonu a webovým serverem.}.
+Detaily komunikace jsou vidět na obrázku~\ref{fig:uwsgi}.
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=135mm]{./images/uwsgi.png}
-\caption{Komunikace mezi webovým serverem a aplikací v Pythonu \cite{uwsgi}.\label{overflow}}
+\includegraphics[width=135mm]{./images/uwsgi.pdf}
+\caption{Komunikace mezi webovým serverem a aplikací v Pythonu; zdroj: autor na základě~\cite{uwsgi}\label{overflow}}
 \label{fig:uwsgi}
 \end{figure}
 
