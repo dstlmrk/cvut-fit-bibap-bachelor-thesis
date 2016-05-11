@@ -21,56 +21,56 @@ Diagramy všech tří modelů jsou tedy v této práci zpracovány.
 \subsection{Doménový model}
 
 Tvorba doménového modelu (na obrázku~\ref{fig:domain_model}) vychází ze zadání. Obsahuje následující entity,
-jenž modelují základní představu o systému.
+jež modelují základní představu o systému.
 
 \begin{description}
   \item[Uživatel (user)]
-  Uživatel je identifikován emailem. Přihlašuje se heslem nebo api klíčem (více v kapitole X).
-  Zároveň může nabývat jednou ze tří rolí (\texttt{club},\texttt{organizer} a \texttt{admin}).
+  Uživatel je identifikován emailem a heslem nebo tokenem (více v sekci~\ref{sec:security}).
+  Zároveň disponuje jednou ze tří rolí (\texttt{club}, \texttt{organizer} a~\texttt{admin}).
   \item[Oddíl (club)]
   Oddíl je logický prvek, který zastřešuje více týmů. Správu oddílu provádí klubový účet.
   \item[Tým (team)]
   Tým je vázán na oddíl. Jeho identifikátory jsou divize a stupeň týmu (např. A-tým).
   \item[Divize (division)]
-  Kategorie, ve které se pořádají turnaje, nebo je složen tým. % Například ženský tým je v divizi \texttt{women}.
+  Kategorie, ve které se pořádají turnaje, nebo je složen tým. Například junioská divize. % Například ženský tým je v divizi \texttt{women}.
   \item[Turnaj (tournament)]
-    Turnaj nabývá několika stavů (stavový diagram na obrázku~\ref{fig:state_tournament}).
+    Turnaj může nabývat několika stavů (stavový diagram na~obrázku~\ref{fig:state_tournament}).
     Po vytvoření turnaje lze až do potvrzení (příznak \texttt{ready}) měnit týmy, které se turnaje zúčastní.
-    Po něm mohou klubové účty odevzdávat soupisky za svoje týmy a na turnaji je možné aktivovat aktivovat zápasy. Ve chvíli,
+    Po něm mohou klubové účty odevzdávat soupisky za svoje týmy a na turnaji je možné aktivovat zápasy. Ve chvíli,
     kdy všechny týmy odevzdají svoje hodnocení SOTG a je známo finální pořadí týmů,
-    lze turnaj ukončit (příznak \texttt{terminated}). Do té doby skryté výsledky hodnocení SOTG se stanou veřejnými.
+    lze turnaj ukončit (příznak \texttt{terminated}). Do~té~doby skryté výsledky hodnocení SOTG se stanou veřejnými.
     Turnaj je spravován administrátorem nebo uživatelem s rolí \texttt{organizer} (tzv.~organizátor).
     \begin{figure}[ht!]
       \centering
       \includegraphics[width=90mm]{./images/stavovy-diagram-turnaj.png}
-      \caption{Stavový diagram turnaje.\label{overflow}}
+      \caption{Stavový diagram turnaje\label{overflow}}
       \label{fig:state_tournament}
     \end{figure}
   \item[Zápas (match)]
-    Zápas má stejně jako turnaj tři stavy (obrázek ~\ref{fig:state_match}). Aktivováním zápasu je umožněno zadat výsledek
-    nebo postupně vkládat jednotlivé body. Ukončením (příznak \texttt{terminated}) se uloží výsledky a ty se následně promítnou
-    v dalším postupu turnajem (vítězný tým posune do dalšího zápasu, týmům se přidá výhra ve skupině apod.).
+    Zápas má, stejně jako turnaj, tři stavy (obrázek~\ref{fig:state_match}). Aktivováním zápasu je umožněno zadat konečný výsledek
+    nebo postupně vkládat jednotlivé body. Ukončením (příznak \texttt{terminated}) se konečný výsledek uloží a~následně se promítne
+    v dalším postupu turnajem (vítězný tým posune do dalšího zápasu, týmům se přidá výhra ve skupině~apod.).
     \begin{figure}[ht!]
       \centering
       \includegraphics[width=90mm]{./images/stavovy-diagram-zapas.png}
-      \caption{Stavový diagram zápasu.\label{overflow}}
+      \caption{Stavový diagram zápasu\label{overflow}}
       \label{fig:state_match}
     \end{figure}
   \item[Bod (point)]
-    Zápas je složen z několika bodů. Každý bod je záznamem o skórování. Uchovává informaci, jaký hráč a komu nahrával.
-    Zápas může být ukončen, i bez jednotlivých bodů, zadáním výsledného skóre.
+    Zápas je složen z několika bodů. Každý bod je záznamem o~skórování. Uchovává informaci, jaký hráč a komu nahrával.
+    Zápas může být ukončen, i bez jednotlivých bodů, zadáním konečného skóre.
   \item[Skupina (group)]
-    Jde o několik týmů, které hrají zápasy pouze mezi sebou. Po odehrání všech utkání ve skupině se podle pravidel určí pořadí a podle něj se týmy posunou turnajem dál.
+    Jde o několik týmů, které hrají zápasy pouze mezi sebou. Po odehrání všech utkání ve skupině se podle pravidel určí pořadí a~na~jeho základě se týmy posunou turnajem dál.
   \item[Hřiště (field)]
-    Každé utkání se musí někde hrát. K tomu slouží hřiště.
+    Utkání se musí někde hrát. K tomu slouží hřiště.
   \item[Hodnocení SOTG (SOTG score)]
-    Po každém utkání musí tým ohodnotit soupeře hodnocením Spirit of the Game. Jde o číselné vyjádření na stupnici od 0 do 10.
+    Po každém utkání musí tým ohodnotit soupeře hodnocením Spirit of the Game. Zjednodušeně jde o~číselné vyjádření na~stupnici od~0 do 20.
 \end{description}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=130mm]{./images/domenovy-model.pdf}
-\caption{Doménový model.\label{overflow}}
+\caption{Doménový model\label{overflow}}
 \label{fig:domain_model}
 \end{figure}
 
@@ -119,7 +119,6 @@ Návrh se týká cesty v hierarchické části URI. Pro udržení kvality návrh
   \centering
   \includegraphics[width=130mm]{./images/uri.png}
   \caption{Součásti URI; zdroj: \cite{uri_wiki}.\label{overflow}}
-  \label{fig:state_match}
 \end{figure}
 
 S těmito zásady byl vytvořen následující návrh na mapování operací, které lze provádět nad zdroji.
