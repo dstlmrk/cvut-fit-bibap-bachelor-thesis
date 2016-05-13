@@ -6,9 +6,9 @@ Musíme nejprve identifikovat všechny zdroje, se kterými se bude pracovat a~um
 k~nim přístup pomocí standardizovaných metod. V návrhu vycházíme ze tří ustálených modelů:
 
 \begin{itemize}
-\item Doménový model
-\item Datový model
-\item Use case diagramy
+\item doménový model
+\item datový model
+\item use case diagramy
 \end{itemize}
 
 První dva modely nám slouží k identifikování jednotlivých zdrojů.
@@ -22,6 +22,14 @@ Diagramy všech tří modelů jsou tedy v této práci zpracovány.
 
 Tvorba doménového modelu (na obrázku~\ref{fig:domain_model}) vychází ze zadání. Obsahuje následující entity,
 jež modelují základní představu o systému.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=130mm]{./images/domenovy-model.pdf}
+\caption{Doménový model\label{overflow}}
+\label{fig:domain_model}
+\end{figure}
+
 
 \begin{description}
   \item[Uživatel (user)]
@@ -42,7 +50,7 @@ jež modelují základní představu o systému.
     Turnaj je spravován administrátorem nebo uživatelem s rolí \texttt{organizer} (tzv.~organizátor).
     \begin{figure}[ht!]
       \centering
-      \includegraphics[width=90mm]{./images/stavovy-diagram-turnaj.png}
+      \includegraphics[width=110mm]{./images/stavovy-diagram-turnaj.pdf}
       \caption{Stavový diagram turnaje\label{overflow}}
       \label{fig:state_tournament}
     \end{figure}
@@ -52,7 +60,7 @@ jež modelují základní představu o systému.
     v dalším postupu turnajem (vítězný tým posune do dalšího zápasu, týmům se přidá výhra ve skupině~apod.).
     \begin{figure}[ht!]
       \centering
-      \includegraphics[width=90mm]{./images/stavovy-diagram-zapas.png}
+      \includegraphics[width=110mm]{./images/stavovy-diagram-zapas.pdf}
       \caption{Stavový diagram zápasu\label{overflow}}
       \label{fig:state_match}
     \end{figure}
@@ -62,17 +70,10 @@ jež modelují základní představu o systému.
   \item[Skupina (group)]
     Jde o několik týmů, které hrají zápasy pouze mezi sebou. Po odehrání všech utkání ve skupině se podle pravidel určí pořadí a~na~jeho základě se týmy posunou turnajem dál.
   \item[Hřiště (field)]
-    Utkání se musí někde hrát. K tomu slouží hřiště.
+    Zápas se musí někde hrát. K tomu slouží hřiště.
   \item[Hodnocení SOTG (SOTG score)]
     Po každém utkání musí tým ohodnotit soupeře hodnocením Spirit of the Game. Zjednodušeně jde o~číselné vyjádření na~stupnici od~0 do 20.
 \end{description}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=130mm]{./images/domenovy-model.pdf}
-\caption{Doménový model\label{overflow}}
-\label{fig:domain_model}
-\end{figure}
 
 \subsection{Datový model}
 
@@ -84,12 +85,15 @@ Ten je dekomponován, tj. zbavení se M:N vazeb, a oproti doménovému modelu ob
 
 % TODO: v nasledujicich odstavcich je potreba doplnit zdroje
 
-Abychom mohli namapovat zdroje na konkrétní URL, musíme nejprve jednoznačně určit zdroje.
-Mnoho programátorů zde postupuje tak, že vychází z datového modelu a použijí prosté mapování \textit{tabulka = zdroj}.
+Abychom mohli namapovat zdroje na konkrétní URI\footnote{Uniform Resource Identifier},
+musíme nejprve jednoznačně určit zdroje. Mnoho programátorů zde postupuje tak, že vychází
+z~datového modelu a~použije prosté mapování \textit{tabulka = zdroj}.
 Návrh je sice rychlý, ale nemusí být dostatečný. Navíc vytváří příliš těsnou vazbu mezi interní datovou reprezentací
 a~logickou strukturou zdrojů. Zdroje v této práci vycházejí z doménového modelu.
 
-\subsection{Základní typy zdrojů \cite{rest_vse}}
+\subsection{Základní typy zdrojů}
+
+Podle~\cite{rest_vse} se zdroje dělí na tři základní typy:
 
 \begin{description}
   \item[Dokument] Reprezentace jednoho konkrétního zdroje v určitém formátu.
@@ -100,7 +104,7 @@ a~logickou strukturou zdrojů. Zdroje v této práci vycházejí z doménového 
 
 \subsection{Návrh URI}
 
-Návrh se týká cesty v hierarchické části URI. Pro udržení kvality návrhu je doporučené se při návrhu  držet několika zásad. Cesta by podle \cite{rest_vse} měla:
+Návrh se týká cesty v hierarchické části URI. Pro udržení kvality je doporučené se při návrhu držet několika zásad. Cesta by podle~\cite{rest_vse} měla:
     
 \begin{itemize}
 \item mít konzistentní a logickou strukturu
@@ -117,168 +121,168 @@ Návrh se týká cesty v hierarchické části URI. Pro udržení kvality návrh
 
 \begin{figure}[ht!]
   \centering
-  \includegraphics[width=130mm]{./images/uri.png}
-  \caption{Součásti URI; zdroj: \cite{uri_wiki}.\label{overflow}}
+  \includegraphics[width=130mm]{./images/uri.pdf}
+  \caption{Jednotlivé komponenty URI; zdroj: autor na základě~\cite{uri}\label{overflow}}
 \end{figure}
 
 S těmito zásady byl vytvořen následující návrh na mapování operací, které lze provádět nad zdroji.
-Identifikátor značíme \textit{\{id\}} nebo \textit{\{ide\}} (druhý identifikátor je textový).
-V cestách je vynechán prefix \textit{/api}, který odděluje aplikační a dokumentační část.
+Identifikátor značíme \texttt{\{id\}} nebo \texttt{\{ide\}} (druhý identifikátor je textový).
+V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dokumentační část.
 
 \begin{itemize}
   \item \texttt{\textbf{/login}}
   \begin{itemize}
-    \item popis: Přihlašuje uživatele. Po přihlášení vrátí přístupový token (více v kapitole X).
-    \item metoda: POST
-    \item pokrývá: UC3
+    \item \textbf{popis:} Přihlašuje uživatele. Po přihlášení vrátí přístupový token (více v sekci~\ref{sec:security}).
+    \item \textbf{metoda:} POST
+    \item \textbf{pokrývá:} UC3
   \end{itemize}
   \item \texttt{\textbf{/forgotten-password}}
   \begin{itemize}
-    \item popis: Odešle nově vygenerované heslo na email uživatele.
-    \item metoda: POST
-    \item pokrývá: UC4
+    \item \textbf{popis:} Odešle nové náhodně vygenerované heslo na email uživatele.
+    \item \textbf{metoda:} POST
+    \item \textbf{pokrývá:} UC4
   \end{itemize}
   \item \texttt{\textbf{/users}}
   \begin{itemize}
-    \item popis: Slouží k vytváření nových uživatelů.
-    \item metoda: POST
-    \item pokrývá: UC4
+    \item \textbf{popis:} Slouží k vytváření nových uživatelů.
+    \item \textbf{metoda:} POST
+    \item \textbf{pokrývá:} UC2
   \end{itemize}
   \item \texttt{\textbf{/user/\{id\}}}
   \begin{itemize}
-    \item popis: Spravuje konkrétního uživatele. Lze u něj změnit email nebo heslo.
-    \item metoda: PUT
-    \item pokrývá: UC21
+    \item \textbf{popis:} Spravuje konkrétního uživatele. Lze mu nastavit nový email nebo~heslo.
+    \item \textbf{metoda:} PUT
+    \item \textbf{pokrývá:} UC21
   \end{itemize}
   \item \texttt{\textbf{/clubs}}
   \begin{itemize}
-    \item popis: Kolekce oddílů.
-    \item metoda: GET, POST
-    \item pokrývá: UC5, UC6
+    \item \textbf{popis:} Kolekce oddílů.
+    \item \textbf{metoda:} GET, POST
+    \item \textbf{pokrývá:} UC5, UC6
   \end{itemize}
   \item \texttt{\textbf{/club/\{id\}}}
   \begin{itemize}
-    \item popis: Operace nad konkrétním oddílem. Možnost uložit město a zemi původu.
-    \item metoda: GET, PUT, DELETE
-    \item pokrývá: UC6, UC7, UC8
+    \item \textbf{popis:} Operace nad konkrétním oddílem. Možnost uložit město a zemi původu.
+    \item \textbf{metoda:} GET, PUT, DELETE
+    \item \textbf{pokrývá:} UC6, UC7, UC8
   \end{itemize}
   \item \texttt{\textbf{/club/\{id\}/players}}
   \begin{itemize}
-    \item popis: Kolekce všech klubových hráčů.
-    \item metoda: GET
-    \item pokrývá: UC10
+    \item \textbf{popis:} Kolekce všech klubových hráčů.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC10
   \end{itemize}
   \item \texttt{\textbf{/club/\{id\}/teams}}
   \begin{itemize}
-    \item popis: Kolekce všech týmů, které zastřešuje konkrétní oddíl.
-    \item metoda: GET
-    \item pokrývá: UC14
+    \item \textbf{popis:} Kolekce všech týmů, které zastřešuje konkrétní oddíl.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC14
   \end{itemize}
   \item \texttt{\textbf{/players}}
   \begin{itemize}
-    \item popis: Kolekce hráčů.
-    \item metoda: GET, POST
-    \item pokrývá: UC9, UC10
+    \item \textbf{popis:} Kolekce hráčů.
+    \item \textbf{metoda:} GET, POST
+    \item \textbf{pokrývá:} UC9, UC10
   \end{itemize}
   \item \texttt{\textbf{/player/\{id\}}}
   \begin{itemize}
-    \item popis: Operace nad konkrétním hráčem.
-    \item metoda: GET, PUT, DELETE
-    \item pokrývá: UC10, UC11, UC12
+    \item \textbf{popis:} Operace nad konkrétním hráčem.
+    \item \textbf{metoda:} GET, PUT, DELETE
+    \item \textbf{pokrývá:} UC10, UC11, UC12
   \end{itemize}
   \item \texttt{\textbf{/teams/}}
   \begin{itemize}
-    \item popis: Kolekce týmů.
-    \item metoda: GET, POST
-    \item pokrývá: UC13, UC14
+    \item \textbf{popis:} Kolekce týmů.
+    \item \textbf{metoda:} GET, POST
+    \item \textbf{pokrývá:} UC13, UC14
   \end{itemize}
   \item \texttt{\textbf{/team/\{id\}}}
   \begin{itemize}
-    \item popis: Operace nad konkrétním týmem.
-    \item metoda: GET, PUT, DELETE
-    \item pokrývá: UC14, UC15, UC16
+    \item \textbf{popis:} Operace nad konkrétním týmem.
+    \item \textbf{metoda:} GET, PUT, DELETE
+    \item \textbf{pokrývá:} UC14, UC15, UC16
   \end{itemize}
   \item \texttt{\textbf{/divisions}}
   \begin{itemize}
-    \item popis: Kolekce divizí.
-    \item metoda: GET
+    \item \textbf{popis:} Kolekce divizí.
+    \item \textbf{metoda:} GET
   \end{itemize}
   \item \texttt{\textbf{/tournaments}}
   \begin{itemize}
-    \item popis: Kolekce turnajů, kterou lze filtrovat pomocí pěti různých parametrů.
-    \item metoda: GET, POST
-    \item pokrývá: UC17, UC19
+    \item \textbf{popis:} Kolekce turnajů, kterou lze filtrovat pomocí pěti různých parametrů.
+    \item \textbf{metoda:} GET, POST
+    \item \textbf{pokrývá:} UC17, UC19
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}}}
   \begin{itemize}
-    \item popis: Správa turnaje. Možnost turnaji upravit příznaky \texttt{ready} a \texttt{terminated}.
-    \item metoda: GET, PUT
-    \item pokrývá: UC18, UC19
+    \item \textbf{popis:} Správa turnaje. Možnost turnaji upravit příznaky \texttt{ready} a \texttt{terminated}.
+    \item \textbf{metoda:} GET, PUT
+    \item \textbf{pokrývá:} UC18, UC19
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/standings}}
   \begin{itemize}
-    \item popis: Zobrazuje výsledné pořadí týmů na turnaji, včetně kategorie SOTG.
-    \item metoda: GET
-    \item pokrývá: UC20
+    \item \textbf{popis:} Zobrazuje výsledné pořadí týmů na turnaji, včetně kategorie SOTG.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC20
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/players}}
   \begin{itemize}
-    \item popis: Slouží pro správu soupisek na turnaji.
-    \item metoda: GET, POST, DELETE
-    \item pokrývá: UC21, UC22, UC23
+    \item \textbf{popis:} Slouží pro správu soupisek na turnaji.
+    \item \textbf{metoda:} GET, POST, DELETE
+    \item \textbf{pokrývá:} UC21, UC22, UC23
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/teams}}
   \begin{itemize}
-    \item popis: Slouží pro správu týmů na turnaji.
-    \item metoda: GET, PUT
+    \item \textbf{popis:} Slouží pro správu týmů na turnaji.
+    \item \textbf{metoda:} GET, PUT
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/matches}}
   \begin{itemize}
-    \item popis: Kolekce zápasů, kterou lze filtrovat pomocí šesti různých parametrů.
-    \item metoda: GET
-    \item pokrývá: UC25
+    \item \textbf{popis:} Kolekce zápasů, kterou lze filtrovat pomocí šesti různých parametrů.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC25\\
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/groups}}
   \begin{itemize}
-    \item popis: Kolekce skupin.
-    \item metoda: GET
-    \item pokrývá: UC24
+    \item \textbf{popis:} Kolekce skupin.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC24
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/group/\{ide\}}}
   \begin{itemize}
-    \item popis: Konkrétní skupina.
-    \item metoda: GET
-    \item pokrývá: UC24
+    \item \textbf{popis:} Konkrétní skupina.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC24
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/spirits}}
   \begin{itemize}
-    \item popis: Kolekce všech hodnocení SOTG. Možnost filtrovat hodnocení pro jeden konkrétní tým.
-    \item metoda: GET
-    \item pokrývá: UC31
+    \item \textbf{popis:} Kolekce všech hodnocení SOTG. Možnost filtrovat hodnocení pro jeden konkrétní tým.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC31
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}/missing-spirits}}
   \begin{itemize}
-    \item popis: Seznam týmů, které hodnocení SOTG neodevzdaly.
-    \item metoda: GET
-    \item pokrývá: UC32
+    \item \textbf{popis:} Seznam týmů, které hodnocení SOTG neodevzdaly.
+    \item \textbf{metoda:} GET
+    \item \textbf{pokrývá:} UC32
   \end{itemize}
   \item \texttt{\textbf{/match/\{id\}}}
   \begin{itemize}
-    \item popis: Správa utkání.
-    \item metoda: GET, PUT, 
-    \item pokrývá: UC25, UC26
+    \item \textbf{popis:} Správa utkání.
+    \item \textbf{metoda:} GET, PUT, 
+    \item \textbf{pokrývá:} UC25, UC26
   \end{itemize}
   \item \texttt{\textbf{/match/\{id\}/points}}
   \begin{itemize}
     \item \textbf{popis:} Zobrazuje detailní popis zápasu. Konkrétně jeho odehrané body seřazené chronologicky.
       Dál poskytuje ukládání nových bodů a úpravu již těch stávajících (například změna hráče, který skóroval).
-    \item metoda: GET
-    \item pokrývá: UC25
+    \item \textbf{metoda:} GET, POST, PUT, DELETE
+    \item \textbf{pokrývá:} UC25
   \end{itemize}
   \item \texttt{\textbf{/match/\{id\}/spirits}}
   \begin{itemize}
     \item \textbf{popis:} Vrátí detail jednoho zápasu včetně hodnocení SOTG obou týmů. Kromě toho umožňuje odevzdat hodnocení SOTG.
-    \item metoda: GET, POST, PUT
-    \item pokrývá: UC25, UC29, UC30
+    \item \textbf{metoda:} GET, POST, PUT
+    \item \textbf{pokrývá:} UC25, UC29, UC30
   \end{itemize}
 \end{itemize}
