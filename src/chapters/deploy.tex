@@ -1,37 +1,27 @@
 \chapter{Nasazení}
 
-% TODO: popsat, ze stahuju adresar z gitu a aplikaci pokazdy restartuju?
-
-\indent
-
-K testování a provozu webové aplikace jsem získál virtualizovaný server, ke kterému přistupuji pomocí SSH
+K testování a provozu webové aplikace jsem získál virtualizovaný server, ke~kterému přistupuji pomocí SSH
 \footnote{Program, který komunikuje zabezpečeným komunikačním protokolem. Používá TCP/IP.}.
 
 \subsection*{Virtuální privátní server}
 
-\indent
-
-Jde o server běžící na virtualizovaném hardwaru a často se označuje zkratkou VSP.
+Jde o server běžící na virtualizovaném hardwaru a~často se označuje zkratkou VPS.
 Bývá poskytován hostingovými společnostmi, které svůj fyzický stroj nabízejí více klientům najednou.
-Každému zákazníkovi vymezí prostor s vlastní instancí operačního systému, jednotlivými hostingovými službami
-a vlastní konfigurací. Nevýhodu je sdílení fyzických prostředků, poněvadž při nedostatečném nastavení
-může docházet k ovlivňování cizích VPS. Výhodou je naopak levnější pořízení ve srovnání celého fyzického serveru.
+Každému zákazníkovi vymezí prostor s~vlastní instancí operačního systému, jednotlivými hostingovými službami
+a~vlastní konfigurací. Nevýhodu je sdílení fyzických prostředků, poněvadž při~nedostatečném nastavení
+může docházet k~ovlivňování cizích VPS. Výhodou je naopak levnější pořízení ve~srovnání celého fyzického serveru.
 
 \section{Softwarové požadavky}
 
-\indent
-
-Aplikace běží na VPS s OS Ubuntu verze 15.10. Na veřejné adrese virtulního serveru
+Aplikace běží na VPS s OS Ubuntu~\cite{ubuntu} verze 15.10. Na veřejné adrese virtualního serveru
 je dostupná RESTová webová služba Catcher, s níž může zvnějšku komunikovat libovolná aplikace,
 která disponuje HTTP protokolem a dostupností běžného portu 80. Jako prostředník mezi klientskou aplikací
-a uWSGI 2.0.12, jehož úkolem je udržovat Catchera, zde běží webový server Nginx 1.9.3.
+a~uWSGI~2.0.12~\cite{python_uwsgi}, jehož úkolem je udržovat Catchera, zde běží webový server Nginx 1.9.3.
 Data se ukládají na databázový server MySQL verze 5.6.28.
 
-\medskip
-
-Pro běh aplikace byly stáhnuty všechny potřebné balíčky včetně pipu,
+Pro běh aplikace byly stáhnuty všechny potřebné balíčky včetně pipu~\cite{python_pip},
 jenž slouží pro správu nesystémových knihoven v Pythonu. Detailní seznam všech zásvislostí obsahuje soubor
-\texttt{README.md}, uložený v rodičovském adresáři projektu. Lepší správu souborů mi pak zajistil program Midnight Commander.
+\texttt{README.md}, uložený v rodičovském adresáři projektu. Lepší správu souborů na serveru mi pak zajistil program Midnight Commander~\cite{mc}.
 
 \begin{figure}[ht!]
 \centering
@@ -41,34 +31,23 @@ jenž slouží pro správu nesystémových knihoven v Pythonu. Detailní seznam 
 
 \section{uWSGI}
 
-\indent
-
 Aby bylo lépe pochopitelné zapojení uWSGI do celého procesu nasazení, popíšeme si jej trochu detailněji.
-
-\medskip
 
 Projekt uWSGI je malý program, který se stará o management procesu aplikace.
 Funguje jako prostředník mezi webovým serverem a aplikací,
 se kterými komunikuje vlastním uwsgi protokolem, respektive standartním WSGI.
-Detaily komunikace jsou vidět na obrázku~\ref{fig:uwsgi}.
+Detail komunikace je vidět na obrázku~\ref{fig:uwsgi}.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=135mm]{./images/uwsgi.pdf}
-\caption{Komunikace mezi webovým serverem a aplikací v Pythonu; zdroj: autor na základě~\cite{uwsgi}\label{overflow}}
+\caption{Komunikace mezi webovým serverem a aplikací v Pythonu; zdroj:~autor na základě~\cite{uwsgi}\label{overflow}}
 \label{fig:uwsgi}
 \end{figure}
 
-%\label{fig:uwsgi}
-
-
-% TODO: hezky diagram a povidani je na https://www.zdrojak.cz/clanky/produkcni-nasazeni-django-aplikaci-na-cherokee-pomoci-wsgi/ 
-
 \subsection*{uWSGI úloha}
 
-\indent
-
-Spuštění webové aplikace provadím následujícím příkazem. Proces poslouchá na portu 8080 a po celou dobu běží na pozadí.
+Spuštění webové aplikace provadím následujícím příkazem. Proces poslouchá na~portu 8080 a~po~celou dobu běží na~pozadí.
 
 \begingroup
 \fontsize{9.5pt}{11pt}\selectfont
@@ -81,17 +60,13 @@ $ uwsgi --socket localhost:8080 --wsgi-file ./restapi.py --callable api &
 
 \subsection*{Konfigurační soubor}
 
-\indent
-
-Protože všechny moje zdrojové kódy byly zveřejněny v repozitáři na GitHubu, nebylo správné aby obsahovaly jakkákoliv hesla.
+Protože všechny moje zdrojové kódy byly zveřejněny v repozitáři na GitHubu, nebylo by správné, aby obsahovaly jakákoliv hesla.
 Pro tyto potřeby byl vytvořen konfigurační soubor, který mám zazálohovaný na vlastním cloudovém uložišti
-a~pomocí programu wget si jej stahuju do daného adresáře vždy, když je změněn.
-Tento konfigurační soubor obsahuje hesla k produkční a testovací databázi
-nebo k emailovému účtu, který používám pro obnovu hesla uživatelů.
+a~pomocí programu wget~\cite{wget} si jej stahuju do~projektu vždy, když je změněn.
+Tento konfigurační soubor obsahuje hesla k~produkční a~testovací databázi
+nebo k~emailovému účtu, který používám pro~obnovu hesla uživatelů.
 
 \subsection*{Databáze}
-
-\indent
 
 Pro přístup do databáze bylo potřeba vytvořit uživatele s právem zapisovat, číst a mazat.
 Tento účet se nadále autentizuje heslem, které je uložené v konfiguračním souboru.
@@ -108,13 +83,9 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 
 \subsection*{Nginx}
 
-\indent
-
 Protože disponuji pouze jednou veřejnou adresou na VPS, bylo potřeba webový server nakonfigurovat tak,
 aby dokázal obsluhovat požadavky webové aplikace i požadavky
 na zobrazení dokumentace. Konfigurace na serveru byla následující:
-
-\subsubsection*{/etc/nginx/sites-enabled/catcher.conf}
 
 \begingroup
 \fontsize{9.5pt}{11pt}\selectfont
@@ -153,27 +124,37 @@ server {
 \end{verbatim}
 \endgroup
 
-\medskip
-
 Pro vývoj na svém počítači jsem použil trochu odlišnou konfiguraci, protože
 jsem nemusel na jedné adrese provozovat dokumentaci i aplikaci.
-V prvních fázích jsem dokonce ani Nginx používat nemusel, protože uWSGI umožňuje simulovat
-chování webového serveru a jako prostředníka jsem jej tedy mohl vynechat.
-Pro produkční nasazení ale není tento postup doporučen.
+V prvních fázích vývoje jsem dokonce ani Nginx používat nemusel, protože uWSGI umožňuje simulovat
+chování webového serveru.
+Pro produkční nasazení ale~není tento postup doporučen.
 
 \section{Údržba}
 
-\indent
-
 Standartem pro větší aplikace by měl být monitorovací systém,
 který sleduje zátěž jednotlivých komponent (webová aplikace, databáze, webový server atd.)
-a~v~případě výpadku informuje administrátora sms zprávou nebo emailem.
-Catcher však disponuje vlastností, že ještě nějakou dobu nebude nasazen do ostrého provozu
-a~pro~tyto potřeby by měl stačit Cron\footnote{Jde o softwarového démona, který slouží
-k~automatickému spouštění periodicky se opakujících příkazů a procesů.}
-, který by v pravidelných intervalech \uv{oťukával} aplikaci a~stanovil, zda korektně běží.
-Kromě toho může pravidelně zálohovat databázi příkazem \pythoninline{mysqldump}\cite{mysqldump}.
-V případě výpadku by tak stačilo aplikaci opravit a nahrát poslední zálohu.
+a~v~případě výpadku informuje administrátora SMS zprávou nebo emailem.
+Pro potřeby Catchera jsem však využil daleko jednodušího řešení -- webové aplikace Uptime Robot~\cite{uptime_robot},
+která v pravidelných intervalech \uv{oťukává} mnou definovavné adresy a~ověřuje jejich dostupnost.
+Pro použití v~omezené míře je zdarma a~v~sitauci, kdy je Catcher nedostupný, mě informuje emailem.
+
+
+%by mělo stačit \uv{oťukávání} z testovacíh
+
+%~\cite{uptime_robot}
+
+
+%Pro potřeby Catchera by mělo stačit \uv{oťukávání} z testovacíh
+
+%Až bude Catcher nasazen do ostrého provozu, pro jeho potřeby by měl stačit Cron\footnote{Jde o softwarového démona, který slouží
+%k~automatickému spouštění periodicky se opakujících příkazů a procesů.},
+%který by v~pravidelných intervalech \uv{oťukával} aplikaci a~stanovil, zda korektně běží.
+
+Dále je nutné pro případ výpadku pravidelně zálohovat databázi. Místo manuálního zálohování programem
+\texttt{mysqldump}~\cite{mysqldump}, lze použít Cron\footnote{Jde o softwarového démona, který slouží
+k~automatickému spouštění periodicky se opakujících příkazů a procesů.}, který by pravidelně tento program spouštěl. 
+V~případě výpadku by tak stačilo aplikaci opravit a~nahrát poslední zálohu.
 Catcher aktuálně disponuje pouze manuálním zálohováním databáze.
 
 

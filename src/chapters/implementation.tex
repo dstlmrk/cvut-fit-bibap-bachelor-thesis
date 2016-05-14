@@ -116,11 +116,9 @@ Mezi~nejznámější případy patří MariaDB~\cite{mariadb} a~Percona~\cite{pe
 
 \subsection{Peewee ORM}
 
-% TODO: uvest priklad peewee
-
 Peewee~\cite{peewee} je implementace ORM\footnote{Object-relational mapping} pro~jazyk Python.
 Obsahuje podporu pro~databáze SQLite~\cite{sqllite}, PostgreSQL~\cite{postgresql} a~MySQL.
-Je otevřeným softwarem a~jeho zdrojový kód je dostupný na~GitHubu. Použítí Peewee zde: 
+Je otevřeným softwarem a~jeho zdrojový kód je dostupný na~GitHubu~\cite{github}. Použítí Peewee zde: 
 
 \begin{python}
 import peewee
@@ -140,61 +138,57 @@ print tournament.name
 
 ORM je programovací technika, která zajišuje, že data z relační databáze
 se automaticky konvertují do objektů v OOP\footnote{Object-oriented programming}. Programátor tak pracuje s~perzistentními
-objekty místo toho, aby psal SQL dotazy. Pokročilejší ORM dokonce dokážou využít objektovou dědičnost, což relační databáze nepodporují.
+objekty místo toho, aby psal SQL dotazy. Pokročilejší implementace ORM dokonce dokážou využít objektovou dědičnost, což relační databáze nepodporují.
 
 Technika je často kritizována, protože programátory odnaučuje psát SQL dotazy a~jde většinou o~zbytečnou režii navíc.
-Mnoho ORM nástrojů totiž složitější dotazy přeloží do~jazyka SQL tak neúčinně,
-že~dotaz může být mnohonásobně pomalejší, než kdyby je programátor napsal v~SQL sám.
+Mnoho ORM nástrojů totiž složitější dotaz přeloží do~jazyka SQL tak neúčinně,
+že~může být mnohonásobně pomalejší, než kdyby jej programátor napsal v~SQL sám.
 V~závěru této práce jsem použití ORM zhodnotil.
-
-% TODO: v nasledujicich odstavcich doplnit dalsi zdroje
 
 \subsection{Verzovací systém Git}
 
-Git [] je nástroj vytvořený Linusem Torvaldem (tvůrcem Linuxového jádra).
+Git~\cite{git} je nástroj vytvořený Linusem Torvaldem\footnote{tvůrce Linuxového jádra}.
 Slouží k distribuované správě verzí libovolných digitálních informací, například zdrojových kódů.
-Výraznou výhodou je možnost spolupráce velkého množství programátorů na jednom softwarovém projektu. 
-Každý programátor má adresář s projektem na svém lokálním disku a všechny změny sdílí s centrálním repozitářem,
-ke kterému mají přístup i všichni ostatní programátoři. Ti si pak mohou stáhnout všechny změny,
-které se na projektu staly. Git neuchovává úplný stav každé verze, ale pouze rozdíly mezi jednotlivými verzemi.
+Výraznou výhodou je možnost spolupráce velkého množství programátorů na~jednom softwarovém projektu. 
+Každý programátor má adresář s~projektem na~svém lokálním disku a~všechny změny sdílí s~centrálním repozitářem,
+ke~kterému mají přístup i~všichni ostatní programátoři. Ti si pak mohou stáhnout všechny změny,
+které se na~projektu staly. Git neuchovává úplný stav každé verze, ale pouze rozdíly mezi jednotlivými verzemi.
 Tím výrazně šetří paměť.  
 
 Ruku v ruce jde s popularitou Gitu nahoru i služba GitHub.
 Ta nabízí bezplatný i komerční hosting pro repozitáře softwarových projektů.
 Zdarma, a díky tomu populární v dané oblasti, je GitHub pro open source projekty.
-Funguje od roku 2008 a hostuje už více jak 11 miliónů repozitářů [ZDROJ].
-Poskytuje mnoho dalších vlastností, jako například možnost diskutovat nad kódem
+Funguje od roku 2008 a hostuje už více jak 10 miliónů repozitářů~\cite{git_about}.
+Poskytuje mnoho dalších vlastností, jako například možnost diskutovat nad~kódem
 nebo zasílat notifikace o změnách.
 
 \subsection{Webový server Nginx}
 
-Nginx je webový server a reverzní proxy\footnote{Reverzní proxy se používá pro zvýšení výkonu webového serveru.
+Nginx~\cite{nginx} je webový server a reverzní proxy\footnote{Reverzní proxy se používá pro zvýšení výkonu webového serveru.
 Rozděluje vstupující provoz na více serverů, například vyvažuje zátěž serverů zapojených v clusteru.}, který pracuje s běžnými protokoly.
-První oficiální verze se objevila v roce 2004 \cite{nginx-changes}, kterou vyvynul Ruský softwarový inženýr Igor Sysoev.
+První oficiální verze se objevila v roce 2004, kterou vyvynul ruský softwarový inženýr Igor Sysoev~\cite{nginx_changes}.
 Zaměřuje se na vysoký výkon a nízké nároky na pamět. Je používán velkými firmami
-díky propracované možnosti rozložení zátěže. Z velkých firem je to například Netflix, Wordpress.com,
-GitHub, Dropbox nebo Seznam.cz.
+díky propracované možnosti rozložení zátěže. Z českých firem je to například Seznam.cz~\cite{nginx_seznam}.
 
-Dnes je již s 25 \% druhým nejpoužívanějším webovým serverem v prvním milionu nejzatíženějších webů na světě.
-Napříč celým webem je pak na třetím místě s přibližně 16 \%. I když je Apache HTTP Server stále jednička, 
-jejich rozdíl se neustále zmenšuje \cite{nginx-statistic}. Nginx je open source.
+Dnes je již s 25~\% druhým nejpoužívanějším webovým serverem v prvním miliónu nejzatíženějších webů na světě.
+Napříč celým webem je pak na třetím místě s přibližně 16~\%~\cite{nginx_statistic}.
+I když je Apache HTTP Server~\cite{apache} stále výraznou jedničkou, jejich rozdíl se neustále zmenšuje. Nginx je open source.
 
-% TODO: IDEA: Moznost prilozit obrazek s grafem nebo tabulkou.
+% IDEA: Moznost prilozit obrazek s grafem nebo tabulkou.
 
 \section{Adresářová struktura}
 
-% TODO: tady se trochu vic rozepsat
+Adresářová struktura popsaná v této sekci odpovídá struktuře, kterou lze najít i~na~GitHubu.
+Projekt se dělí na dvě části, v~jedné se nachází aplikační logika a v druhé je jednoduchá webová stránka s dokumentací.
 
-Adresářová struktura popsaná v této sekci odpovídá struktuře, ve které projekt najdete na GitHubu.
-Služba se dělí na dvě časti, v jedné se nachází aplikační logika a v druhé je jednoduchá webová stránka s dokumentací.
-
-Celou aplikační logiku najdeme v adresáři \texttt{/catcher}, kde se nachází zdroje a jejich mapování na URL,
-mapování relační databáze na objekty nebo zdrojové kódy zajišťující autentizaci a autorizaci uživatelů.
-Dokumentace se nachází v adresáři \texttt{/html}, kde jsou všechny důležité soubory pro použití JavaScriptu a~CSS na webu.
+Celou aplikační logiku najdeme v adresáři \texttt{/catcher}, kde se nachází RESTové zdroje a~jejich mapování na URI,
+mapování relační databáze na~objekty nebo~zdrojové kódy zajišťující autentizaci a autorizaci uživatelů.
+Dokumentace se nachází v~adresáři \texttt{/html}.
+%, kde jsou všechny důležité soubory pro~použití JavaScriptu [II] a~CSS [II] na~webu.
 
 Konfigurační soubory jsou uloženy v adresáři \texttt{/catcher/config}.
 Nachází se zde přístupové údaje k databázím (produkční a testovací) nebo emailovému účtu pro zasílání nového hesla.
-Konfigurační soubory nejsou uloženy v~repozitáři na Gitu. 
+Konfigurační soubory nejsou z důvodu bezpečnosti uloženy v~repozitáři na~Gitu. 
 
 \begin{figure}[ht!]
 \dirtree{%
@@ -205,7 +199,7 @@ Konfigurační soubory nejsou uloženy v~repozitáři na Gitu.
   .3 /config\DTcomment{konfigurační soubory}.
   .3 /logger\DTcomment{logování aplikace}.
   .3 /models\DTcomment{mapování relační databáze na OOP}.
-  .3 /resources\DTcomment{zdroje}.
+  .3 /resources\DTcomment{REST zdroje}.
   .3 /test\DTcomment{testy}.
   .3 /restapi.py\DTcomment{spouštěcí skript}.
   .2 /html\DTcomment{adresář dostupný z webu (dokumentace)}.
@@ -226,16 +220,17 @@ Konfigurační soubory nejsou uloženy v~repozitáři na Gitu.
 
 Zabezpečit webovou aplikaci je dnes opětovaně diskutovaným problémem. Mnoho systémů již postihlo napadení
 nebo únik důležitých dat. Navíc neexistuje stav, kdy je možné o své práci prohlásit, že je naprosto
-bezpečná. Případní útočníci jsou totiž stále vynalezávější a~hledají každou chybu v~systému.
+bezpečná. Případní útočníci jsou totiž stále vynalézavější a~hledají každou chybu v~systému.
 Aplikaci je tedy nutné obohatit o co nejvíce ochranných prvků a držet se zásad,
 které jejich možnosti minimalizují.
 
 \subsection{Zabezpečená komunikace}
 
 Základem všech aplikací, ve které se můžou nacházet citlivá nebo jinak důležitá data,
-je použití protokolu HTTPS, který zabezpečuje spojení šifrováním pomocí SSL nebo TSL.
-Důsledkem je znemožnění odposlechu, např.~přihlašovacích údajů. Moje práce HTTPS protokol nepoužívá,
-ale v případě nasazení do ostrého provozu je jeho použití bezpodmínečně nutné.
+je použití protokolu HTTPS\footnote{Hypertext Transfer Protocol Secure},
+který zabezpečuje spojení šifrováním pomocí SSL\footnote{Secure Sockets Layer} nebo TLS\footnote{Transport Layer Security}.
+Důsledkem je znemožnění odposlechu, např.~přihlašovacích údajů. Moje práce HTTPS protokol nevyužívá,
+ale v případě nasazení do ostrého provozu bych jej použil.
 
 \subsection{Autentizace}
 
@@ -250,7 +245,7 @@ V případě úspěšného přihlášení je mu vrácen stavový kód 200 a př�
 \subsection{Autorizace}
 
 Autorizace je proces, který na svém konci schválí uživatele k provedení nějaké akce. Každý uživatel
-v~mém projektu má přiřazenou roli, která mu povoluje nebo zakazuje konkrétní operace. V případě, že
+má přiřazenou roli, která mu povoluje nebo zakazuje konkrétní operace. V případě, že
 se jedná o organizátora (role \texttt{organizer}), je ověřováno, zda pracuje pouze s jeho vytvořenými turnaji.
 Každý turnaj si totiž v~databázi uchovává informaci o~tom, kým byl vytvořen. Klubové účty
 (role \texttt{club}) mají právo volat požadavky týkajících se týmů, které zastřešuje jejich klub.
@@ -264,7 +259,7 @@ Vstupní data, kterými může být libovolná datová struktura, transformuje d
 Data v JSON formátu mohou být hierarchicky řazeny nebo organizována v polích.
 Pro lepší pochopení je na následujících řádcích uveden praktický příklad.
 Jde o návratová data z GET požadavku na adrese \texttt{/api/divisons}.
-Obsahujem atributu \texttt{items} je pole s jednotlivými divizemi.
+Obsahem atributu \texttt{items} je pole s jednotlivými divizemi.
 
 \begingroup
 \fontsize{9.5pt}{11pt}\selectfont
@@ -297,20 +292,20 @@ Obsahujem atributu \texttt{items} je pole s jednotlivými divizemi.
 \end{lstlisting}
 \endgroup
 
-V Pythonu se formátu JSONu velmi podobá datová struktura \pythoninline{dict()}\cite{python_dict}.
+V Pythonu se formátu JSON velmi podobá datová struktura \pythoninline{dict()}~\cite{python_dict}.
 Vzájemnou konverzi poskytuje několik knihoven, některé jsou dokonce specializovány pouze na přeměnu v jednom směru.
-Já používám ve většině případech standartní knihovnu \texttt{json}\cite{python_json}
-nebo doinstalovanou \texttt{ujson}\cite{python_ujson}.
+Já používám ve většině případech standartní knihovnu \texttt{json}~\cite{python_json}
+nebo ručně doinstalovanou \texttt{ujson}~\cite{python_ujson}.
 
 \section{Vytvoření turnaje}
 
-Vytvoření turnaje je jednou z nejsložitější operace systému. V metodě POST jsou vloženy:
+Vytvoření turnaje je jednou z nejsložitějších operací systému. V metodě POST jsou vloženy:
 
 \begin{itemize}
- \item základní informace o turnaj
+ \item základní informace o turnaji
  \item hřiště, na kterých se bude hrát
- \item utkání s detailem, kam postupuje vítěz i poražený
- \item skupiny s postupovým klíčem, aby bylo zřejmé, do kterého zápasu tým postupí nebo na kterém místě skončí
+ \item seznam utkání s detaily (hřiště, čas, domácí a hostující tým) a informací, kam postupuje vítěz i poražený nebo na jakých místech v celkovém pořadí skončí
+ \item skupiny s postupovým klíčem, podobně jako v utkáních
 \end{itemize}
 
 Než se data uloží, je nejprve nutné zkontrolovat validnost dat. Musí se zrevidovat, zda: 
@@ -323,37 +318,36 @@ Než se data uloží, je nejprve nutné zkontrolovat validnost dat. Musí se zre
 \end{itemize}
 
 Data navíc musí být ukládána atomicky, tzn. že při odhalení chyby v průběhu ukládání dat je celá transakce
-vrácena zpět a data nejsou uložena. Atomičnost operací je využíváná v mnoha operacích,
+vrácena zpět a data nejsou uložena. Atomičnost operací je využívána v mnoha dalších operacích,
 ne jenom při vytváření turnaje.
 
 \section{Průběh turnaje}
 
-V okamžik, kdy je turnaj a má příznak \texttt{ready}, je možné odehrávat zápasy.
-Pro zápasy lze vkládat body jednotlivě nebo rovnou celé výsledky.
+V okamžiku, kdy turnaj má příznak \texttt{ready}, je možné odehrávat zápasy.
+V~jejich průběhu lze vkládat body jednotlivě nebo rovnou celé výsledky.
 Ať už si uživatel vybere jakkýkoliv způsob, po každé změně jsou přepočítávány
 statistiky hráčů, aby byly co nejaktuálnější. Po skončení zápasu se vyhodnotí vítěz
-a~poražený a~jsou automaticky doplněny do dalšího kola podle postupového klíče,
+a~poražený a~následně jsou automaticky doplněni do dalšího kola na~základě postupového klíče,
 jenž organizátor vložil již při tvorbě turnaje.
 
-Pokud vyřazovacím zápasům předchází skupiny, po ukončení každého zápasu ve skupině se kontroluje,
-zda ještě existuje nějaký neodehraný zápas. Pokud ne, týmy jsou podle pořadí ve skupině, které je
-opět přepočítáváno po každém zápase, posunuty v rámci turnaje do dalšího kola.
+Pokud vyřazovacím zápasům předchází skupina, po ukončení každého zápasu se kontroluje,
+zda je již kompletně odehraná. Pokud ano, týmy jsou podle~pořadí ve~skupině, které je
+opět přepočítáváno po~každém zápase, posunuty v~rámci turnaje do~dalšího kola.
 
-% TODO: IDEA: udelat diagram aktivit?
+% IDEA: udelat diagram aktivit?
 
 \section{Hodnocení SOTG}
 
-Hodnocení se odevzdává po každém ukončeném utkání. Při odevzdání jsou uloženy konkrétní hodnoty
-v databázi a navíc přepočítám tabulku průměrných hodnocení, ze které pak vychází celkové pořadí v této kategorii.
+Hodnocení se odevzdává po každém ukončeném utkání. Všechny hodnoty jsou uloženy do databáze
+a navíc se přepočítá tabulka s průměrnými hodnoceními, ze kterých pak vychází celkové pořadí v této kategorii.
 Každá změna hodnocení znamená opětovné přepočítání.
 
-\section{Dokumentace}
+\section{Uživatelská dokumentace}
 
 % IDEA: popsat Sphinx a ostatni nastroje
 
-I když sepsání dokumentace není požadavkem této práce, je vhodné celé rozhraní popsat. Programátoři,
-kteří budou v budoucnu pracovat na klientech (webová nebo mobilní aplikace) toto rozhodnutí ocení.
-Dokumentace je tu totiž k tomu, aby usnadnila práci.
+I když sepsání uživatelské dokumentace není požadavkem této práce, je vhodné celé rozhraní popsat.
+Programátoři, kteří budou v~budoucnu pracovat na~klientských aplikacích, mohou z~tohoto zdroje čerpat všechny potřebné informace k tomu, aby API kompletně využili.
 
 Dokumentace, na adrese \texttt{http://catcher.zlutazimnice.cz},
 poskytuje seznam všech zdrojů a metod, které lze volat. Popisuje způsob autentizace,
@@ -366,9 +360,3 @@ Dokumentace byla využívána Jaroslavem Veselým k vývoji frontendu. Jak dokum
 \caption{Ukázka z dokumentace\label{overflow}}
 \label{fig:doc}
 \end{figure}
-
-% \section{Další}
-
-% \textit{Popíšu vybrané části systému. Například jak aplikace komunikuje s databází, nebo jak se počítají SOTG, postupy ze skupin apod. Nemám ještě dovymšlené.}
-
- % TODO: Zminit, ze vsechno ukladani (vetsina) probiha v transakci
