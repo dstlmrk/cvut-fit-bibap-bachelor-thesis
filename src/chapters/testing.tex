@@ -12,7 +12,7 @@ pouze správnost výstupních dat po zadání vstupních. Do testovaného subjek
 Důvodem tohoto typu testování je analyzovat software z pohledu uživatele.
 Na opačné straně se při znalosti implementace používá testování bílé skřínky. Sice tato metoda zastiňuje pohled uživatele,
 ale tester je schopen lépe určit, kde hledat případné chyby. Při~částečné znalosti softwaru se ještě používá pojem testování šedé skřínky (gray-box).
-Neznáme například přesnou podobu zdrojového kódu, ale jen použitý algoritmus použitý v aplikaci. 
+Neznáme například přesnou podobu zdrojového kódu, ale jen algoritmus použitý v aplikaci. 
 
 Testy se také dělí na automatizované a manuální. Méně nákladnou a rychlejší cestou je zpravidla automatizované testování,
 kdy se automaticky spouští velké množství testů, často i s velkým množstvím vstupních dat. Tyto testy se používají v místech,
@@ -60,5 +60,5 @@ class TestClubs(falcon.testing.TestBase):
       self.assertEqual(self.srmock.status, HTTP_201)
 \end{python}
 
-Kromě porovnávání návratových HTTP kódů se v mým testech zkoumá podoba a obsah návratových dat, správné vyhazování vyjímek
+Kromě porovnávání návratových HTTP kódů se v mých testech zkoumá podoba a obsah návratových dat, správné vyhazování výjimek
 nebo stav testovací databáze před a po volání metod.
