@@ -10,10 +10,10 @@ V druhé části se podíváme na možnosti našeho řešení.
 
 V roce 2013~\cite{cald_catcher} byla zveřejněna první verze této aplikace pro mobilní telefony s operačním systémem Android.
 Autory jsou dva aktivní hráči Jiří Voseček a Ondřej Burkert. Aplikace si od svého vzniku získala velkou popularitu
-ve~frisbee komunitě a dnes je používaná na většině českých turnajů. Umí zadávat výsledky
+ve~frisbee komunitě a dnes je používána na většině českých turnajů. Umí zadávat výsledky
 zápasů včetně podrobného průběhu bodů, rozhodovat o umístění v základních skupinách, počítat statistiky hráčů,
 odevzdávat a zveřejnit vzájemná hodnocení SOTG týmů na~turnaji. Dokáže omezeně importovat oficiální soupisky týmů
-na nadcházející turnaje spadající pod Českou asociaci létajícího talíře.
+na nadcházející turnaje spadající pod Českou asociaci létajícího disku.
 
 Kromě mobilní aplikace Catcher byl vytvořen backend v PHP~\cite{php}, který ukládá a počítá data na serveru. Ten však není
 objektově orientovaný a~všechna jeho eventuální rozšíření jsou velmi náročná.
@@ -23,7 +23,7 @@ objektově orientovaný a~všechna jeho eventuální rozšíření jsou velmi n�
   \item Backend je využíván webovou aplikací (frisbee.cz) a mobilní aplikací na~OS~Android.
   \item Přes webový prohlížeč lze přistupovat k emulátoru aplikace.
   \item Systém je již mezi organizátory turnajů zaběhnutý a na Google Play
-    \footnote{Online distribuční služba, kde jsou k dispozici aplikace pro mobilní telefony a tablety s OS Android}
+    \footnote{Online distribuční služba, kde jsou k dispozici aplikace pro mobilní telefony a tablety s~OS Android.}
     má již více než 1000 stáhnutí~\cite{catcher_play}.
   \item Umí importovat soupisky na oficiální turnaje ČALD.
 \end{itemize}
@@ -38,10 +38,10 @@ objektově orientovaný a~všechna jeho eventuální rozšíření jsou velmi n�
 \subsubsection*{Nevýhody}
 \begin{itemize}
   \item Import soupisek z databáze ČALD je pouze poloautomatický. Administrátor musí před každým turnajem
-    import spustit a zkontrolovat, zda se data uložily validně. Tomuto stavu nepřispívá ani fakt,
+    import spustit a zkontrolovat, zda se data uložila validně. Tomuto stavu nepřispívá ani fakt,
     že databáze ČALD, ze které se import provádí, je velmi špatně navržena.
   \item Nedisponuje žádným rozhraním, které by mohly používat další klientské aplikace.
-  \item Automaticky nedoplňuje týmy v zápasech play-off do dalších kol (např. vítěze semifinále do finále apod.).
+  \item Automaticky nedoplňuje týmy v zápasech play-off do dalších kol (např.~vítěze semifinále do finále apod.).
   \item Při vytváření turnaje neprobíhá žádná kontrola validity dat.
     Lze tak vytvořit spoustu chybných utkání, které se pak musí opravovat. 
 \end{itemize}
@@ -56,7 +56,7 @@ a~spoustu dalších vlastností. Dokáže zobrazit podrobné detaily o průběhu
 \subsubsection*{Výhody}
 \begin{itemize}
   \item Rozsáhlá aplikace poskytující nepřeberné množství možností.
-  \item Aplikace již má za sebou více než 10 let fungování.
+  \item Aplikace má za sebou již více než 10 let fungování.
   \item Poskytuje přístup pro mobilní telefony s webovým prohlížečem.
 \end{itemize}
 
@@ -122,7 +122,7 @@ Podobně je potřeba upravovat při změnách API i strukturu požadavku.
  
 \subsection{REST}
 
-Protokol REST (\textit{Representational State Transfer}) je architektonický styl návrhu API popsaným Royem Fieldingem \cite{fielding}.
+Protokol REST (\textit{Representational State Transfer}) je architektonický styl návrhu API popsaný Royem Fieldingem \cite{fielding}.
 Je založený na vystavování a jednotném přístupu ke~zdrojům\footnote{resources}, kterými jsou určitá data.
 Přistupuje se k~nim pomocí HTTP metod GET, POST, DELETE a PUT.
 
@@ -144,7 +144,7 @@ Nyní si uvedeme ty nejdůležitější:
 \begin{description}
     \item[Architektura klient-server]
     Rozděluje zodpovědnost mezi různé části. Klientské aplikace se nemusí starat o správu dat a server o jejich prezentaci.
-    Z toho vyplývá možnost vývíjet obě kompomenty (klient a server) nezávisle na sobě.
+    Z toho vyplývá možnost vyvíjet obě kompomenty (klient a server) nezávisle na sobě.
     \item[Bezstavovost]
     Aplikační stav je udržován na straně klienta. Všechny požadavky tak obsahují pouze informace nutné k jeho zpracování.  
     \item[Jednotné rozhraní]
@@ -154,6 +154,6 @@ Nyní si uvedeme ty nejdůležitější:
 
 \subsection{Shrnutí}
 
-Z předcházejícího srovnání je patrné, že na flexibilní v budoucnu rozšiřitelné rozhraní se spíše hodí REST.
-Klienti nebudou tolik nachylní na úpravy API a~navíc jim bude možné data poskytnout ve~formátu JSON,
+Z předcházejícího srovnání je patrné, že na flexibilní v budoucnu a rozšiřitelné rozhraní se spíše hodí REST.
+Klienti nebudou tolik náchylní na úpravy API a~navíc jim bude možné data poskytnout ve~formátu JSON,
 který se pro~jejich přenos hodí daleko více. XML je přece jenom spíše jazyk než formát dat.

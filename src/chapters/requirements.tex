@@ -1,7 +1,7 @@
 \chapter{Specifikace požadavků}
 
 Zadání této práce vzniklo původně z požadavku na rozšíření již fungující mobilní aplikace Catcher.
-Její autor mě na konci roku 2015 oslovil s nápadem vylepšit její serverou část a doplnit API,
+Její autor mne na konci roku 2015 oslovil s nápadem vylepšit její serverou část a doplnit API,
 které by mohla využívat libovolná klientská aplikace. Po rychlé analýze jsme však oba došli k závěru,
 že bude lepší navrhnout nový backend, protože ten starý nebyl reálně vůbec rozšiřitelný. %Jméno projektu je pojmenované po...
 
@@ -12,7 +12,7 @@ Protože výsledek mé práce má později nahradit nevyhovující backend star�
 \section{Požadavky na Catchera}
 
 Protože se v komunitě hráčů i organizátorů turnajů jako aktivní hráč sám pohybuji,
-nebyl problém stanovit funkční i nefunkční požadavky na vznikající službu
+nebyl problém stanovit funkční i nefunkční požadavky na vznikající službu.
 
 \subsection{Funkční požadavky}
 
@@ -22,9 +22,9 @@ nebyl problém stanovit funkční i nefunkční požadavky na vznikající služ
   \item[Rozpis zápasů]
     Oprávněná role může vytvořit svůj vlastní turnaj a vložit seznam všech zápasů,
     které se budou hrát. Vytvořený rozpis zápasů systém již doplňuje automaticky na základě
-    odehraných výsledků (např. vítěze semifinále automaticky posune do finále). Ve chvíli,
+    odehraných výsledků (např.~vítěze semifinále automaticky posune do finále). Ve chvíli,
     kdy to bude již možné, doplní celkové pořadí turnaje. Automatické doplnění se týká i 
-    souhrné tabulky vzájemných hodnocení v kategorii SOTG.
+    souhrnné tabulky vzájemných hodnocení v kategorii SOTG.
   \item[Zadávání dat v rámci turnaje]
     Každý tým má možnost vytvořit vlastní soupisku na turnaj. Systém pak umožňuje
     v průběhu turnaje zadávat konkrétní údaje:
@@ -57,7 +57,7 @@ nebyl problém stanovit funkční i nefunkční požadavky na vznikající služ
   \item[Spolehlivost]
     Spolehlivost je základem pro funkční běh Catchera. Velká část operací, včetně chybných budou
     zapisovány do souborů pro snadné odhalení chyb. Obnova musí být proveditelná ze zálohovacích souborů.
-    %V případě výpadku by měl být informován administrátor pomocí SMS nebo emailu.
+    %V případě výpadku by měl být informován administrátor pomocí SMS nebo e-mailu.
     \item[Bezpečnost]
     Systém musí jednoznačně určit a ověřit uživatele, který přistupuje k rozhraní Catchera. Zároveň
     musí existovat možnost za chodu přidávat, odebírat nebo měnit oprávnění uživatelů.
@@ -112,13 +112,13 @@ a~jejich popis:
 \subsection*{Uživatelé}
   \begin{description}
     \item[UC2: Registruje nového uživatele]
-      Kdokoliv se může stát registrovaným uživatelem s rolí organizátor. Stačí se zaregistrovat s platným emailem.
+      Kdokoliv se může stát registrovaným uživatelem s rolí organizátor. Stačí se zaregistrovat s platným e-mailem.
       Klubové účty vytváří administrátor.
     \item[UC3: Autentizuje uživatele]
       Určí skutečnou identitu uživatele. Jinými slovy jej přihlásí. Po úspěšném přihlášení je uživateli vrácen
       přístupový token pro vykonávaní dalších požadavků (více k sekci~\ref{sec:security}).
     \item[UC4: Odesílá zapomenuté heslo]
-      Při ztrátě hesla lze požádat o odeslání nového náhodně vygenerovaného na email, který uživatel zadal při své registraci.
+      Při ztrátě hesla lze požádat o odeslání nového náhodně vygenerovaného na e-mail, který uživatel zadal při své registraci.
   \end{description}
 
 \subsection*{Oddíly}

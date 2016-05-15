@@ -2,7 +2,7 @@
 
 Kdybychom navrhovali SOAP službu, vzali bychom všechny případy užití (use cases) a~k~nim zpřístupnili
 konkrétní metody. V REST je návrh trochu složitejší.
-Musíme nejprve identifikovat všechny zdroje, se kterými se bude pracovat a~umožnit
+Musíme nejprve identifikovat všechny zdroje, se kterými se bude pracovat, a~umožnit
 k~nim přístup pomocí standardizovaných metod. V návrhu vycházíme ze tří ustálených modelů:
 
 \begin{itemize}
@@ -33,14 +33,14 @@ jež modelují základní představu o systému.
 
 \begin{description}
   \item[Uživatel (user)]
-  Uživatel je identifikován emailem a heslem nebo tokenem (více v sekci~\ref{sec:security}).
+  Uživatel je identifikován e-mailem a heslem nebo tokenem (více v sekci~\ref{sec:security}).
   Zároveň disponuje jednou ze tří rolí (\texttt{club}, \texttt{organizer} a~\texttt{admin}).
   \item[Oddíl (club)]
   Oddíl je logický prvek, který zastřešuje více týmů. Správu oddílu provádí klubový účet.
   \item[Tým (team)]
   Tým je vázán na oddíl. Jeho identifikátory jsou divize a stupeň týmu (např. A-tým).
   \item[Divize (division)]
-  Kategorie, ve které se pořádají turnaje, nebo je složen tým. Například junioská divize. % Například ženský tým je v divizi \texttt{women}.
+  Kategorie, ve které se pořádají turnaje, nebo je složen tým. Například juniorská divize. % Například ženský tým je v divizi \texttt{women}.
   \item[Turnaj (tournament)]
     Turnaj může nabývat několika stavů (stavový diagram na~obrázku~\ref{fig:state_tournament}).
     Po vytvoření turnaje lze až do potvrzení (příznak \texttt{ready}) měnit týmy, které se turnaje zúčastní.
@@ -55,7 +55,7 @@ jež modelují základní představu o systému.
       \label{fig:state_tournament}
     \end{figure}
   \item[Zápas (match)]
-    Zápas má, stejně jako turnaj, tři stavy (obrázek~\ref{fig:state_match}). Aktivováním zápasu je umožněno zadat konečný výsledek
+    Zápas má, stejně jako turnaj, tři stavy (obrázek~\ref{fig:state_match}). Akti\-vováním zápasu je umožněno zadat konečný výsledek
     nebo postupně vkládat jednotlivé body. Ukončením (příznak \texttt{terminated}) se konečný výsledek uloží a~následně se promítne
     v dalším postupu turnajem (vítězný tým posune do dalšího zápasu, týmům se přidá výhra ve skupině~apod.).
     \begin{figure}[ht!]
@@ -66,7 +66,7 @@ jež modelují základní představu o systému.
     \end{figure}
   \item[Bod (point)]
     Zápas je složen z několika bodů. Každý bod je záznamem o~skórování. Uchovává informaci, jaký hráč a komu nahrával.
-    Zápas může být ukončen, i bez jednotlivých bodů, zadáním konečného skóre.
+    Zápas může být ukončen i bez jednotlivých bodů zadáním konečného skóre.
   \item[Skupina (group)]
     Jde o několik týmů, které hrají zápasy pouze mezi sebou. Po odehrání všech utkání ve skupině se podle pravidel určí pořadí a~na~jeho základě se týmy posunou turnajem dál.
   \item[Hřiště (field)]
@@ -78,7 +78,7 @@ jež modelují základní představu o systému.
 \subsection{Datový model}
 
 Pro ujasnění entit a vazeb mezi nimi byl vhodný doménový model. Jeho konkrétní implementací je model datový.
-Ten je dekomponován, tj. zbavení se M:N vazeb, a oproti doménovému modelu obsahuje nové
+Ten je dekomponován, tj. zbavení se M:N~vazeb, a oproti doménovému modelu obsahuje nové
 (relační) objekty, včetně atributů. Kompletní datový model je dostupný v příloze~\ref{appendix:data_model}.
 
 \section{Identifikace zdrojů}
@@ -86,7 +86,7 @@ Ten je dekomponován, tj. zbavení se M:N vazeb, a oproti doménovému modelu ob
 % TODO: v nasledujicich odstavcich je potreba doplnit zdroje
 
 Abychom mohli namapovat zdroje na konkrétní URI\footnote{Uniform Resource Identifier},
-musíme nejprve jednoznačně určit zdroje. Mnoho programátorů zde postupuje tak, že vychází
+musíme nejprve jedno\-značně určit zdroje. Mnoho programátorů zde postupuje tak, že vychází
 z~datového modelu a~použije prosté mapování \textit{tabulka = zdroj}.
 Návrh je sice rychlý, ale nemusí být dostatečný. Navíc vytváří příliš těsnou vazbu mezi interní datovou reprezentací
 a~logickou strukturou zdrojů. Zdroje v této práci vycházejí z doménového modelu.
@@ -125,7 +125,7 @@ Návrh se týká cesty v hierarchické části URI. Pro udržení kvality je dop
   \caption{Jednotlivé komponenty URI; zdroj: autor na základě~\cite{uri}\label{overflow}}
 \end{figure}
 
-S těmito zásady byl vytvořen následující návrh na mapování operací, které lze provádět nad zdroji.
+S těmito zásadami byl vytvořen následující návrh na mapování operací, které lze provádět nad zdroji.
 Identifikátor značíme \texttt{\{id\}} nebo \texttt{\{ide\}} (druhý identifikátor je textový).
 V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dokumentační část.
 
@@ -138,7 +138,7 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
   \end{itemize}
   \item \texttt{\textbf{/forgotten-password}}
   \begin{itemize}
-    \item \textbf{popis:} Odešle nové náhodně vygenerované heslo na email uživatele.
+    \item \textbf{popis:} Odešle nové náhodně vygenerované heslo na e-mail uživatele.
     \item \textbf{metoda:} POST
     \item \textbf{pokrývá:} UC4
   \end{itemize}
@@ -150,10 +150,11 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
   \end{itemize}
   \item \texttt{\textbf{/user/\{id\}}}
   \begin{itemize}
-    \item \textbf{popis:} Spravuje konkrétního uživatele. Lze mu nastavit nový email nebo~heslo.
+    \item \textbf{popis:} Spravuje konkrétního uživatele. Lze mu nastavit nový e-mail nebo~heslo.
     \item \textbf{metoda:} PUT
     \item \textbf{pokrývá:} UC21
   \end{itemize}
+  \pagebreak
   \item \texttt{\textbf{/clubs}}
   \begin{itemize}
     \item \textbf{popis:} Kolekce oddílů.
@@ -162,7 +163,7 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
   \end{itemize}
   \item \texttt{\textbf{/club/\{id\}}}
   \begin{itemize}
-    \item \textbf{popis:} Operace nad konkrétním oddílem. Možnost uložit město a zemi původu.
+    \item \textbf{popis:} Operace nad konkrétním oddílem. Možnost uložit město a~zemi původu.
     \item \textbf{metoda:} GET, PUT, DELETE
     \item \textbf{pokrývá:} UC6, UC7, UC8
   \end{itemize}
@@ -190,6 +191,7 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
     \item \textbf{metoda:} GET, PUT, DELETE
     \item \textbf{pokrývá:} UC10, UC11, UC12
   \end{itemize}
+  \pagebreak
   \item \texttt{\textbf{/teams/}}
   \begin{itemize}
     \item \textbf{popis:} Kolekce týmů.
@@ -215,7 +217,7 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
   \end{itemize}
   \item \texttt{\textbf{/tournament/\{id\}}}
   \begin{itemize}
-    \item \textbf{popis:} Správa turnaje. Možnost turnaji upravit příznaky \texttt{ready} a \texttt{terminated}.
+    \item \textbf{popis:} Správa turnaje. Možnost turnaji upravit příznaky \texttt{ready} a~\texttt{terminated}.
     \item \textbf{metoda:} GET, PUT
     \item \textbf{pokrývá:} UC18, UC19
   \end{itemize}
@@ -231,6 +233,7 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
     \item \textbf{metoda:} GET, POST, DELETE
     \item \textbf{pokrývá:} UC21, UC22, UC23
   \end{itemize}
+  \pagebreak
   \item \texttt{\textbf{/tournament/\{id\}/teams}}
   \begin{itemize}
     \item \textbf{popis:} Slouží pro správu týmů na turnaji.
@@ -272,10 +275,11 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
     \item \textbf{metoda:} GET, PUT, 
     \item \textbf{pokrývá:} UC25, UC26
   \end{itemize}
+  \pagebreak
   \item \texttt{\textbf{/match/\{id\}/points}}
   \begin{itemize}
     \item \textbf{popis:} Zobrazuje detailní popis zápasu. Konkrétně jeho odehrané body seřazené chronologicky.
-      Dál poskytuje ukládání nových bodů a úpravu již těch stávajících (například změna hráče, který skóroval).
+      Dál poskytuje ukládání nových bodů a úpravu stávajících (například změna hráče, který skóroval).
     \item \textbf{metoda:} GET, POST, PUT, DELETE
     \item \textbf{pokrývá:} UC25
   \end{itemize}

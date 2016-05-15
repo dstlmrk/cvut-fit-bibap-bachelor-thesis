@@ -136,18 +136,20 @@ showstringspaces=false            %
 \authorWithDegrees{Marek Dostál} %jméno autora včetně současných akademických titulů
 \supervisor{Ing. Jiří Hunka}
 \acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
-\abstractCS{
-Tato bakalářská práce se zabývá návrhem a realizací backendu webové aplikace
+\abstractCS{Tato bakalářská práce se zabývá návrhem a realizací backendu webové aplikace
 sloužící ke správě turnajů a tvorbě statistik v Ultimate Frisbee.
 Podstatou řešení je vývoj RESTového rozhraní v Pythonu a jeho nasazení do provozu pomocí uWSGI.
-Výsledkem je fungující webová aplikace a~její backend nezávislý na~frontendu.  
+Výsledkem je fungující webová aplikace a~její backend nezávislý na~frontendu.
 }
-
-\abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+\abstractEN{This bachelor's thesis deals with backend design and realization of~the~web application.
+It will be used to help manage tournaments and generate statistics in Ultimate Frisbee.
+The essence of the solution lies in the development of~REST API in~Python and~putting in~into operation via uWSGT.
+Functional web app together with its backend, which is independent of frontend, are the main goals of the project.
+}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
 \keywordsCS{webová služba, REST API, Python, framework Falcon, Ultimate Frisbee}
-\keywordsEN{Nahraďte seznamem klíčových slov v angličtině oddělených čárkou.}
+\keywordsEN{web service, REST API, Python, framework Falcon, Ultimate Frisbee}
 
 \usepackage{fancyvrb}
 
@@ -176,11 +178,6 @@ Výsledkem je fungující webová aplikace a~její backend nezávislý na~fronte
 
 \input{./conclusion.tex}
 
-% TODO: Promyslet, jak presne odevzdavat citace.
-%\bibliographystyle{csn690}
-%\bibliographystyle{iso690}
-%\bibliography{ref}
-
 \input{./reference/bib.tex}
 
 \appendix
@@ -188,32 +185,26 @@ Výsledkem je fungující webová aplikace a~její backend nezávislý na~fronte
 \chapter{Seznam použitých zkratek}
 % \printglossaries
 \begin{description}
-	\item[ČALD] Česká asociace létajícího disku
-	\item[SOTG] Spirit of the Game
 	\item[API] Application Programming Interface
-	\item[HTTP] Hypertext Transfer Protocol
-	\item[REST] Representational State Transfer
-	\item[SOAP] Simple Object Access Protocol
-	\item[HTTPS] Hypertext Transfer Protocol Secure
-	\item[RAM] Random Access Memory
-	\item[XML] Extensible markup language
-	\item[JSON] JavaScript Object Notation
-	\item[URI] Uniform Resource Identifier
 	\item[CRUD] Create, read, update and delete
-	\item[GUI] Graphical user interface
-	\item[SQL] Structured Query Language
-	\item[ORM] Object-relational mapping
-	\item[OOP] Object-oriented programming
 	\item[CSS] Cascading Style Sheets
+	\item[ČALD] Česká asociace létajícího disku
+	\item[GUI] Graphical user interface
+	\item[HTTP] Hypertext Transfer Protocol
+	\item[HTTPS] Hypertext Transfer Protocol Secure
+	\item[JSON] JavaScript Object Notation
+	\item[OOP] Object-oriented programming
+	\item[ORM] Object-relational mapping
+	\item[RAM] Random Access Memory
+	\item[REST] Representational State Transfer
+	\item[SOTG] Spirit of the Game
+	\item[SOAP] Simple Object Access Protocol
+	\item[SQL] Structured Query Language
 	\item[SSL] Secure Sockets Layer
 	\item[TLS] Transport Layer Security
+	\item[URI] Uniform Resource Identifier
 	\item[VPS] Virtual private server
-	
-	\item[URL] Uniform Resource Locator
-	\item[UML] Unified Modeling Language
-	
-	\item[HTML] HyperText Markup Language
-
+	\item[XML] Extensible markup language
 \end{description}
 
 \chapter{Datový model}
@@ -221,7 +212,7 @@ Výsledkem je fungující webová aplikace a~její backend nezávislý na~fronte
   \begin{figure}[ht!]
     \centering
     \includegraphics[width=95mm]{./images/datovy-model.pdf}
-    \caption{Datový model.\label{overflow}}
+    \caption{Datový model\label{overflow}}
     \label{fig:data_model}
   \end{figure}
 

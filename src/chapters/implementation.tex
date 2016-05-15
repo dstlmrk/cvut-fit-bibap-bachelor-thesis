@@ -4,8 +4,8 @@
 
 V době, kdy existuje obrovské množství programovacích jazyků, jejich ekosystémů a dalších frameworků je důležité se umět \uv{nespálit}. 
 Vybrat špatné technologie totiž může znamenat prodloužení vývoje, zvýšení celkových nákladů nebo dokonce ukončení projektu.
-Proto je nutnost tuto část dostatečně analyzovat a svědomitě zvážit, aby nedošlo k omylu, který by zabraňoval úspěšné dokončení.
-Pro adekvátní výběr tak bylo potřeba specifikovat příslušná kritéria, které by jasně porovnala všechny zvažované technologie:
+Proto je nutnost tuto část dostatečně analyzovat a svědomitě zvážit, aby nedošlo k omylu, který by zabraňoval úspěšnému dokončení.
+Pro adekvátní výběr tak bylo potřeba specifikovat příslušná kritéria, která by jasně porovnala všechny zvažované technologie.
 
 \subsubsection*{Podpora webových služeb}
 Při tvorbě webové aplikace nemůže být ani řeč o technologii, která by pro~použití na webu nebyla vhodná. Technologie musí
@@ -22,37 +22,37 @@ nijak složitě zavádět nebo se učit její použití. Vhodným výběrem se t
 na neřešitelné problémy. Zavrhnout neznámé technologie ale může znamenat přijít o možnost používat nástroje, které jsou problémům šité na míru. 
 
 \subsubsection*{Výkon}
-I když služba nepočítá s vetším provozem čítající stovky požadavků za~sekundu, není důvod používat technologie, které jsou pomalé
+I když služba nepočítá s vetším provozem čítajícím stovky požadavků za~vteřinu, není důvod používat technologie, které jsou pomalé
 nebo spotřebovávají příliš moc prostředků.
 
 \section{Zvolené technologie}
 
 \subsection{Programovací jazyk Python}
 
-Python~\cite{python} je víceúčelový skriptovací jazyk navrhnut v roce 1991 \cite{python_year} Guido van Rossumem.
+Python~\cite{python} je víceúčelový skriptovací jazyk navržený v roce 1991 \cite{python_year} Guido van Rossumem.
 Je vyvíjen jako open source projekt a je bezplatně dostupný pro většinu platforem (Unix, Windows, Mac OS).
-V distribucích Linuxu je většinou součástí základní instalace. Díky velkému množství knihovních modulů z různých oblastí
-má velice široké uplatnění. Běžně jej používají ve firmách jako Google, Dropbox, YouTube, Red Hat, Cisco,
-Facebook nebo Microsoft~\cite{python_companies}.
+V distribucích Linuxu je většinou součástí základní instalace. Díky velkému množství knihovních modulů z~různých oblastí
+má velice široké uplatnění. Běžně jej používají ve~firmách jako Google, Dropbox, YouTube, Red Hat, Cisco,
+Facebook nebo~Microsoft~\cite{python_companies}.
 
 Protože jde o dynamický interpretovaný jazyk, jeho zdrojový kód není nutné překládat překladačem do strojového kódu.
 Je to zárovéň hybridní jazyk, protože umožňuje používat různá programovací paradigmata, včetně objektově orientovaného,
-imperativního, procedurálního nebo v omezené míře i~funkcionálního~\cite{python_about}. I když je Python mnohokrát označován za skriptovací jazyk,
+imperativního, procedurálního nebo v omezené míře i~funkcio\-nálního~\cite{python_about}. I když je Python mnohokrát označován za skriptovací jazyk,
 jeho návrh umožňuje psaní rozsáhlých a plnohodnotných aplikací včetně~GUI. Podporuje také dynamickou kontrolu datových typů.
 
 Je to jazyk, který se velmi snadno učí a bývá považován za jeden z nejvhodnějších programovacích jazyků pro začátečníky.
 Pomáhá tomu jeho jednoduchá syntaxe a čistota kódu. Na rozdíl od jiných jazyků bývá jeho zdrojový kód mnohokrát krátký a~dobře čitelný.
 Je tak zároveň vhodný pro výuku i~využití v~praxi. Podle PYPL indexu\footnote{PopularitY of Programming Language Index je vytvořen analyzováním toho,
 jak často jsou tutoriály jednotlivých programovacích jazyků hledány na Googlu.} je Python celosvětově nejrychleji roustoucí programovací jazyk
-v~oblíbenosti za posledních pět let~\cite{python_pypl} a v jeho dubnovém žebříčku roku 2016 drží druhé místo mezi jazyky Java~\cite{java} a PHP.
+co do~oblíbenosti za posledních pět let~\cite{python_pypl} a v dubnovém žebříčku roku 2016 drží druhé místo mezi jazyky Java~\cite{java} a PHP.
 
 Po stránce výkonu je na tom Python relativně dobře, protože mnoho na~výkon náročných knihoven je implementováno v~jazyce C~\cite{clanguage}.
 V porovnání s~ostatními interpretovanými jazyky je na tom samotný Python taky dobře.
-Fakt, se kterým ale musíme počítat je ten, že dynamicky interpretované jazyky jsou obecně pomalejší, než kompilované.
+Fakt, se kterým ale musíme počítat, je ten, že dynamicky interpretované jazyky jsou obecně pomalejší než kompilované.
 
 \subsection{Webový framework Falcon}
 
-Falcon~\cite{falcon} je minimalistický webový framework pro vývoj aplikačních backendů a jejich API s otevřeným zdrojovým kódem,
+Falcon~\cite{falcon} je minimalistický webový framework pro vývoj aplikačních back\-endů a jejich API s otevřeným zdrojovým kódem,
 populární pro svoji neuvěřitelnou rychlost. Falcon ctí architektonický styl REST, což znamená, že~mapuje použité
 zdroje a jejich metody do HTTP protokolu.
 
@@ -136,7 +136,7 @@ print tournament.name
 
 \subsubsection*{Co je to ORM}
 
-ORM je programovací technika, která zajišuje, že data z relační databáze
+ORM je programovací technika, která zajišťuje, že data z relační databáze
 se automaticky konvertují do objektů v OOP\footnote{Object-oriented programming}. Programátor tak pracuje s~perzistentními
 objekty místo toho, aby psal SQL dotazy. Pokročilejší implementace ORM dokonce dokážou využít objektovou dědičnost, což relační databáze nepodporují.
 
@@ -166,7 +166,7 @@ nebo zasílat notifikace o změnách.
 
 Nginx~\cite{nginx} je webový server a reverzní proxy\footnote{Reverzní proxy se používá pro zvýšení výkonu webového serveru.
 Rozděluje vstupující provoz na více serverů, například vyvažuje zátěž serverů zapojených v clusteru.}, který pracuje s běžnými protokoly.
-První oficiální verze se objevila v roce 2004, kterou vyvynul ruský softwarový inženýr Igor Sysoev~\cite{nginx_changes}.
+První oficiální verze se objevila v roce 2004, kterou vyvinul ruský softwarový inženýr Igor Sysoev~\cite{nginx_changes}.
 Zaměřuje se na vysoký výkon a nízké nároky na pamět. Je používán velkými firmami
 díky propracované možnosti rozložení zátěže. Z českých firem je to například Seznam.cz~\cite{nginx_seznam}.
 
@@ -181,13 +181,13 @@ I když je Apache HTTP Server~\cite{apache} stále výraznou jedničkou, jejich 
 Adresářová struktura popsaná v této sekci odpovídá struktuře, kterou lze najít i~na~GitHubu.
 Projekt se dělí na dvě části, v~jedné se nachází aplikační logika a v druhé je jednoduchá webová stránka s dokumentací.
 
-Celou aplikační logiku najdeme v adresáři \texttt{/catcher}, kde se nachází RESTové zdroje a~jejich mapování na URI,
+Celou aplikační logiku najdeme v adresáři \texttt{/catcher}, kde se nachází REST\-ové zdroje a~jejich mapování na URI,
 mapování relační databáze na~objekty nebo~zdrojové kódy zajišťující autentizaci a autorizaci uživatelů.
 Dokumentace se nachází v~adresáři \texttt{/html}.
 %, kde jsou všechny důležité soubory pro~použití JavaScriptu [II] a~CSS [II] na~webu.
 
 Konfigurační soubory jsou uloženy v adresáři \texttt{/catcher/config}.
-Nachází se zde přístupové údaje k databázím (produkční a testovací) nebo emailovému účtu pro zasílání nového hesla.
+Nachází se zde přístupové údaje k databázím (produkční a testovací) nebo e-mailovému účtu pro zasílání nového hesla.
 Konfigurační soubory nejsou z důvodu bezpečnosti uloženy v~repozitáři na~Gitu. 
 
 \begin{figure}[ht!]
@@ -239,16 +239,16 @@ služby je jeho bezstavovost, je potřeba s každým požadavkem posílat i data
 Zdroje a jejich metody, které jsou ze své podstaty veřejné a nevyžadují autentizaci, jsou tohoto procesu zbaveny.
 
 Mým řešením je posílání přístupového tokenu (náhodně generovaný hash o~32 znacích) v~hlavičce požadavku
-\texttt{Authorization}. Uživatel se před dotazováním služby přihlásí pomocí svého emailu a hesla.
-V případě úspěšného přihlášení je mu vrácen stavový kód 200 a přístupový token, který může používát po dobu jeho platnosti.
+\texttt{Authorization}. Uživatel se před dotazováním služby přihlásí pomocí svého e-mailu a hesla.
+V případě úspěšného přihlášení je mu vrácen stavový kód 200 a přístupový token, který může používat po dobu jeho platnosti.
 
 \subsection{Autorizace}
 
 Autorizace je proces, který na svém konci schválí uživatele k provedení nějaké akce. Každý uživatel
 má přiřazenou roli, která mu povoluje nebo zakazuje konkrétní operace. V případě, že
-se jedná o organizátora (role \texttt{organizer}), je ověřováno, zda pracuje pouze s jeho vytvořenými turnaji.
+se jedná o organizátora (role \texttt{organizer}), je ověřováno, zda pracuje pouze se svými vytvořenými turnaji.
 Každý turnaj si totiž v~databázi uchovává informaci o~tom, kým byl vytvořen. Klubové účty
-(role \texttt{club}) mají právo volat požadavky týkajících se týmů, které zastřešuje jejich klub.
+(role \texttt{club}) mají právo volat požadavky týkající se týmů, které zastřešuje jejich klub.
 Uživatel s rolí \texttt{admin} disponuje přístupem ke~všem operacím.
 
 \section{Reprezentace dat}
@@ -256,7 +256,7 @@ Uživatel s rolí \texttt{admin} disponuje přístupem ke~všem operacím.
 Pro komunikaci ze strany klienta i serveru používám jediný formát -- JSON.
 Jde o zápis dat, který je nezávislý na platformě, a je přímo určený pro přenos dat.
 Vstupní data, kterými může být libovolná datová struktura, transformuje do řetězce.
-Data v JSON formátu mohou být hierarchicky řazeny nebo organizována v polích.
+Data v JSON formátu mohou být hierarchicky řazena nebo organizována v polích.
 Pro lepší pochopení je na následujících řádcích uveden praktický příklad.
 Jde o návratová data z GET požadavku na adrese \texttt{/api/divisons}.
 Obsahem atributu \texttt{items} je pole s jednotlivými divizemi.
@@ -347,7 +347,7 @@ Každá změna hodnocení znamená opětovné přepočítání.
 % IDEA: popsat Sphinx a ostatni nastroje
 
 I když sepsání uživatelské dokumentace není požadavkem této práce, je vhodné celé rozhraní popsat.
-Programátoři, kteří budou v~budoucnu pracovat na~klientských aplikacích, mohou z~tohoto zdroje čerpat všechny potřebné informace k tomu, aby API kompletně využili.
+Programátoři, kteří budou v~budoucnu pracovat na~klient\-ských aplikacích, mohou z~tohoto zdroje čerpat všechny potřebné informace k~tomu, aby API kompletně využili.
 
 Dokumentace, na adrese \texttt{http://catcher.zlutazimnice.cz},
 poskytuje seznam všech zdrojů a metod, které lze volat. Popisuje způsob autentizace,

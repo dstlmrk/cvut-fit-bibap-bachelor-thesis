@@ -64,7 +64,7 @@ Protože všechny moje zdrojové kódy byly zveřejněny v repozitáři na GitHu
 Pro tyto potřeby byl vytvořen konfigurační soubor, který mám zazálohovaný na vlastním cloudovém uložišti
 a~pomocí programu wget~\cite{wget} si jej stahuju do~projektu vždy, když je změněn.
 Tento konfigurační soubor obsahuje hesla k~produkční a~testovací databázi
-nebo k~emailovému účtu, který používám pro~obnovu hesla uživatelů.
+nebo k~e-mailovému účtu, který používám pro~obnovu hesla uživatelů.
 
 \subsection*{Databáze}
 
@@ -134,10 +134,10 @@ Pro produkční nasazení ale~není tento postup doporučen.
 
 Standartem pro větší aplikace by měl být monitorovací systém,
 který sleduje zátěž jednotlivých komponent (webová aplikace, databáze, webový server atd.)
-a~v~případě výpadku informuje administrátora SMS zprávou nebo emailem.
+a~v~případě výpadku informuje administrátora SMS zprávou nebo e-mailem.
 Pro potřeby Catchera jsem však využil daleko jednodušího řešení -- webové aplikace Uptime Robot~\cite{uptime_robot},
 která v pravidelných intervalech \uv{oťukává} mnou definovavné adresy a~ověřuje jejich dostupnost.
-Pro použití v~omezené míře je zdarma a~v~sitauci, kdy je Catcher nedostupný, mě informuje emailem.
+Pro použití v~omezené míře je zdarma a~v~situaci, kdy je Catcher nedostupný, mě informuje e-mailem.
 
 
 %by mělo stačit \uv{oťukávání} z testovacíh
