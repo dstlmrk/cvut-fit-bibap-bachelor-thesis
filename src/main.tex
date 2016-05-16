@@ -130,22 +130,26 @@ showstringspaces=false            %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \department{Katedra softwarového inženýrství}
-\title{Systém pro skórování Ultimate~Frisbee~zápasů~-~backend}
+\title{Systém pro skórování Ultimate Frisbee~zápasů~-~backend}
 \authorGN{Marek} %(křestní) jméno (jména) autora
 \authorFN{Dostál} %příjmení autora
 \authorWithDegrees{Marek Dostál} %jméno autora včetně současných akademických titulů
 \supervisor{Ing. Jiří Hunka}
-\acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
-\abstractCS{Tato bakalářská práce se zabývá návrhem a realizací backendu webové aplikace
-sloužící ke správě turnajů a tvorbě statistik v Ultimate Frisbee.
-Podstatou řešení je vývoj RESTového rozhraní v Pythonu a jeho nasazení do provozu pomocí uWSGI.
-\textit{Výsledkem je fungující webová aplikace a~její backend nezávislý na~frontendu.}
+\acknowledgements{Chtěl bych poděkovat všem, kteří se podíleli na~vzniku této práce,
+zejména Karolíně Zubaté a~Davidovi Viktorovi za~cenné rady a~korekturu textu.
+Dále bych chtěl poděkovat rodině a přátelům, kteří mne podporovali po~celou dobu studia.
+}
+\abstractCS{Tato bakalářská práce se zabývá návrhem a~realizací backendu webové aplikace
+sloužící ke~správě turnajů a~tvorbě statistik v~Ultimate Frisbee.
+Podstatou řešení je vývoj RESTového rozhraní v~Pythonu a~jeho nasazení do~provozu pomocí uWSGI.
+Výsledkem je funkční backend nezávislý na~frontendu.
 }
 \abstractEN{This bachelor's thesis deals with design and realization of~the~web application backend.
-It will be used to help manage tournaments and generate statistics in Ultimate Frisbee.
-The essence of the solution lies in the development of~REST API in~Python and~putting in~into operation via uWSGT.
-\textit{Functional web app together with its backend, which is independent of frontend, are the main goals of the project.}
+It will be used to help manage tournaments and generate statistics in~Ultimate Frisbee.
+The essence of the solution lies in the development of~REST API in~Python and~putting~in~into operation via uWSGI.
+Functional backend, which is independent of frontend, is the result of the project.
 }
+%  main goal of the project
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
 \keywordsCS{webová služba, REST API, Python, framework Falcon, Ulti\-mate Frisbee}
@@ -223,13 +227,11 @@ The essence of the solution lies in the development of~REST API in~Python and~pu
 \begin{figure}
 	\dirtree{%
 		.1 readme.txt\DTcomment{stručný popis obsahu CD}.
-		.1 exe\DTcomment{adresář se spustitelnou formou implementace}.
 		.1 src.
 		.2 impl\DTcomment{zdrojové kódy implementace}.
 		.2 thesis\DTcomment{zdrojová forma práce ve formátu \LaTeX{}}.
 		.1 text\DTcomment{text práce}.
 		.2 thesis.pdf\DTcomment{text práce ve formátu PDF}.
-		.2 thesis.ps\DTcomment{text práce ve formátu PS}.
 	}
 \end{figure}
 

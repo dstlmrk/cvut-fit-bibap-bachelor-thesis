@@ -53,8 +53,7 @@ Fakt, se kterým ale musíme počítat, je ten, že dynamicky interpretované ja
 \subsection{Webový framework Falcon}
 
 Falcon~\cite{falcon} je minimalistický webový framework pro vývoj aplikačních back\-endů a jejich API s otevřeným zdrojovým kódem,
-populární pro svoji neuvěřitelnou rychlost. Falcon ctí architektonický styl REST, což znamená, že~mapuje použité
-zdroje a jejich metody do HTTP protokolu.
+populární pro svoji neuvěřitelnou rychlost. Falcon podporuje architektonický styl REST, což znamená, že~mapuje zdroje a~jejich metody do~HTTP protokolu.
 
 \begin{table}[htb]
  \centering
@@ -77,7 +76,7 @@ zdroje a jejich metody do HTTP protokolu.
 \end{table}
 
 Falcon disponuje minimálním množstvím závislostí na jiných knihovnách a díky jeho flexibilitě je ho možné
-používat ve většině verzích Pythonu\footnote{Vývoj v Pythonu poznamenalo v roce 2008 vydání nové verze Python 3.0,
+používat ve většině verzí Pythonu\footnote{Vývoj v Pythonu poznamenalo v roce 2008 vydání nové verze Python 3.0,
 která je částečně zpětně nekompatibilní.}. Kromě toho umí pracovat s WSGI\footnote{WSGI je komunikační protokol
 mezi aplikací napsanou v Pythonu a webovým serverem.}. Nevýhodou Falconu je menší uživatelská
 základna na rozdíl od konkurenčního Flasku, jenž patří mezi nejpopulárnější webové frameworky pro Python.
@@ -101,6 +100,9 @@ class Clubs(Collection):
 \end{python}
 
 \subsection{Databáze MySQL}
+
+% TODO: databaze, s niz probiha komunikace promoci jazyka SQL
+% TODO: divny je,ze komunikace
 
 MySQL~\cite{mysql} je relační datábáze, se kterou probíhá komunikace pomocí jazyka SQL~\cite{sql}, jak už její název napovídá.
 Díky svému výkonu, snadné použitelnosti (lze ji nainstalovat na Linux, Windows, OS X a další) a faktu,
@@ -137,7 +139,7 @@ print tournament.name
 \subsubsection*{Co je to ORM}
 
 ORM je programovací technika, která zajišťuje, že data z relační databáze
-se automaticky konvertují do objektů v OOP\footnote{Object-oriented programming}. Programátor tak pracuje s~perzistentními
+se konvertují do objektů v OOP\footnote{Object-oriented programming}. Programátor tak pracuje s~perzistentními
 objekty místo toho, aby psal SQL dotazy. Pokročilejší implementace ORM dokonce dokážou využít objektovou dědičnost, což relační databáze nepodporují.
 
 Technika je často kritizována, protože programátory odnaučuje psát SQL dotazy a~jde většinou o~zbytečnou režii navíc.
@@ -147,13 +149,15 @@ V~závěru této práce jsem použití ORM zhodnotil.
 
 \subsection{Verzovací systém Git}
 
-Git~\cite{git} je nástroj vytvořený Linusem Torvaldem\footnote{tvůrce Linuxového jádra}.
+% TODO: najit zdroj, ze Git uchovava pouze rozdily ve verzich
+
+
+Git~\cite{git} je nástroj vytvořený Linusem Torvaldsem\footnote{tvůrce Linuxového jádra}.
 Slouží k distribuované správě verzí libovolných digitálních informací, například zdrojových kódů.
 Výraznou výhodou je možnost spolupráce velkého množství programátorů na~jednom softwarovém projektu. 
 Každý programátor má adresář s~projektem na~svém lokálním disku a~všechny změny sdílí s~centrálním repozitářem,
 ke~kterému mají přístup i~všichni ostatní programátoři. Ti si pak mohou stáhnout všechny změny,
-které se na~projektu staly. Git neuchovává úplný stav každé verze, ale pouze rozdíly mezi jednotlivými verzemi.
-Tím výrazně šetří paměť.  
+které se na~projektu staly.
 
 Ruku v ruce jde s popularitou Gitu nahoru i služba GitHub.
 Ta nabízí bezplatný i komerční hosting pro repozitáře softwarových projektů.
@@ -218,7 +222,7 @@ Konfigurační soubory nejsou z důvodu bezpečnosti uloženy v~repozitáři na~
 % IDEA: popsat oAuth
 % IDEA: muzu pouzit diagram komunikace o token
 
-Zabezpečit webovou aplikaci je dnes opětovaně diskutovaným problémem. Mnoho systémů již postihlo napadení
+Zabezpečit webovou aplikaci je dnes opakovaně diskutovaným problémem. Mnoho systémů již postihlo napadení
 nebo únik důležitých dat. Navíc neexistuje stav, kdy je možné o své práci prohlásit, že je naprosto
 bezpečná. Případní útočníci jsou totiž stále vynalézavější a~hledají každou chybu v~systému.
 Aplikaci je tedy nutné obohatit o co nejvíce ochranných prvků a držet se zásad,
@@ -349,10 +353,10 @@ Každá změna hodnocení znamená opětovné přepočítání.
 I když sepsání uživatelské dokumentace není požadavkem této práce, je vhodné celé rozhraní popsat.
 Programátoři, kteří budou v~budoucnu pracovat na~klient\-ských aplikacích, mohou z~tohoto zdroje čerpat všechny potřebné informace k~tomu, aby API kompletně využili.
 
-Dokumentace, na adrese \texttt{http://catcher.zlutazimnice.cz},
+Dokumentace, dostupná na adrese \texttt{http://catcher.zlutazimnice.cz},
 poskytuje seznam všech zdrojů a metod, které lze volat. Popisuje způsob autentizace,
 formát komunikace, parametry dotazů nebo strukturu jejich odpovědí.
-Dokumentace byla využívána Jaroslavem Veselým k vývoji frontendu. Jak dokumentace vypadá, můžete vidět na obrázku~\ref{fig:doc}.
+Dokumentace byla využívána Jaroslavem Veselým k vývoji frontendu. Jak dokumentace vypadá můžete vidět na obrázku~\ref{fig:doc}.
 
 \begin{figure}[ht!]
 \centering

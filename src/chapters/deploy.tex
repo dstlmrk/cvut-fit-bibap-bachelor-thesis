@@ -13,9 +13,11 @@ může docházet k~ovlivňování cizích VPS. Výhodou je naopak levnější po
 
 \section{Softwarové požadavky}
 
+% TODO: zeptat se Davida na port, protoze ten port muze byt u mne zablokovany
+
 Aplikace běží na VPS s OS Ubuntu~\cite{ubuntu} verze 15.10. Na veřejné adrese virtuálního serveru
 je dostupná RESTová webová služba Catcher, s níž může zvnějšku komunikovat libovolná aplikace,
-která disponuje HTTP protokolem a dostupností běžného portu 80. Jako prostředník mezi klientskou aplikací
+která má připojení k internetu. Jako prostředník mezi klientskou aplikací
 a~uWSGI~2.0.12~\cite{python_uwsgi}, jehož úkolem je udržovat Catchera, zde běží webový server Nginx 1.9.3.
 Data se ukládají na databázový server MySQL verze 5.6.28.
 
@@ -47,7 +49,7 @@ Detail komunikace je vidět na obrázku~\ref{fig:uwsgi}.
 
 \subsection*{uWSGI úloha}
 
-Spuštění webové aplikace provadím následujícím příkazem. Proces poslouchá na~portu 8080 a~po~celou dobu běží na~pozadí.
+Spuštění webové aplikace provadím následujícím příkazem. Proces poslouchá na~portu 8080, odkud přijímá zprávy od~webového serveru, a~po~celou dobu běží na~pozadí.
 
 \begingroup
 \fontsize{9.5pt}{11pt}\selectfont
