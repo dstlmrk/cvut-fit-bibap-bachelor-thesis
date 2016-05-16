@@ -15,7 +15,7 @@ zápasů včetně podrobného průběhu bodů, rozhodovat o umístění v zákla
 odevzdávat a zveřejnit vzájemná hodnocení SOTG týmů na~turnaji. Dokáže omezeně importovat oficiální soupisky týmů
 na nadcházející turnaje spadající pod Českou asociaci létajícího disku.
 
-Kromě mobilní aplikace Catcher byl vytvořen backend v PHP~\cite{php}, který ukládá a počítá data na serveru. Ten však není
+Kromě mobilní aplikace Catcher byl vytvořen backend v PHP~\cite{php}, který ukládá a zpracovává data na serveru. Ten však není
 objektově orientovaný a~všechna jeho eventuální rozšíření jsou velmi náročná.
 
 \subsubsection*{Výhody}
@@ -51,7 +51,7 @@ objektově orientovaný a~všechna jeho eventuální rozšíření jsou velmi n�
 Aplikace zveřejněná v roce 2004~\cite{ultimate_organizer}, napsaná v PHP a používaná na velkých akcích jako mistrovství světa nebo Evropy
 pro sledování výsledků a statistik. Poskytuje tvorbu a správu turnajů, týmů, hráčů,
 výsledků, rozpisů atd. Podporuje vícejazyčnost, tisk rozpisů v PDF, přístup pro mobilní telefony
-a~spoustu dalších vlastností. Dokáže zobrazit podrobné detaily o průběhu zápasů.
+a~spoustu dalších funkcí. Dokáže zobrazit podrobné detaily o průběhu zápasů.
 
 \subsubsection*{Výhody}
 \begin{itemize}
@@ -109,16 +109,16 @@ Z úvodní kapitoly víme, že webová služba se dělí na dva typy - SOAP a RE
 \subsection{SOAP}
 
 Protokol SOAP (\textit{Simple Object Access Protocol}) vystavuje aplikační logiku jako službu
-a~je proveden v~syntaxi jazyka XML~\cite{xml}. Výhodou standartního značkovacího jazyka je jeho rozšíření
+a~je proveden v~syntaxi jazyka XML~\cite{xml}. Výhodou standardního značkovacího jazyka je jeho rozšíření
 a značná podpora ve většině programovacích jazycích. Syntaxe XML je pro člověka relativně čitelná,
-protože bývá zdlouhavá, avšak počítač musí parsování dat věnovat více času i paměti.
+přestože bývá zdlouhavá, avšak počítač musí parsování dat věnovat více času i paměti.
 
 Nevýhodou je nestálost prostředí. Ve chvíli, kdy dojde v~SOAP API ke~změ\-ně, klient může přestat pracovat,
 protože si nemusí umět poradit s odpovědí, přesněji s novou strukturou přijímaného XML souboru.
 Podobně je potřeba upravovat při změnách API i strukturu požadavku.
 
 % IDEA: Moznost napsat vice o SOAP, napriklad vlozit nejakou ukazku.
-% SOAP služby standartně obsahují v URL nějaké sloveso (např. zobrazInfo).
+% SOAP služby standardně obsahují v URL nějaké sloveso (např. zobrazInfo).
  
 \subsection{REST}
 
@@ -126,13 +126,13 @@ Protokol REST (\textit{Representational State Transfer}) je architektonický sty
 Je založený na vystavování a jednotném přístupu ke~zdrojům\footnote{resources}, kterými jsou určitá data.
 Přistupuje se k~nim pomocí HTTP metod GET, POST, DELETE a PUT.
 
-RESTová služba používá pro přenos dat řadu formátů, nejstandartnějšími jsou XML a JSON~\cite{json}.
+RESTová služba používá pro přenos dat řadu formátů, nejstandardnějšími jsou XML a JSON~\cite{json}.
 JSON je datově méně náročnější a stejně jako XML je podporován v mnoha programovacích jazycích.
 
 \subsubsection*{Zdroj}
 
 Architektonický styl REST je postaven na základním prvku -- zdroji. Jde o~logický objekt,
-který lze vyjádřit smysluplnou reprezentací, a~s~kterém lze manipulovat pomocí zpřístupněných metod.
+který lze vyjádřit smysluplnou reprezentací, a~s~kterým lze manipulovat pomocí zpřístupněných metod.
 Každý zdroj má svůj unikátní identifikátor URI\footnote{Uniform Resource Identifier}.
 
 \subsubsection*{Požadavky na RESTové rozhraní}
@@ -154,6 +154,6 @@ V~této práci uvedeme ty nejdůležitější.
 
 \subsection{Shrnutí}
 
-Z předcházejícího srovnání je patrné, že na flexibilní v budoucnu a rozšiřitelné rozhraní se spíše hodí REST.
+Z předcházejícího srovnání je patrné, že na flexibilní a~v~budoucnu a rozšiřitelné rozhraní se spíše hodí REST.
 Klienti nebudou tolik náchylní na úpravy API a~navíc jim bude možné data poskytnout ve~formátu JSON,
-který se pro~jejich přenos hodí daleko více. XML je přece jenom spíše jazyk než formát dat.
+který se pro~jejich přenos hodí daleko více.

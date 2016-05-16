@@ -50,7 +50,7 @@ Popularitě přidává fakt, že jde o hru celkem vzato nenáročnou na vybaven�
 Už od počátku je Ultimate Frisbee založeno na hodnotách, jež kladou zodpovědnost za fair play na samotné hráče.
 Očekává se vysoce kompetitivní hra, avšak bez ztráty vzájemné ohleduplnosti a vytracení radosti ze hry.
 Všechna provinění vůči pravidlům řeší samotní hráči. Jako jediná sportovní hra se tak obejde bez rozhodčích, a to i
-na nejvyšších soutěžích, kterými jsou mistrovství Evropy a světa.
+na nejvyšších soutěžích, kterými jsou mistrovství Evropy a světa~\cite{sotg}.
 
 Hraní fair play je otázka cti. Na každém turnaji je vyhlašována cena Spirit of the Game (dále jen \uv{SOTG}),
 která je cenou pro ty, kteří se chovali nejčestněji. Po každém zápase se týmy navzájem ohodnotí
@@ -62,10 +62,10 @@ je ceněna obdobně jako 1. místo.
 V České republice zastřešuje sporty s létajícím talířem již od roku 1991~\cite{cald_historie} Česká asociace
 lé\-ta\-jícícho disku (dále jen \uv{ČALD}). V celé republice eviduje desítky zaregistrovaných
 klubů, tzv.~oddíly, které se mezi sebou utkávají v~rámci celého roku na~turnajích.
-Jenom za~loňský rok jich bylo na~našem území přes třicet~\cite{cald_kalendar}.
+Jenom v~loňském rok jich bylo na~našem území přes třicet~\cite{cald_kalendar}.
 
-Většina turnajů nebo mistrovství pak trvá zpravidla více dnů, během kterých se odehrají desítky
-utkání. A s přibývajícím počtem hráčů i fanoušků vzniká čím dál větší poptávka po online
+Většina turnajů nebo mistrovství trvá zpravidla více dnů, během kterých se odehrají desítky
+utkání. S přibývajícím počtem hráčů i fanoušků pak vzniká čím dál větší poptávka po online
 přenosech a statistikách z těchto akcí.
 
 \subsection{Jak vypadá turnaj}
@@ -88,7 +88,7 @@ kde je po odehrání všech vzájemných zápasů určeno finální pořadí.
 
 \section{Aplikační rozhraní}
 
-Častěji se označuje zkratkou API\footnote{Application Programming Interface}.
+Aplikační rozhraní se častěji označuje zkratkou API\footnote{Application Programming Interface}.
 V informatice se tímto pojmem označuje sbírka procedur, funkcí, tříd
 nebo protokolů nějaké knihovny, jež mohou ostatní programátoři používat.
 Jde v podstatě o abstrakci, která popisuje rozhraní pro interakci s řadou programových celků,
@@ -174,7 +174,7 @@ access-control-allow-methods: PUT,POST,DELETE,GET
     \hline
     DELETE & Metoda určená k~mazání zdrojů.\\
     \hline
-    PUT & Podobně jako POST slouží k odeslání dat ke zpracování.\\
+    PUT & Podobně jako POST slouží k odeslání dat ke zpracování. Zpravidla je tato metoda používána pro úpravu zdrojů.\\
     \hline
   \end{tabular}
   \caption{Přehled vybraných metod HTTP protokolu v~kontextu této práce~\cite{http_metody}}
@@ -207,5 +207,4 @@ access-control-allow-methods: PUT,POST,DELETE,GET
 Webová služba je zapouzdřená funkcionalita nějaké aplikace, kterou využívají další aplikace.
 Mluvíme tedy o strojové interakci, nevhodné například pro~prohlížení ve webovém prohlížeči.
 S veřejně vystavenou webovou službou komunikují ostatní aplikace pomocí definovaného rozhraní.
-Pro realizaci API se dnes nejčastěji využívají dva protokoly - SOAP~\cite{soap} a REST~\cite{rest}.
-Tyto protokoly komunikují pomocí již zavedených protokolů (hlavně pomocí~HTTP).
+Pro realizaci API se dnes nejčastěji využívají dvě možnosti - SOAP~\cite{soap} a REST~\cite{rest}.

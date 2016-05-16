@@ -2,9 +2,9 @@
 
 \section{Výběr technologií}
 
-V době, kdy existuje obrovské množství programovacích jazyků, jejich ekosystémů a dalších frameworků je důležité se umět \uv{nespálit}. 
+V době, kdy existuje obrovské množství programovacích jazyků, jejich ekosystémů a frameworků je důležité se umět \uv{nespálit}. 
 Vybrat špatné technologie totiž může znamenat prodloužení vývoje, zvýšení celkových nákladů nebo dokonce ukončení projektu.
-Proto je nutnost tuto část dostatečně analyzovat a svědomitě zvážit, aby nedošlo k omylu, který by zabraňoval úspěšnému dokončení.
+Proto je nutné tuto část dostatečně analyzovat a svědomitě zvážit, aby nedošlo k omylu, který by zabraňoval úspěšnému dokončení.
 Pro adekvátní výběr tak bylo potřeba specifikovat příslušná kritéria, která by jasně porovnala všechny zvažované technologie.
 
 \subsubsection*{Podpora webových služeb}
@@ -23,7 +23,7 @@ na neřešitelné problémy. Zavrhnout neznámé technologie ale může znamenat
 
 \subsubsection*{Výkon}
 I když služba nepočítá s vetším provozem čítajícím stovky požadavků za~vteřinu, není důvod používat technologie, které jsou pomalé
-nebo spotřebovávají příliš moc prostředků.
+nebo spotřebovávají příliš mnoho prostředků.
 
 \section{Zvolené technologie}
 
@@ -35,8 +35,8 @@ V distribucích Linuxu je většinou součástí základní instalace. Díky vel
 má velice široké uplatnění. Běžně jej používají ve~firmách jako Google, Dropbox, YouTube, Red Hat, Cisco,
 Facebook nebo~Microsoft~\cite{python_companies}.
 
-Protože jde o dynamický interpretovaný jazyk, jeho zdrojový kód není nutné překládat překladačem do strojového kódu.
-Je to zárovéň hybridní jazyk, protože umožňuje používat různá programovací paradigmata, včetně objektově orientovaného,
+Protože jde o dynamický interpretovaný jazyk, jeho zdrojový kód není nutné předem překládat překladačem do~strojového kódu.
+Je to zárovéň hybridní jazyk, protože umožňuje používat různá programovací paradigmata, vče\-tně objektově orientovaného,
 imperativního, procedurálního nebo v omezené míře i~funkcio\-nálního~\cite{python_about}. I když je Python mnohokrát označován za skriptovací jazyk,
 jeho návrh umožňuje psaní rozsáhlých a plnohodnotných aplikací včetně~GUI. Podporuje také dynamickou kontrolu datových typů.
 
@@ -157,13 +157,13 @@ Slouží k distribuované správě verzí libovolných digitálních informací,
 Výraznou výhodou je možnost spolupráce velkého množství programátorů na~jednom softwarovém projektu. 
 Každý programátor má adresář s~projektem na~svém lokálním disku a~všechny změny sdílí s~centrálním repozitářem,
 ke~kterému mají přístup i~všichni ostatní programátoři. Ti si pak mohou stáhnout všechny změny,
-které se na~projektu staly.
+ke~kterým v projektu došlo.
 
 Ruku v ruce jde s popularitou Gitu nahoru i služba GitHub.
 Ta nabízí bezplatný i komerční hosting pro repozitáře softwarových projektů.
 Zdarma, a díky tomu populární v dané oblasti, je GitHub pro open source projekty.
 Funguje od roku 2008 a hostuje už více jak 10 miliónů repozitářů~\cite{git_about}.
-Poskytuje mnoho dalších vlastností, jako například možnost diskutovat nad~kódem
+Poskytuje mnoho dalších funkcionalit, jako například možnost diskutovat nad~kódem
 nebo zasílat notifikace o změnách.
 
 \subsection{Webový server Nginx}
@@ -298,7 +298,7 @@ Obsahem atributu \texttt{items} je pole s jednotlivými divizemi.
 
 V Pythonu se formátu JSON velmi podobá datová struktura \pythoninline{dict()}~\cite{python_dict}.
 Vzájemnou konverzi poskytuje několik knihoven, některé jsou dokonce specializovány pouze na přeměnu v jednom směru.
-Já používám ve většině případech standartní knihovnu \texttt{json}~\cite{python_json}
+Já používám ve většině případech standardní knihovnu \texttt{json}~\cite{python_json}
 nebo ručně doinstalovanou \texttt{ujson}~\cite{python_ujson}.
 
 \section{Vytvoření turnaje}
@@ -327,7 +327,7 @@ ne jenom při vytváření turnaje.
 
 \section{Průběh turnaje}
 
-V okamžiku, kdy turnaj má příznak \texttt{ready}, je možné odehrávat zápasy.
+V okamžiku, kdy má turnaj příznak \texttt{ready}, je možné odehrávat zápasy.
 V~jejich průběhu lze vkládat body jednotlivě nebo rovnou celé výsledky.
 Ať už si uživatel vybere jakkýkoliv způsob, po každé změně jsou přepočítávány
 statistiky hráčů, aby byly co nejaktuálnější. Po skončení zápasu se vyhodnotí vítěz

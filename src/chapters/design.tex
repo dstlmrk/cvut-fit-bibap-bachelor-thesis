@@ -1,6 +1,6 @@
 \chapter{Návrh}
 
-Kdybychom navrhovali SOAP službu, vzali bychom všechny případy užití (use cases) a~k~nim zpřístupnili
+Kdybychom navrhovali SOAP službu, vzali bychom všechny případy užití (use cases) a~k~nim vytvořili
 konkrétní metody. V REST je návrh trochu složitejší.
 Musíme nejprve identifikovat všechny zdroje, se kterými se bude pracovat, a~umožnit
 k~nim přístup pomocí standardizovaných metod. V návrhu vycházíme ze tří ustálených modelů:
@@ -14,7 +14,7 @@ k~nim přístup pomocí standardizovaných metod. V návrhu vycházíme ze tří
 První dva modely nám slouží k identifikování jednotlivých zdrojů.
 Doménový model poskytuje klíčové entity a vztahy mezi nimi.
 Jde o~vysoko-úrovňový pohled na problematiku. Nezbytné detaily dořešíme pomocí datového modelu. 
-Akce, které nejdou pokrýt pomocí standartních metod manipulujících se zdroji, nám mohou poskytnout use case diagramy.
+Akce, které nejdou pokrýt pomocí standardních metod manipulujících se zdroji, nám mohou poskytnout use case diagramy.
 My si vystačíme s případy užití a jejich diagramem, který jsme zpracovali v sekci~\ref{sec:use_case}. 
 Diagramy všech tří modelů jsou tedy v této práci zpracovány.
 
@@ -78,13 +78,13 @@ jež modelují základní představu o systému.
 \subsection{Datový model}
 
 Pro ujasnění entit a vazeb mezi nimi byl vhodný doménový model. Jeho konkrétní implementací je model datový.
-Ten je dekomponován, tj. zbavení se M:N~vazeb, a oproti doménovému modelu obsahuje nové
-(relační) objekty, včetně atributů. Kompletní datový model je dostupný v příloze~\ref{appendix:data_model}.
+Ten je dekomponován, tj. zbaven M:N~vazeb, a~oproti doménovému modelu obsahuje nové
+(relační) objekty včetně atributů. Kompletní datový model je dostupný v příloze~\ref{appendix:data_model}.
 
 \section{Identifikace zdrojů}
 
 Abychom mohli namapovat zdroje na konkrétní URI\footnote{Uniform Resource Identifier},
-musíme nejprve jedno\-značně určit zdroje. Mnoho programátorů zde postupuje tak, že vychází
+musíme je nejprve jedno\-značně určit. Mnoho programátorů zde postupuje tak, že vychází
 z~datového modelu a~použije prosté mapování \textit{tabulka = zdroj}.
 Návrh je sice rychlý, ale nemusí být dostatečný. Navíc vytváří příliš těsnou vazbu mezi interní datovou reprezentací
 a~logickou strukturou zdrojů. Zdroje v této práci vycházejí z doménového modelu.
@@ -95,8 +95,8 @@ Podle~\cite{rest_vse} se zdroje dělí na tři základní typy:
 
 \begin{description}
   \item[Dokument] Reprezentace jednoho konkrétního zdroje v určitém formátu.
-  \item[Kolekce] Množina zdrojů stejného typu. Jedná se o skupiny samostných entit.
-  \item[Kontroler] Nezávislé metody aplikace. Akce, které nelze vyjádřit pomocí standartních
+  \item[Kolekce] Množina zdrojů stejného typu. Jedná se o skupiny samostatných entit.
+  \item[Kontroler] Nezávislé metody aplikace. Akce, které nelze vyjádřit pomocí standardních
   CRUD\footnote{Create, Read, Update, Delete - vytváření, čtení, úpravy a mazání} metod HTTP protokolu.
 \end{description}
 
@@ -277,7 +277,7 @@ V cestách je vynechán prefix \texttt{/api}, který odděluje aplikační a dok
   \item \texttt{\textbf{/match/\{id\}/points}}
   \begin{itemize}
     \item \textbf{popis:} Zobrazuje detailní popis zápasu. Konkrétně jeho odehrané body seřazené chronologicky.
-      Dál poskytuje ukládání nových bodů a úpravu stávajících (například změna hráče, který skóroval).
+      Dále poskytuje ukládání nových bodů a úpravu stávajících (například změna hráče, který skóroval).
     \item \textbf{metoda:} GET, POST, PUT, DELETE
     \item \textbf{pokrývá:} UC25
   \end{itemize}

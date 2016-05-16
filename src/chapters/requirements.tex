@@ -3,10 +3,10 @@
 Zadání této práce vzniklo původně z požadavku na rozšíření již fungující mobilní aplikace Catcher.
 Její autor mne na konci roku 2015 oslovil s nápadem vylepšit její serverou část a doplnit API,
 které by mohla využívat libovolná klientská aplikace. Po rychlé analýze jsme však oba došli k závěru,
-že bude lepší navrhnout nový backend, protože ten starý nebyl reálně vůbec rozšiřitelný. %Jméno projektu je pojmenované po...
+že bude lepší navrhnout nový backend, protože ten starý nebyl reálně rozšiřitelný. %Jméno projektu je pojmenované po...
 
 Finálním řešením je tak webová služba, která poskytuje kompletní rozhraní,
-tzn. že jde o zcela nezávislou vrstvu mezi frontendem a backendem.
+tzn. jde o zcela nezávislou vrstvu mezi frontendem a backendem.
 Protože výsledek mé práce má později nahradit nevyhovující backend staré aplikace, ponechal jsem celému projektu jméno Catcher.
 
 \section{Požadavky na Catchera}
@@ -41,7 +41,7 @@ nebyl problém stanovit funkční i nefunkční požadavky na vznikající služ
 \subsection{Nefunkční požadavky}
 
 \begin{description}
-  \item[Snadná rozšířitelnost]
+  \item[Snadná rozšiřitelnost]
     Už nyní evidujeme změny, o~které je zájem, ale nejsou předmětem této práce.
     I proto je nutné projekt dokončit tak, aby byl v~budoucnu snadno rozšiřitelný nebo
     modifikovatelný.
@@ -176,7 +176,7 @@ a~jejich popis:
       Týmům na turnaji lze přiřadit hráče, tzn. vytvořit týmové soupisky. Hráčům ze soupisky
       pak lze připisovat body na turnaji. Každý hráč může hrát na turnaji pouze za jeden tým.
     \item[UC22: Získá soupisky]
-      Vrátí soupisku konkrétního týmu nebo seznam hráčů napříč celým turnajem. Včetně jejich statistik a seřazení dle úspěšnosti.
+      Vrátí soupisku konkrétního týmu nebo seznam hráčů napříč celým turnajem, včetně jejich statistik a seřazení dle úspěšnosti.
     \item[UC23: Odebere hráče ze soupisky]
       Jestliže hráč nedisponuje žádnými statistikami a nestihl ještě do žádného zápasu zasáhnout, je možné jej odstranit ze soupisky.
   \end{description}
@@ -184,7 +184,7 @@ a~jejich popis:
 \subsubsection*{Skupiny a zápasy}
   \begin{description}
     \item[UC24: Získá skupiny]
-      Vrátí informace o vybraných skupinách. Seznam týmů včetně jejich vzájemného skóre a pořadí ve skupině.
+      Vrátí informace o vybraných skupinách, tzn. seznam týmů včetně jejich vzájemného skóre a pořadí ve skupině.
     \item[UC25: Získá zápasy]
       Vrátí stav, výsledné skóre, nebo hodnocení SOTG vybraných zápasů.
     \item[UC26: Upraví zápas]

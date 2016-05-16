@@ -1,15 +1,15 @@
 \chapter{Nasazení}
 
 K testování a provozu webové aplikace jsem získal virtualizovaný server, ke~kterému přistupuji pomocí SSH
-\footnote{Program, který komunikuje zabezpečeným komunikačním protokolem. Používá TCP/IP.}.
+\footnote{Program, který umožňuje komunikaci zabezpečeným protokolem. Používá TCP/IP.}.
 
 \subsection*{Virtuální privátní server}
 
-Jde o server běžící na virtualizovaném hardwaru a~často se označuje zkratkou VPS.
+Jde o server běžící na virtualizovaném hardwaru, který se často označuje zkratkou VPS.
 Bývá poskytován hostingovými společnostmi, které svůj fyzický stroj nabízejí více klientům najednou.
 Každému zákazníkovi vymezí prostor s~vlastní instancí operačního systému, jednotlivými hostingovými službami
 a~vlastní konfigurací. Nevýhodu je sdílení fyzických prostředků, poněvadž při~nedostatečném nastavení
-může docházet k~ovlivňování cizích VPS. Výhodou je naopak levnější pořízení ve~srovnání celého fyzického serveru.
+může docházet k~ovlivňování cizích VPS. Výhodou je naopak levnější pořízení ve~srovnání s celým fyzickým serverem.
 
 \section{Softwarové požadavky}
 
@@ -23,7 +23,7 @@ Data se ukládají na databázový server MySQL verze 5.6.28.
 
 Pro běh aplikace byly stáhnuty všechny potřebné balíčky včetně pipu~\cite{python_pip},
 jenž slouží pro správu nesystémových knihoven v Pythonu. Detailní seznam všech závislostí obsahuje soubor
-\texttt{README.md}, uložený v rodičovském adresáři projektu. Lepší správu souborů na serveru mi pak zajistil program Midnight Commander~\cite{mc}.
+\texttt{README.md} uložený v rodičovském adresáři projektu. Lepší správu souborů na serveru mi pak zajistil program Midnight Commander~\cite{mc}.
 
 \begin{figure}[ht!]
 \centering
@@ -37,7 +37,7 @@ Aby bylo lépe pochopitelné zapojení uWSGI do celého procesu nasazení, popí
 
 Projekt uWSGI je malý program, který se stará o management procesu aplikace.
 Funguje jako prostředník mezi webovým serverem a aplikací,
-se kterými komunikuje vlastním uwsgi protokolem, respektive standartním WSGI.
+se kterými komunikuje vlastním uwsgi protokolem, respektive standardním WSGI.
 Detail komunikace je vidět na obrázku~\ref{fig:uwsgi}.
 
 \begin{figure}[ht!]
@@ -134,7 +134,7 @@ Pro produkční nasazení ale~není tento postup doporučen.
 
 \section{Údržba}
 
-Standartem pro větší aplikace by měl být monitorovací systém,
+Standardem pro větší aplikace by měl být monitorovací systém,
 který sleduje zátěž jednotlivých komponent (webová aplikace, databáze, webový server atd.)
 a~v~případě výpadku informuje administrátora SMS zprávou nebo e-mailem.
 Pro potřeby Catchera jsem však využil daleko jednodušího řešení -- webové aplikace Uptime Robot~\cite{uptime_robot},
